@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F29D86A1DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */; };
+		1F29D86B1DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F29D8691DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib */; };
+		1F29D86E1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */; };
+		1F29D86F1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */; };
+		1F29D8721DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */; };
+		1F29D8731DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */; };
+		1F97732C1DD355AB008EC44F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97732B1DD355AB008EC44F /* AppDelegate.swift */; };
+		1F97732E1DD355AB008EC44F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97732D1DD355AB008EC44F /* ViewController.swift */; };
+		1F9773311DD355AB008EC44F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F97732F1DD355AB008EC44F /* Main.storyboard */; };
+		1F9773331DD355AB008EC44F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773321DD355AB008EC44F /* Assets.xcassets */; };
+		1F9773361DD355AB008EC44F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773341DD355AB008EC44F /* LaunchScreen.storyboard */; };
+		1F97733F1DD35651008EC44F /* AVWorkoutSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */; };
+		1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */; };
+		1F9773431DD3567C008EC44F /* AVTabataTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */; };
+		1F9773441DD3567C008EC44F /* AVTabataTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */; };
+		1F9773471DD356B8008EC44F /* AVScheduledTimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */; };
+		1F9773481DD356B8008EC44F /* AVScheduledTimersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */; };
+		1F97734B1DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */; };
+		1F97734C1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */; };
+		1F97734F1DD35788008EC44F /* AVWorkoutTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */; };
+		1F9773501DD35788008EC44F /* AVWorkoutTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */; };
+		1FB272301DD396D7005FEA1B /* AVScheduledTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2722E1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.swift */; };
+		1FB272311DD396D7005FEA1B /* AVScheduledTimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB2722F1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.xib */; };
+		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
+		1FB272351DD3A223005FEA1B /* UITableView+AVExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* UITableView+AVExtension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYoutubeExercisesViewController.swift; sourceTree = "<group>"; };
+		1F29D8691DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVYoutubeExercisesViewController.xib; sourceTree = "<group>"; };
+		1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCreationTableViewCell.swift; sourceTree = "<group>"; };
+		1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseCreationTableViewCell.xib; sourceTree = "<group>"; };
+		1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		1F9773281DD355AB008EC44F /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F97732B1DD355AB008EC44F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1F97732D1DD355AB008EC44F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F9773301DD355AB008EC44F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F9773321DD355AB008EC44F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F9773351DD355AB008EC44F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F9773371DD355AB008EC44F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutSelectionViewController.swift; sourceTree = "<group>"; };
+		1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutSelectionViewController.xib; sourceTree = "<group>"; };
+		1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTabataTimerViewController.swift; sourceTree = "<group>"; };
+		1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVTabataTimerViewController.xib; sourceTree = "<group>"; };
+		1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimersViewController.swift; sourceTree = "<group>"; };
+		1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimersViewController.xib; sourceTree = "<group>"; };
+		1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerCreationViewController.swift; sourceTree = "<group>"; };
+		1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerCreationViewController.xib; sourceTree = "<group>"; };
+		1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutTimerViewController.swift; sourceTree = "<group>"; };
+		1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutTimerViewController.xib; sourceTree = "<group>"; };
+		1FB2722E1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerTableViewCell.swift; sourceTree = "<group>"; };
+		1FB2722F1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerTableViewCell.xib; sourceTree = "<group>"; };
+		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
+		1FB272341DD3A223005FEA1B /* UITableView+AVExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+AVExtension.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F9773251DD355AA008EC44F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F97731F1DD355AA008EC44F = {
+			isa = PBXGroup;
+			children = (
+				1F97732A1DD355AB008EC44F /* WorkoutTimer */,
+				1F9773291DD355AB008EC44F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F9773291DD355AB008EC44F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F9773281DD355AB008EC44F /* WorkoutTimer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F97732A1DD355AB008EC44F /* WorkoutTimer */ = {
+			isa = PBXGroup;
+			children = (
+				1F97732B1DD355AB008EC44F /* AppDelegate.swift */,
+				1F97732D1DD355AB008EC44F /* ViewController.swift */,
+				1F97732F1DD355AB008EC44F /* Main.storyboard */,
+				1F9773321DD355AB008EC44F /* Assets.xcassets */,
+				1F9773341DD355AB008EC44F /* LaunchScreen.storyboard */,
+				1F9773371DD355AB008EC44F /* Info.plist */,
+				1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */,
+				1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */,
+				1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */,
+				1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */,
+				1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */,
+				1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */,
+				1FB2722E1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.swift */,
+				1FB2722F1DD396D7005FEA1B /* AVScheduledTimerTableViewCell.xib */,
+				1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */,
+				1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */,
+				1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */,
+				1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */,
+				1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */,
+				1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */,
+				1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */,
+				1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */,
+				1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */,
+				1F29D8691DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib */,
+				1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */,
+				1FB272341DD3A223005FEA1B /* UITableView+AVExtension.swift */,
+			);
+			path = WorkoutTimer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F9773271DD355AA008EC44F /* WorkoutTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F97733A1DD355AB008EC44F /* Build configuration list for PBXNativeTarget "WorkoutTimer" */;
+			buildPhases = (
+				1F9773241DD355AA008EC44F /* Sources */,
+				1F9773251DD355AA008EC44F /* Frameworks */,
+				1F9773261DD355AA008EC44F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WorkoutTimer;
+			productName = WorkoutTimer;
+			productReference = 1F9773281DD355AB008EC44F /* WorkoutTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F9773201DD355AA008EC44F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Aleksandr Voropayev";
+				TargetAttributes = {
+					1F9773271DD355AA008EC44F = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1F9773231DD355AA008EC44F /* Build configuration list for PBXProject "WorkoutTimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F97731F1DD355AA008EC44F;
+			productRefGroup = 1F9773291DD355AB008EC44F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F9773271DD355AA008EC44F /* WorkoutTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F9773261DD355AA008EC44F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */,
+				1F29D8731DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib in Resources */,
+				1F97734C1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib in Resources */,
+				1F29D86F1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib in Resources */,
+				1F9773481DD356B8008EC44F /* AVScheduledTimersViewController.xib in Resources */,
+				1F29D86B1DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib in Resources */,
+				1FB272311DD396D7005FEA1B /* AVScheduledTimerTableViewCell.xib in Resources */,
+				1F9773441DD3567C008EC44F /* AVTabataTimerViewController.xib in Resources */,
+				1F9773361DD355AB008EC44F /* LaunchScreen.storyboard in Resources */,
+				1F9773331DD355AB008EC44F /* Assets.xcassets in Resources */,
+				1F9773501DD35788008EC44F /* AVWorkoutTimerViewController.xib in Resources */,
+				1F9773311DD355AB008EC44F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F9773241DD355AA008EC44F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F29D86E1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift in Sources */,
+				1F29D8721DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift in Sources */,
+				1F9773431DD3567C008EC44F /* AVTabataTimerViewController.swift in Sources */,
+				1F9773471DD356B8008EC44F /* AVScheduledTimersViewController.swift in Sources */,
+				1FB272301DD396D7005FEA1B /* AVScheduledTimerTableViewCell.swift in Sources */,
+				1F97732E1DD355AB008EC44F /* ViewController.swift in Sources */,
+				1F29D86A1DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift in Sources */,
+				1F97732C1DD355AB008EC44F /* AppDelegate.swift in Sources */,
+				1F97734F1DD35788008EC44F /* AVWorkoutTimerViewController.swift in Sources */,
+				1F97733F1DD35651008EC44F /* AVWorkoutSelectionViewController.swift in Sources */,
+				1FB272351DD3A223005FEA1B /* UITableView+AVExtension.swift in Sources */,
+				1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */,
+				1F97734B1DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1F97732F1DD355AB008EC44F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F9773301DD355AB008EC44F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1F9773341DD355AB008EC44F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F9773351DD355AB008EC44F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F9773381DD355AB008EC44F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1F9773391DD355AB008EC44F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F97733B1DD355AB008EC44F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WorkoutTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AV.WorkoutTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1F97733C1DD355AB008EC44F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WorkoutTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AV.WorkoutTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F9773231DD355AA008EC44F /* Build configuration list for PBXProject "WorkoutTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F9773381DD355AB008EC44F /* Debug */,
+				1F9773391DD355AB008EC44F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F97733A1DD355AB008EC44F /* Build configuration list for PBXNativeTarget "WorkoutTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F97733B1DD355AB008EC44F /* Debug */,
+				1F97733C1DD355AB008EC44F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F9773201DD355AA008EC44F /* Project object */;
+}
