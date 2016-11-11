@@ -10,11 +10,17 @@ import UIKit
 
 class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "SELECT TIMER"
-
+        
+//        tableView.estimatedRowHeight = 180
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 180
+        
         // Do any additional setup after loading the view.
     }
 
@@ -34,7 +40,7 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return AVScheduledTimerTableViewCell()
+        return tableView.dequeueReusableCell(withClass: AVScheduledTimerTableViewCell.self)!
     }
     
     /*

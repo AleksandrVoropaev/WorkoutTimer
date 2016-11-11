@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AVScheduledTimersViewController" customModule="WorkoutTimer" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="tPW-8B-OTh" id="TZP-t8-FRc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,33 +21,50 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="tPW-8B-OTh">
-                    <rect key="frame" x="0.0" y="44" width="375" height="543"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="playback" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tPW-8B-OTh">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="VLG-fX-coY"/>
                         <outlet property="delegate" destination="-1" id="vQL-TG-h7t"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tzX-GS-GEh">
-                    <rect key="frame" x="0.0" y="595" width="375" height="72"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
-                    <state key="normal" title="ADD TIMER"/>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzX-GS-GEh">
+                    <rect key="frame" x="0.0" y="597" width="188" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="wKL-DS-Jlh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="40"/>
+                    <state key="normal" title="ADD"/>
                     <connections>
                         <action selector="onAddTimerButton:" destination="-1" eventType="touchUpInside" id="Xx8-da-FOz"/>
                     </connections>
                 </button>
-                <navigationBar contentMode="scaleToFill" misplaced="YES" id="RgG-0c-TLO">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <items>
-                        <navigationItem title="Title" id="M7y-ME-Jza"/>
-                    </items>
-                </navigationBar>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WhK-r0-gfZ">
+                    <rect key="frame" x="187" y="597" width="188" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="SAc-El-o7f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="40"/>
+                    <state key="normal" title="REMOVE"/>
+                    <connections>
+                        <action selector="onAddTimerButton:" destination="-1" eventType="touchUpInside" id="UkT-2x-3xr"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="tPW-8B-OTh" secondAttribute="trailing" id="8gU-lQ-bPR"/>
+                <constraint firstItem="tzX-GS-GEh" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="95I-Cx-bDI"/>
+                <constraint firstItem="tzX-GS-GEh" firstAttribute="top" secondItem="tPW-8B-OTh" secondAttribute="bottom" id="KFH-JX-x9f"/>
+                <constraint firstItem="tzX-GS-GEh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MXr-DI-cMW"/>
+                <constraint firstAttribute="bottom" secondItem="tzX-GS-GEh" secondAttribute="bottom" id="aGx-Jf-PaM"/>
+                <constraint firstItem="tPW-8B-OTh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bC8-Ro-tOG"/>
+                <constraint firstItem="tPW-8B-OTh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iBo-wf-v3O"/>
+                <constraint firstItem="WhK-r0-gfZ" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="lFy-fv-9ok"/>
+                <constraint firstAttribute="bottom" secondItem="WhK-r0-gfZ" secondAttribute="bottom" id="lRP-FS-67U"/>
+                <constraint firstAttribute="trailing" secondItem="WhK-r0-gfZ" secondAttribute="trailing" id="ybg-WV-c3y"/>
+            </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
