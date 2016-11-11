@@ -8,15 +8,12 @@
 
 import UIKit
 
-class AVExerciseCreationTableViewCell: UITableViewCell /*, AVCellsFill*/ {
+class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
 
     @IBOutlet weak var exerciseNameField: UITextField!
-    
     @IBOutlet weak var exerciseDurationLabel: UILabel!
-    @IBOutlet weak var exerciseDurationDecreaseButton: UIButton!
-    @IBOutlet weak var exerciseDurationIncreaseButton: UIButton!
     
-    @IBOutlet weak var addExerciseButton: UIButton!
+    let model = AVExerciseModel(name: "none", duration: 30)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +26,19 @@ class AVExerciseCreationTableViewCell: UITableViewCell /*, AVCellsFill*/ {
         // Configure the view for the selected state
     }
     
+    @IBAction func onExerciseDurationPlusButton(_ sender: Any) {
+        self.model.exerciseDuration = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseDuration,
+                                                         function: +,
+                                                         label: self.exerciseDurationLabel)
+    }
+    
+    @IBAction func onExerciseDurationMinusButton(_ sender: Any) {
+        self.model.exerciseDuration = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseDuration,
+                                                         function: -,
+                                                         label: self.exerciseDurationLabel)
+    }
+    
+    @IBAction func onAddExerciseButton(_ sender: Any) {
+        self.model.exerciseName = self.exerciseNameField.text!
+    }
 }

@@ -43,14 +43,7 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         return tableView.dequeueReusableCell(withClass: AVScheduledTimerTableViewCell.self)!
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        return tableView.dequeueReusableCell(withClass: AVExerciseDetailsTableViewCell.self)!
+//    }
 }
