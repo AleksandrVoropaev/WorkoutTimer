@@ -12,17 +12,7 @@ class AVExerciseDetailsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
-    var exerciseModel: AVExerciseModel
-
-    init(exerciseModel: AVExerciseModel) {
-        self.exerciseModel = exerciseModel
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.exerciseModel = AVExerciseModel(name: "none", duration: 0)
-        super.init(coder: aDecoder)
-    }
+    var exerciseModel = AVExerciseModel(name: "none", duration: 0)
     
     func fillWithModel(model: AVExerciseModel) {
         let seconds = model.exerciseDuration % 60

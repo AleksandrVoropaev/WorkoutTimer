@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AVExerciseCreationTableViewCell: UITableViewCell {
-    
+class AVExerciseCreationTableViewCell: UITableViewCell /*, AVCellsFill*/ {
+
     @IBOutlet weak var exerciseNameField: UITextField!
     
     @IBOutlet weak var exerciseDurationLabel: UILabel!

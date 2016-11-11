@@ -10,6 +10,14 @@ import UIKit
 
 class AVScheduledTimerTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var timerNameLabel: UILabel!
+    @IBOutlet weak var warmupLabel: UILabel!
+    @IBOutlet weak var setsCountLabel: UILabel!
+    @IBOutlet weak var restLabel: UILabel!
+    @IBOutlet weak var coolDownLabel: UILabel!
+    @IBOutlet weak var exerciseDurationLabel: UILabel!
+    @IBOutlet weak var exerciseNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
