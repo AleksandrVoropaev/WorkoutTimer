@@ -32,9 +32,13 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
             
             var exerciseNames = ""
             var exerciseTimes = ""
-            for exercise in model.exercises {
-                exerciseNames += exercise.exerciseName + "\r\n"
-                exerciseTimes += self.secondsToTimeString(seconds: exercise.exerciseDuration) + "\r\n"
+            for (index, exercise) in model.exercises.enumerated() {
+                exerciseNames += exercise.exerciseName
+                exerciseTimes += self.secondsToTimeString(seconds: exercise.exerciseDuration)
+                if index < model.exercises.count - 1 {
+                    exerciseNames += "\r\n"
+                    exerciseTimes += "\r\n"
+                }
             }
             
             self.execiseNameLabel.text = exerciseNames
