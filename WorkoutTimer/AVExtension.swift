@@ -22,7 +22,6 @@ extension UINib {
     }
     
     class func nibWithClass(cls: AnyClass, bundle: Bundle?) -> UINib {
-//        let nibName = NSStringFromClass(cls).characters.split(separator: ".").map(String.init).last
         let nibName = NSStringFromClass(cls).components(separatedBy: ".").last
         
         return self.init(nibName:nibName!, bundle:bundle)

@@ -32,6 +32,25 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withClass: AVExerciseCreationTableViewCell.self)!
+        var cls : AnyClass
+        
+        if indexPath.row == 1 {
+            cls = AVExerciseCreationTableViewCell.self
+        } else {
+            cls = AVExerciseDetailsTableViewCell.self
+        }
+        
+        return tableView.dequeueReusableCell(withClass: cls)!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height : CGFloat
+        if indexPath.row == 1 {
+            height = 196
+        } else {
+            height = 80
+        }
+        
+        return height
     }
 }

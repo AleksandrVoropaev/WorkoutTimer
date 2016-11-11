@@ -16,10 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let workoutsController = AVWorkoutSelectionViewController()
         let navigationController = UINavigationController(rootViewController: workoutsController)
-        //navigationController.navigationBar.barStyle = UIBarStyle.blackOpaque
-        //navigationController.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
         
         let window = self.window
+//        window?.rootViewController = workoutsController
         window?.rootViewController = navigationController
         
         // Override point for customization after application launch.
