@@ -12,9 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AVWorkoutTimerViewController" customModule="WorkoutTimer" customModuleProvider="target">
             <connections>
-                <outlet property="pauseButton" destination="j7f-cE-XLs" id="bMU-wP-BrI"/>
-                <outlet property="resumeButton" destination="b4Z-nX-gDr" id="pls-sI-LeC"/>
-                <outlet property="stopButton" destination="nSC-j8-WC7" id="WYL-3G-ync"/>
+                <outlet property="captionLabel" destination="kPg-7N-ibI" id="dZb-7l-VSe"/>
+                <outlet property="countDownTimerLabel" destination="Xmc-vT-NuZ" id="1Wb-sh-a6P"/>
+                <outlet property="countUpTimerLabel" destination="ZVg-Tp-BY4" id="mNe-4b-R5L"/>
+                <outlet property="pauseButton" destination="j7f-cE-XLs" id="0bM-TI-mgO"/>
+                <outlet property="resumeButton" destination="b4Z-nX-gDr" id="KHj-jT-Nvz"/>
+                <outlet property="stopButton" destination="nSC-j8-WC7" id="beg-W3-YmA"/>
+                <outlet property="totalCountDownTimerLabel" destination="cpx-cX-Y6g" id="MzQ-sf-NyN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

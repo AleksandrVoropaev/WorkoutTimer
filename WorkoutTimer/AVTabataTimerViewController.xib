@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AVTabataTimerViewController" customModule="WorkoutTimer" customModuleProvider="target">
             <connections>
+                <outlet property="startButton" destination="oqo-ZJ-5Ab" id="9oq-EH-ZYp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

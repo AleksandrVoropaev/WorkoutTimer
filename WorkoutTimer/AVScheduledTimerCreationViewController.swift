@@ -16,7 +16,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     @IBOutlet weak var restLabel: UILabel!
     @IBOutlet weak var coolDownLabel: UILabel!
     
-    var model = AVScheduledTimerModel(name: "none", warmupTime: 30, setsCount: 1, restTime: 10, coolDownTime: 30)
+    var model = AVScheduledTimerModel(name: "none", warmupTime: 30, setsCount: 1, setsRestTime: 30, restTime: 10, coolDownTime: 30)
     
     
     override func viewDidLoad() {
@@ -63,11 +63,6 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     
     func timeLabelChangeWithFunction(oldValue: Int, function: (Int, Int) -> Int, label: UILabel) -> Int {
         let newValue = function(oldValue, 1)
-        
-//        let seconds = newValue % 60
-//        let minutes = newValue / 60
-//
-//        label.text = "\(minutes) : \(seconds)"
 
         label.text = self.secondsToTimeString(seconds: newValue)
         
@@ -114,13 +109,13 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     }
     
     @IBAction func onPlusRestButton(_ sender: Any) {
-        self.model.restTime = self.timeLabelChangeWithFunction(oldValue: self.model.restTime,
+        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
                                                                  function: +,
                                                                  label: self.restLabel)
     }
     
     @IBAction func onMinusRestButton(_ sender: Any) {
-        self.model.restTime = self.timeLabelChangeWithFunction(oldValue: self.model.restTime,
+        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
                                                                function: -,
                                                                label: self.restLabel)
     }

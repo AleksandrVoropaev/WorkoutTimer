@@ -44,6 +44,7 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         let cellModel = AVScheduledTimerModel(name: "Test timer",
                                            warmupTime: 27,
                                            setsCount: 5,
+                                           setsRestTime: 30,
                                            restTime: 32,
                                            coolDownTime: 35)
         cellModel.addExercise(exerciseName: "Test Exercise 1", exerciseDuration: 22)

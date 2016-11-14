@@ -13,7 +13,8 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
     @IBOutlet weak var timerNameLabel: UILabel!
     @IBOutlet weak var warmupLabel: UILabel!
     @IBOutlet weak var setsLabel: UILabel!
-    @IBOutlet weak var restLabel: UILabel!
+    @IBOutlet weak var restBetweenSetsLabel: UILabel!
+    @IBOutlet weak var restBetweenExercisesLabel: UILabel!
     @IBOutlet weak var coolDownLabel: UILabel!
     @IBOutlet weak var execiseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
@@ -21,13 +22,16 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
     var model = AVScheduledTimerModel(name: "none",
                                       warmupTime: 30,
                                       setsCount: 3,
+                                      setsRestTime: 30,
                                       restTime: 10,
-                                      coolDownTime: 30) {
+                                      coolDownTime: 30)
+    {
         didSet {
             self.timerNameLabel.text = model.name
             self.warmupLabel.text = self.secondsToTimeString(seconds: model.warmupTime)
             self.setsLabel.text = String(model.setsCount)
-            self.restLabel.text = self.secondsToTimeString(seconds: model.restTime)
+            self.restBetweenSetsLabel.text = self.secondsToTimeString(seconds: model.setsRestTime)
+            self.restBetweenExercisesLabel.text = self.secondsToTimeString(seconds: model.exerciseRestTime)
             self.coolDownLabel.text = self.secondsToTimeString(seconds: model.coolDownTime)
             
             var exerciseNames = ""

@@ -12,8 +12,9 @@ class AVScheduledTimerModel {
     var name: String
     var warmupTime: Int
     var setsCount: Int
+    var setsRestTime: Int
     var exercises: Array<AVExerciseModel> = []
-    var restTime: Int
+    var exerciseRestTime: Int
     var coolDownTime: Int
     var summaryDuration: Int {
         var sum = 0
@@ -22,14 +23,25 @@ class AVScheduledTimerModel {
         return sum
     }
     
-    init(name: String, warmupTime: Int, setsCount: Int, restTime: Int, coolDownTime: Int) {
+    init(name: String, warmupTime: Int, setsCount: Int, setsRestTime: Int, restTime: Int, coolDownTime: Int) {
         self.name = name
         self.warmupTime = warmupTime
         self.setsCount = setsCount
-        self.restTime = restTime
+        self.setsRestTime = setsRestTime
+        self.exerciseRestTime = restTime
         self.coolDownTime = coolDownTime
     }
     
+    init(name: String, warmupTime: Int, setsCount: Int, setsRestTime: Int, exercises:Array<AVExerciseModel>, exerciseRestTime: Int, coolDownTime: Int) {
+        self.name = name
+        self.warmupTime = warmupTime
+        self.setsCount = setsCount
+        self.setsRestTime = setsRestTime
+        self.exerciseRestTime = exerciseRestTime
+        self.coolDownTime = coolDownTime
+        self.exercises.append(contentsOf: exercises)
+    }
+
     func addExercise(exerciseName: String, exerciseDuration: Int) {
         self.exercises.append(AVExerciseModel(name: exerciseName, duration: exerciseDuration))
     }

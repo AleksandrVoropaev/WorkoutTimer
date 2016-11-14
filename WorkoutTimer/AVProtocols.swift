@@ -22,7 +22,7 @@ extension AVCellsFill {
         
         return newValue
     }
-    
+
     func secondsToTimeString(seconds value: Int) -> String {
         let seconds = String(format:"%02d", value % 60)
         let minutes = String(format:"%02d", value / 60)
