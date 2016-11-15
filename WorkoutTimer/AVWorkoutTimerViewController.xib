@@ -12,12 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AVWorkoutTimerViewController" customModule="WorkoutTimer" customModuleProvider="target">
             <connections>
-                <outlet property="captionLabel" destination="kPg-7N-ibI" id="dZb-7l-VSe"/>
+                <outlet property="captionLabel" destination="kPg-7N-ibI" id="0TC-PH-Rdt"/>
                 <outlet property="countDownTimerLabel" destination="Xmc-vT-NuZ" id="1Wb-sh-a6P"/>
                 <outlet property="countUpTimerLabel" destination="ZVg-Tp-BY4" id="mNe-4b-R5L"/>
-                <outlet property="pauseButton" destination="j7f-cE-XLs" id="0bM-TI-mgO"/>
-                <outlet property="resumeButton" destination="b4Z-nX-gDr" id="KHj-jT-Nvz"/>
-                <outlet property="stopButton" destination="nSC-j8-WC7" id="beg-W3-YmA"/>
+                <outlet property="pauseButton" destination="b4Z-nX-gDr" id="uzC-MO-9Z7"/>
+                <outlet property="startButton" destination="j7f-cE-XLs" id="PXG-4U-i04"/>
+                <outlet property="stopButton" destination="nSC-j8-WC7" id="0tQ-IW-BPg"/>
                 <outlet property="totalCountDownTimerLabel" destination="cpx-cX-Y6g" id="MzQ-sf-NyN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -53,7 +53,7 @@
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
                     <state key="normal" title="START"/>
                     <connections>
-                        <action selector="onPauseButton:" destination="-1" eventType="touchUpInside" id="fSH-8f-nid"/>
+                        <action selector="onStartButton:" destination="-2" eventType="touchUpInside" id="y9u-dS-cHz"/>
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-j8-WC7">
@@ -64,7 +64,7 @@
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
                     <state key="normal" title="STOP"/>
                     <connections>
-                        <action selector="onStopButton:" destination="-1" eventType="touchUpInside" id="dij-r8-Z1W"/>
+                        <action selector="onStopButton:" destination="-2" eventType="touchUpInside" id="dhK-mx-ghj"/>
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-nX-gDr">
@@ -73,9 +73,9 @@
                         <constraint firstAttribute="height" constant="70" id="4jn-e9-nZx"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
-                    <state key="normal" title="RESUME"/>
+                    <state key="normal" title="PAUSE"/>
                     <connections>
-                        <action selector="onResumeButton:" destination="-1" eventType="touchUpInside" id="pqS-c4-HJG"/>
+                        <action selector="onPauseButton:" destination="-2" eventType="touchUpInside" id="7ha-PE-9i9"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpx-cX-Y6g">

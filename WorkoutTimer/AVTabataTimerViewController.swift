@@ -13,9 +13,9 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     @IBOutlet weak var startButton: UIButton!
     
     var timerSettingsContainerView = UIView()
-    var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 30, setsCount: 8, setsRestTime: 0, restTime: 10, coolDownTime: 30)
+    var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 15, setsCount: 2, setsRestTime: 10, restTime: 3, coolDownTime: 15)
     func addExercise() {
-        self.tabataTimerModel.addExercise(exerciseName: "Work", exerciseDuration: 20)
+        self.tabataTimerModel.addExercise(exerciseName: "Work", exerciseDuration: 5)
     }
     
     var warmupTimerField: AVTimerSettingsFieldView?
@@ -62,7 +62,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     func setTimerSettingsContainerView() {
-        timerSettingsContainerView.backgroundColor = UIColor.lightGray
+//        timerSettingsContainerView.backgroundColor = UIColor.lightGray
         self.view.addSubview(timerSettingsContainerView)
         timerSettingsContainerView.translatesAutoresizingMaskIntoConstraints = false
         let leftViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView, 
@@ -191,11 +191,15 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
 
     @IBAction func onRestMinusButton(_ sender: Any) {
-        self.tabataTimerModel.exerciseRestTime = self.manageRestTimerField(function: -)
+        let restTime = self.manageRestTimerField(function: -)
+        self.tabataTimerModel.exerciseRestTime = restTime
+        self.tabataTimerModel.setsRestTime = restTime
     }
     
     @IBAction func onRestPlusButton(_ sender: Any) {
-        self.tabataTimerModel.exerciseRestTime = self.manageRestTimerField(function: +)
+        let restTime = self.manageRestTimerField(function: +)
+        self.tabataTimerModel.exerciseRestTime = restTime
+        self.tabataTimerModel.setsRestTime = restTime
     }
     
     func manageRestTimerField(function:(Int, Int) -> Int) -> Int {

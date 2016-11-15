@@ -17,10 +17,29 @@ class AVScheduledTimerModel {
     var exerciseRestTime: Int
     var coolDownTime: Int
     var summaryDuration: Int {
-        var sum = 0
-        self.exercises.forEach { sum += $0.exerciseDuration }
+        var setTime = 0
+        self.exercises.forEach { setTime += $0.exerciseDuration + self.exerciseRestTime }
+        setTime -= self.exerciseRestTime
         
-        return sum
+        return self.warmupTime + (setTime + self.setsRestTime) * self.setsCount - self.setsRestTime  + self.coolDownTime
+    }
+    var timeIntervals: Array<AVExerciseModel> {
+        var result:Array<AVExerciseModel> = [AVExerciseModel.init(name: "WARMUP", duration: self.warmupTime)]
+        
+        for setsIterator in 0...(self.setsCount - 1) {
+            for exerciseIterator in 0...(self.exercises.count - 1) {
+                result.append(self.exercises[exerciseIterator])
+                if self.exercises.endIndex != exerciseIterator {
+                    result.append(AVExerciseModel.init(name: "REST", duration: self.exerciseRestTime))
+                } else if setsIterator != (self.setsCount - 1) {
+                    result.append(AVExerciseModel.init(name: "Next Set in:", duration: self.setsRestTime))
+                } else {
+                    result.append(AVExerciseModel.init(name: "COOL DOWN", duration: self.coolDownTime))
+                }
+            }
+        }
+        
+        return result
     }
     
     init(name: String, warmupTime: Int, setsCount: Int, setsRestTime: Int, restTime: Int, coolDownTime: Int) {

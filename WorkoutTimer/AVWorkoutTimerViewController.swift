@@ -8,45 +8,59 @@
 
 import UIKit
 
-class AVWorkoutTimerViewController: UIViewController {
+class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
 
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var countDownTimerLabel: UILabel!
     @IBOutlet weak var countUpTimerLabel: UILabel!
     @IBOutlet weak var totalCountDownTimerLabel: UILabel!
-    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var resumeButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
     
-    var isFirstRun = true
+    var captionLabelText: String?
+    var countDownTimerLabelText: String?
+    var countUpTimerLabelText: String?
+    var totalCountDownTimerLabelText: String?
+    
+    var exerciseCountDown: Int = 0
+    var exerciseCountUp: Int = 0
+    var activityCountDown: Int = 0
+    var timeIntervals: Array<AVExerciseModel> = []
+    var currentTimeIntervalIndex: Int = 0
+    
     var model: AVScheduledTimerModel? {
         didSet {
             let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
-            let firstExercise = model?.exercises[0] ?? AVExerciseModel(name: "nonenone", duration: 0)
-            let string: String = firstExercise.exerciseName
-            print(string)
-            if string != "" {
-                self.captionLabel.text = string
+            if newModel.warmupTime != 0 {
+                self.captionLabelText = "WARMUP"
+            } else {
+                let exerciseName = newModel.exercises[0].exerciseName
+                self.captionLabelText = exerciseName != "" ? exerciseName : "No exercises"
             }
-//            self.captionLabel.text = String(string) != "" ? String(string) : "WARMUP"
-//            self.captionLabel.text = newModel.exercises.first?.exerciseName ?? "WARMUP"
             
-//            let exerciseDuration = newModel.exercises.first?.exerciseDuration ?? 0
-            let countDown = newModel.warmupTime == 0 ? newModel.warmupTime : newModel.exercises.first?.exerciseDuration ?? 0
-            self.countDownTimerLabel.text = String(countDown)
-            self.totalCountDownTimerLabel.text = String(newModel.summaryDuration)
+            let countDownTime = newModel.warmupTime == 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
+            self.countDownTimerLabelText = self.secondsToTimeString(seconds: countDownTime)
+            self.totalCountDownTimerLabelText = self.secondsToTimeString(seconds: newModel.summaryDuration)
+
+            self.exerciseCountDown = countDownTime
+            self.activityCountDown = newModel.summaryDuration
+            self.timeIntervals = newModel.timeIntervals
         }
     }
     
-    
+    var isStopped = false
+    var isFirstRun = true
     var isRunning: Bool {
         didSet {
-            self.stopButton.isHidden = isRunning
-            self.resumeButton.isHidden = isRunning
-            self.pauseButton.isHidden = !isRunning
-            if isFirstRun {
-                self.pauseButton.setTitle("PAUSE", for: UIControlState.normal)
-                isFirstRun = false
+            if !isStopped {
+                self.stopButton.isHidden = !isRunning
+                self.pauseButton.isHidden = !isRunning
+                self.startButton.isHidden = isRunning
+                if isFirstRun {
+                    self.startButton.setTitle("RESUME", for: UIControlState.normal)
+                    isFirstRun = false
+                }
             }
         }
     }
@@ -61,6 +75,12 @@ class AVWorkoutTimerViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.captionLabel.text = self.captionLabelText
+        self.countDownTimerLabel.text = self.countDownTimerLabelText
+        self.totalCountDownTimerLabel.text = self.totalCountDownTimerLabelText
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,20 +89,60 @@ class AVWorkoutTimerViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    func countDown() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { () -> Void in
+            if self.isRunning {
+                self.exerciseCountUp += 1
+                self.countUpTimerLabel.text = self.secondsToTimeString(seconds: self.exerciseCountUp)
+                self.exerciseCountDown -= 1
+                self.countDownTimerLabel.text = self.secondsToTimeString(seconds: self.exerciseCountDown)
+                self.activityCountDown -= 1
+                self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.activityCountDown)
+
+                if self.exerciseCountDown == 0 {
+                    self.nextTimeInterval()
+                }
+                
+                self.countDown()
+            }
+        }
+    }
+    
+    func nextTimeInterval() {
+        self.currentTimeIntervalIndex += 1
+        if self.currentTimeIntervalIndex < self.timeIntervals.count {
+            let currentExercise = self.timeIntervals[self.currentTimeIntervalIndex]
+            self.captionLabel.text = currentExercise.exerciseName
+            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: currentExercise.exerciseDuration)
+            self.exerciseCountDown = currentExercise.exerciseDuration
+            self.countUpTimerLabel.text = "00:00"
+            self.exerciseCountUp = 0
+        } else {
+            self.isStopped = true
+            self.isRunning = false
+            self.countUpTimerLabel.text = "00:00"
+            self.pauseButton.isUserInteractionEnabled = false
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onStartButton(_ sender: Any) {
+        self.isRunning = true
+        self.countDown()
     }
     
     @IBAction func onPauseButton(_ sender: Any) {
         self.isRunning = false
     }
     
-    @IBAction func onResumeButton(_ sender: Any) {
-        self.isRunning = true
-    }
-    
     @IBAction func onStopButton(_ sender: Any) {
-        self.isRunning = true
+        self.isRunning = false
+        self.currentTimeIntervalIndex = -1
+        self.nextTimeInterval()
     }
 }
