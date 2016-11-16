@@ -29,7 +29,8 @@ class AVScheduledTimerModel {
         for setsIterator in 0...(self.setsCount - 1) {
             for exerciseIterator in 0...(self.exercises.count - 1) {
                 result.append(self.exercises[exerciseIterator])
-                if self.exercises.endIndex != exerciseIterator {
+                let exercisesLastIndex = self.exercises.endIndex - 1
+                if exercisesLastIndex != exerciseIterator {
                     result.append(AVExerciseModel.init(name: "REST", duration: self.exerciseRestTime))
                 } else if setsIterator != (self.setsCount - 1) {
                     result.append(AVExerciseModel.init(name: "Next Set in:", duration: self.setsRestTime))

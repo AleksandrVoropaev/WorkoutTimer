@@ -23,6 +23,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     var countUpTimerLabelText: String?
     var totalCountDownTimerLabelText: String?
     
+    var totalCountDownTime: Int = 0
     var exerciseCountDown: Int = 0
     var exerciseCountUp: Int = 0
     var activityCountDown: Int = 0
@@ -39,10 +40,11 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
                 self.captionLabelText = exerciseName != "" ? exerciseName : "No exercises"
             }
             
-            let countDownTime = newModel.warmupTime == 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
+            let countDownTime = newModel.warmupTime != 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
             self.countDownTimerLabelText = self.secondsToTimeString(seconds: countDownTime)
             self.totalCountDownTimerLabelText = self.secondsToTimeString(seconds: newModel.summaryDuration)
-
+            self.totalCountDownTime = newModel.summaryDuration
+            
             self.exerciseCountDown = countDownTime
             self.activityCountDown = newModel.summaryDuration
             self.timeIntervals = newModel.timeIntervals
@@ -75,8 +77,9 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         super.init(coder: aDecoder)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.captionLabel.text = self.captionLabelText
+        self.captionLabel.adjustsFontSizeToFitWidth = true
         self.countDownTimerLabel.text = self.countDownTimerLabelText
         self.totalCountDownTimerLabel.text = self.totalCountDownTimerLabelText
     }
@@ -120,6 +123,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         } else {
             self.isStopped = true
             self.isRunning = false
+            self.captionLabel.text = "END"
             self.countUpTimerLabel.text = "00:00"
             self.pauseButton.isUserInteractionEnabled = false
         }
@@ -141,8 +145,16 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     }
     
     @IBAction func onStopButton(_ sender: Any) {
-        self.isRunning = false
-        self.currentTimeIntervalIndex = -1
-        self.nextTimeInterval()
+        if isStopped {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.startButton.setTitle("START", for: UIControlState.normal)
+            self.currentTimeIntervalIndex = -1
+            self.nextTimeInterval()
+            self.totalCountDownTimerLabel.text = self.totalCountDownTimerLabelText
+            self.activityCountDown = self.totalCountDownTime
+            self.isRunning = false
+            self.isFirstRun = true
+        }
     }
 }
