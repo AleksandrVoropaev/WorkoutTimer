@@ -55,17 +55,10 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.thumbnailImageView)
         self.addSubview(self.separatorView)
         
-//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.thumbnailImageView]))
-//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.thumbnailImageView]))
-//
-//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.separatorView]))
-//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.separatorView]))
+        self.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: self.thumbnailImageView)
+        self.addConstraintsWithFormat(format: "V:|-16-[v0]-16-[v1(1)]|", views: self.thumbnailImageView, self.separatorView)
+        self.addConstraintsWithFormat(format: "H:|[v0]|", views: self.separatorView)
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.thumbnailImageView]))
-        
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v0]-16-[v1(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.thumbnailImageView, "v1":self.separatorView]))
-        
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":self.separatorView]))
     }
     
     let thumbnailImageView: UIImageView = {
