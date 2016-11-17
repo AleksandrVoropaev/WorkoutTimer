@@ -32,18 +32,9 @@ class AVWorkoutSelectionViewController: UIViewController {
     }
     
     @IBAction func onExercisesButton(_ sender: Any) {
-        let exercisesViewController = AVYoutubeExercisesViewController()
+        let layout = UICollectionViewFlowLayout()
+        let exercisesViewController = AVYoutubeExercisesViewController(collectionViewLayout: layout)
         self.navigationController?.pushViewController(exercisesViewController, animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
