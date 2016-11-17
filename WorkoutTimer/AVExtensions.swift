@@ -68,6 +68,8 @@ extension UIView {
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String : UIView]()
         for (index, view) in views.enumerated() {
+            view.translatesAutoresizingMaskIntoConstraints = false
+
             let key = "v\(index)"
             viewsDictionary[key] = view
         }
@@ -79,3 +81,27 @@ extension UIView {
 
     }
 }
+
+extension UIColor {
+    static func RGB(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+    }
+}
+
+extension UIImageView {
+    func loadImageWithURLString(URLString: String) {
+        let url = NSURL(string: URLString)
+        URLSession.shared.dataTask(with: url as! URL, completionHandler: { (data, respones, error) in
+            if error != nil {
+                print(error as Any)
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data!)
+            }
+        }).resume()
+    }
+}
+

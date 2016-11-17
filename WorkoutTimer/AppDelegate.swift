@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = self.window
         window?.rootViewController = navigationController
+//        application.statusBarStyle = UIStatusBarStyle.lightContent
 //        window?.makeKeyAndVisible()
 
 //        self.window = UIWindow(frame: UIScreen.main.bounds)

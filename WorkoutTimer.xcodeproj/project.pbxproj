@@ -37,6 +37,7 @@
 		1F9773501DD35788008EC44F /* AVWorkoutTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */; };
 		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
 		1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* AVExtensions.swift */; };
+		1FD3755A1DDE29A800479BC2 /* AVYouTubeVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */; };
 		1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutTimerViewController.xib; sourceTree = "<group>"; };
 		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
 		1FB272341DD3A223005FEA1B /* AVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExtensions.swift; sourceTree = "<group>"; };
+		1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoModel.swift; sourceTree = "<group>"; };
 		1FE658AC1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AVWorkoutTimerModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */,
 				1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */,
 				1F29D8691DD35E3200F56FCA /* AVYoutubeExercisesViewController.xib */,
+				1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */,
 				1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */,
 				1F0E36EA1DD5BB0400C90245 /* AVScheduledTimerModel.swift */,
 				1F0E36EC1DD5BB2C00C90245 /* AVExerciseModel.swift */,
@@ -234,6 +237,7 @@
 				1F29D86A1DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift in Sources */,
 				1F0E36EF1DD622DE00C90245 /* AVProtocols.swift in Sources */,
 				1F97732C1DD355AB008EC44F /* AppDelegate.swift in Sources */,
+				1FD3755A1DDE29A800479BC2 /* AVYouTubeVideoModel.swift in Sources */,
 				1F97734F1DD35788008EC44F /* AVWorkoutTimerViewController.swift in Sources */,
 				1F138DA61DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift in Sources */,
 				1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */,
