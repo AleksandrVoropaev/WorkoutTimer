@@ -59,12 +59,13 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
             }
             
             if let channelName = video?.channel?.name,
-                let numberOfViews = video?.viewCount
-                //                let uploadDate = video?.uploadDate
+                let numberOfViews = video?.viewCount,
+                let publicationDate = video?.publicationDate
             {
                 let formatter = NumberFormatter()
                 formatter.numberStyle = .decimal
-                self.subTitleTextView.text = "\(channelName) ·· \(formatter.string(for: numberOfViews)!) views ·· uploadDate"
+                
+                self.subTitleTextView.text = "\(channelName) ·· \(formatter.string(for: numberOfViews)!) views ·· \(publicationDate)!)"
             }
             
             if let title = video?.title {

@@ -141,4 +141,11 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let videoDetailsViewController = AVYouTubeVideoDetailsViewController()
+        videoDetailsViewController.video = self.videos?[indexPath.item]
+        
+        self.navigationController?.pushViewController(videoDetailsViewController, animated: true)
+    }
 }

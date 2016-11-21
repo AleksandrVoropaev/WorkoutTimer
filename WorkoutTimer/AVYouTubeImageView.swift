@@ -8,11 +8,11 @@
 
 import UIKit
 
-//let imageCache  = NSCache<AnyObject, AnyObject>()
+let imageCache  = NSCache<NSString, UIImage>()
 
 class AVYouTubeImageView: UIImageView {
     
-    let imageCache  = NSCache<NSString, UIImage>()
+//    let imageCache  = NSCache<NSString, UIImage>()
 
     var imageURLString: String? = nil
     
@@ -33,17 +33,10 @@ class AVYouTubeImageView: UIImageView {
                     return
                 }
                 
-//                if let cachedImage = UIImage(data: data!) {
-//                    self.imageCache.setObject(cachedImage, forKey: URLString as NSString)
-//                    
-//                    if self.imageURLString == URLString {
-//                        self.image = cachedImage
-//                    }
-//                }
-                
                 DispatchQueue.main.async {
                     if let cachedImage = UIImage(data: data!) {
-                        self.imageCache.setObject(cachedImage, forKey: URLString as NSString)
+//                        self.imageCache.setObject(cachedImage, forKey: URLString as NSString)
+                        imageCache.setObject(cachedImage, forKey: URLString as NSString)
                         
                         if self.imageURLString == URLString {
                             self.image = cachedImage
