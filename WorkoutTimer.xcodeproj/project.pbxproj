@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000D3E200B35A80FD88AD147 /* Pods_WorkoutTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */; };
 		1F0E36EB1DD5BB0400C90245 /* AVScheduledTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EA1DD5BB0400C90245 /* AVScheduledTimerModel.swift */; };
 		1F0E36ED1DD5BB2C00C90245 /* AVExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EC1DD5BB2C00C90245 /* AVExerciseModel.swift */; };
 		1F0E36EF1DD622DE00C90245 /* AVProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */; };
@@ -38,6 +39,7 @@
 		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
 		1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* AVExtensions.swift */; };
 		1FD3755A1DDE29A800479BC2 /* AVYouTubeVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */; };
+		1FD3755C1DDEF55200479BC2 /* AVYouTubeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */; };
 		1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +77,11 @@
 		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
 		1FB272341DD3A223005FEA1B /* AVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExtensions.swift; sourceTree = "<group>"; };
 		1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoModel.swift; sourceTree = "<group>"; };
+		1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeImageView.swift; sourceTree = "<group>"; };
 		1FE658AC1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AVWorkoutTimerModel.xcdatamodel; sourceTree = "<group>"; };
+		33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5008AD9050D23E2FECCE0988 /* Pods-WorkoutTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer.release.xcconfig"; sourceTree = "<group>"; };
+		FF49480606DBFD7D7097E231 /* Pods-WorkoutTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,17 +89,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000D3E200B35A80FD88AD147 /* Pods_WorkoutTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AA2772980F672FB1FBF985D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF49480606DBFD7D7097E231 /* Pods-WorkoutTimer.debug.xcconfig */,
+				5008AD9050D23E2FECCE0988 /* Pods-WorkoutTimer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		1F97731F1DD355AA008EC44F = {
 			isa = PBXGroup;
 			children = (
 				1F97732A1DD355AB008EC44F /* WorkoutTimer */,
 				1F9773291DD355AB008EC44F /* Products */,
+				0AA2772980F672FB1FBF985D /* Pods */,
+				BC4F8B38D4BF27C4DB8DE6BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,8 +159,17 @@
 				1FB272341DD3A223005FEA1B /* AVExtensions.swift */,
 				1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */,
 				1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */,
+				1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */,
 			);
 			path = WorkoutTimer;
+			sourceTree = "<group>";
+		};
+		BC4F8B38D4BF27C4DB8DE6BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F97733A1DD355AB008EC44F /* Build configuration list for PBXNativeTarget "WorkoutTimer" */;
 			buildPhases = (
+				5850A0AA34FA753558B54A5E /* [CP] Check Pods Manifest.lock */,
 				1F9773241DD355AA008EC44F /* Sources */,
 				1F9773251DD355AA008EC44F /* Frameworks */,
 				1F9773261DD355AA008EC44F /* Resources */,
+				AEDC02E287C1C40B6308DC2A /* [CP] Embed Pods Frameworks */,
+				381DAEFA3B3FD3EB324E1122 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,12 +252,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		381DAEFA3B3FD3EB324E1122 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5850A0AA34FA753558B54A5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AEDC02E287C1C40B6308DC2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F9773241DD355AA008EC44F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1F29D86E1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift in Sources */,
+				1FD3755C1DDEF55200479BC2 /* AVYouTubeImageView.swift in Sources */,
 				1F29D8721DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift in Sources */,
 				1F9773431DD3567C008EC44F /* AVTabataTimerViewController.swift in Sources */,
 				1F9773471DD356B8008EC44F /* AVScheduledTimersViewController.swift in Sources */,
@@ -364,6 +443,7 @@
 		};
 		1F97733B1DD355AB008EC44F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF49480606DBFD7D7097E231 /* Pods-WorkoutTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;
@@ -376,6 +456,7 @@
 		};
 		1F97733C1DD355AB008EC44F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5008AD9050D23E2FECCE0988 /* Pods-WorkoutTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;

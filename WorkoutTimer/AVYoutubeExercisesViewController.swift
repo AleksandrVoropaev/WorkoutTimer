@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AVYoutubeExercisesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -32,42 +33,105 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
 //    }()
     var videos: [AVYouTubeVideoModel]?
     
+    func getVideos() {
+        Alamofire.request("https://www.googleapis.com/youtube/v3/search",
+                          method: .get,
+                          parameters: ["part":"snippet",
+                                       "q":"tabata workout",
+                                       "maxResults":3,
+                                       "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                          encoding: URLEncoding.default,
+                          headers: nil).responseJSON { (response) in
+                            if let JSON = response.result.value {
+                                print(JSON)
+                                for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
+                                    print(video)
+                                    let videoObject = AVYouTubeVideoModel()
+                                    videoObject.videoId = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
+                                    videoObject.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
+                                    videoObject.videoDecription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
+                                    videoObject.thumbnail_image_name = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
+                                    
+                                    videoObject.channel = AVYouTubeChannel()
+                                    videoObject.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
+                                    self.getChannelDetailsWithVideoModel(model: videoObject)
+//                                    print(videoObject.thumbnail_image_name)
+                                    self.videos?.append(videoObject)
+                                }
+                            }
+        }
+    }
+    
+    func getChannelDetailsWithVideoModel(model: AVYouTubeVideoModel) {
+        if let channelId = model.channel?.id {
+            Alamofire.request("https://www.googleapis.com/youtube/v3/channels",
+                              method: .get,
+                              parameters: ["part":"snippet",
+                                           "id":channelId,
+                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                              encoding: URLEncoding.default,
+                              headers: nil).responseJSON { (response) in
+                                if let JSON = response.result.value {
+                                    print(JSON)
+                                    for channel in (JSON as! [String: AnyObject])["items"] as! NSArray {
+                                        model.channel?.name = (channel as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
+                                        model.channel?.profile_image_name = (channel as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
+                                    }
+                                    
+                                    print(model.channel?.name)
+                                    print(model.channel?.profile_image_name)
+                                    
+                                }
+            }
+        }
+    }
+    
     func fetchVideos() {
-        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
-        URLSession.shared.dataTask(with: url as! URL) { (data, response, error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                print(json)
-                self.videos = [AVYouTubeVideoModel]()
-                
-                for dictionary in json as! [[String: AnyObject]] {
-                    let video = AVYouTubeVideoModel()
-                    video.title = dictionary["title"] as! String?
-                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as! String?
-                    video.numberOfViews = dictionary["number_of_views"] as! NSNumber?
+        self.getVideos()
 
-                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
-                    let channel = AVYouTubeChannel()
-                    channel.name = channelDictionary["name"] as! String?
-                    channel.profileImageName = channelDictionary["profile_image_name"] as! String?
-                    
-                    video.channel = channel
-                    self.videos?.append(video)
-                }
-                
-                self.collectionView?.reloadData()
-            } catch let jsonError {
-                print(jsonError)
-            }
-            
-            let string = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-//            print(string as Any)
-        }.resume()
+        
+//        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
+//        
+//        URLSession.shared.dataTask(with: url as! URL) { (data, response, error) in
+//            if error != nil {
+//                print(error as Any)
+//                return
+//            }
+//            
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+////                print(json)
+//                self.videos = [AVYouTubeVideoModel]()
+//                
+//                for dictionary in json as! [[String: AnyObject]] {
+//                    let video = AVYouTubeVideoModel()
+////                    video.title = dictionary["title"] as! String?
+////                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as! String?
+////                    video.numberOfViews = dictionary["number_of_views"] as! NSNumber?
+//                    video.setValuesForKeys(dictionary)
+//                    
+//                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
+//                    let channel = AVYouTubeChannel()
+//                    
+//                    channel.setValuesForKeys(channelDictionary)
+////                    channel.name = channelDictionary["name"] as! String?
+////                    channel.profileImageName = channelDictionary["profile_image_name"] as! String?
+//                    
+//                    video.channel = channel
+//                    self.videos?.append(video)
+//                }
+//                
+//                DispatchQueue.main.async {
+//                    self.collectionView?.reloadData()
+//                }
+//                
+//            } catch let jsonError {
+//                print(jsonError)
+//            }
+//            
+////            let string = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+////            print(string as Any)
+//        }.resume()
     }
     
     override func viewDidLoad() {
@@ -172,7 +236,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
             self.titleLabel.text = video?.title
             
 //            self.setupThumbnailImage()
-            if let thumbnailImageName = self.video?.thumbnailImageName {
+            if let thumbnailImageName = self.video?.thumbnail_image_name {
                 self.thumbnailImageView.loadImageWithURLString(URLString: thumbnailImageName)
             }
             
@@ -182,7 +246,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
 
 //            self.setupProfileImageName()
             
-            if let profileImageName = video?.channel?.profileImageName {
+            if let profileImageName = video?.channel?.profile_image_name {
                 self.userProfileView.loadImageWithURLString(URLString: profileImageName)
             }
 
@@ -192,7 +256,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
 //            }
 
             if let channelName = video?.channel?.name,
-                let numberOfViews = video?.numberOfViews
+                let numberOfViews = video?.number_of_views
 //                let uploadDate = video?.uploadDate
             {
                 let formatter = NumberFormatter()
@@ -252,8 +316,8 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
 //        }
 //    }
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    let thumbnailImageView: AVYouTubeImageView = {
+        let imageView = AVYouTubeImageView()
         imageView.image = UIImage(named: "tiesto_cover")
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
@@ -268,8 +332,8 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
         return separator
     }()
     
-    let userProfileView: UIImageView = {
-        let profile = UIImageView()
+    let userProfileView: AVYouTubeImageView = {
+        let profile = AVYouTubeImageView()
         profile.image = UIImage(named: "tiesto_profile")
         profile.layer.cornerRadius = 22
         profile.layer.masksToBounds = true

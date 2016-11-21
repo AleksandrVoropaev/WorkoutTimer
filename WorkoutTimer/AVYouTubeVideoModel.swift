@@ -10,17 +10,21 @@ import UIKit
 
 class AVYouTubeVideoModel: NSObject {
     
-    var thumbnailImageName: String?
+    var thumbnail_image_name: String?
     var title: String?
     var channel: AVYouTubeChannel?
-    var numberOfViews: NSNumber?
+    var number_of_views: NSNumber?
     var uploadDate: NSDate?
+    var duration: NSNumber?
+    var videoId: String?
+    var videoDecription: String?
     
 }
 
 class AVYouTubeChannel: NSObject {
     
     var name: String?
-    var profileImageName: String?
+    var id: String?
+    var profile_image_name: String?
     
 }
