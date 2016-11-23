@@ -127,6 +127,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
         subTitle.textColor = UIColor.lightGray
         subTitle.textContainerInset = UIEdgeInsetsMake(0, -5, 0, 0)
         subTitle.translatesAutoresizingMaskIntoConstraints = false
+        subTitle.isEditable = false
         
         return subTitle
     }()

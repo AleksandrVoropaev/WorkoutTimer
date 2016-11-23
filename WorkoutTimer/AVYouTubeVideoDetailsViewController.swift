@@ -8,20 +8,67 @@
 
 import UIKit
 
-class AVYouTubeVideoDetailsViewController: UIViewController {
+class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
     
-//    @IBOutlet weak var webView: UIWebView!
-
+    var webViewHeight: CGFloat = 0
+    var webViewHeightConstraint: NSLayoutConstraint?
+    var subTitleTextViewHeightConstraint: NSLayoutConstraint?
+    var titleLabelHeightConstraint: NSLayoutConstraint?
+    
     let webView: UIWebView = {
         let webView = UIWebView()
-        webView.backgroundColor = UIColor.red
+        webView.scrollView.isScrollEnabled = false
 
+        
+        webView.contentMode = UIViewContentMode.scaleAspectFit
+        webView.clipsToBounds = true
+        //
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         return webView
     }()
     
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if let heightConstraint = self.webViewHeightConstraint {
+            self.view.removeConstraint(heightConstraint)
+            self.view.addConstraint(NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: self.webViewHeight))
+        }
+    }
+    
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        scrollView.isDirectionalLockEnabled = true
+
+        return scrollView
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    var subTitleTextView: UITextView = {
+        let subTitle = UITextView()
+        subTitle.textColor = UIColor.lightGray
+        subTitle.textContainerInset = UIEdgeInsetsMake(0, -5, 0, 0)
+        subTitle.translatesAutoresizingMaskIntoConstraints = false
+        subTitle.isEditable = false
+        
+        return subTitle
+    }()
     
     var video: AVYouTubeVideoModel?
     
+    deinit {
+        self.subTitleTextView.removeObserver(self, forKeyPath: "contentSize")
+    }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -38,28 +85,89 @@ class AVYouTubeVideoDetailsViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
+        self.subTitleTextView.addObserver(self, forKeyPath: "contentSize", options:NSKeyValueObservingOptions.new, context: nil)
+        
+        self.webView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let id = self.video?.id {
-            let width = self.view.frame.size.width
+        if let video = self.video {
+            let width = self.view.bounds.size.width
             let height = width / 16 * 9
-            let embedString = "<html><head><style type=\"text/css\">body {background-color: transparent;color: white;}</style></head><body style=\"margin:0\"><iframe frameBorder=\"0\" height=\"" + String(describing: height) + "\" width=\"" + String(describing: width) + "\" src=\"http://www.youtube.com/embed/" + id + "?showinfo=0&modestbranding=1&frameborder=0&rel=0\"></iframe></body></html>"
-            self.webView.loadHTMLString(embedString, baseURL: nil)
+            self.webViewHeight = height
+            self.scrollView.contentSize.width = width
+
+            if let id = video.id {
+                let embedString = "<html><head><style type=\"text/css\">body {background-color: transparent;color: white;}</style></head><body style=\"margin:0\"><iframe frameBorder=\"0\" height=\"\(height)\" width=\"\(width)\" src=\"http://www.youtube.com/embed/\(id)?showinfo=0&modestbranding=1&frameborder=0&rel=0\"></iframe></body></html>"
+                self.webView.loadHTMLString(embedString, baseURL: nil)
+            }
+            
+            
+            if let titleText = video.title {
+                let labelWidth = self.view.frame.width - 32
+                let labelHeigth = CGFloat(1000)
+                let option = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
+                let labelSize = CGSize(width: labelWidth, height: labelHeigth)
+                let estimatedRect = NSString(string: titleText).boundingRect(with: labelSize,
+                                                                             options: option,
+                                                                             attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: UIFont.labelFontSize)],
+                                                                             context: nil)
+                self.titleLabelHeightConstraint?.constant = estimatedRect.size.height + 8
+            }
+            
+            self.titleLabel.text = video.title
+
+            self.subTitleTextView.text = video.videoDescription
+
         }
     }
     
     func setupViews() {
         self.view.addSubview(self.webView)
+        self.view.addSubview(self.scrollView)
+
+        self.view.addConstraint(NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
         
-        self.view.addConstraintsWithFormat(format: "H:|-0-[v0]-0-|", views: self.webView)
-        self.view.addConstraintsWithFormat(format: "V:|-0-[v0(300)]", views: self.webView)
+        self.webViewHeightConstraint = NSLayoutConstraint(item: self.webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+        self.view.addConstraint(self.webViewHeightConstraint!)
+        
+        self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.webView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+    
+        
+        self.scrollView.addSubview(self.titleLabel)
+        self.scrollView.addSubview(self.subTitleTextView)
+        
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.scrollView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 16))
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.scrollView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 16))
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.scrollView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -32))
+        self.titleLabelHeightConstraint = NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 44)
+        self.scrollView.addConstraint(self.titleLabelHeightConstraint!)
+
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8))
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.scrollView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 16))
+        self.scrollView.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.scrollView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -32))
+        self.subTitleTextViewHeightConstraint = NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 44)
+        self.scrollView.addConstraint(self.subTitleTextViewHeightConstraint!)
         
     }
-
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        self.subTitleTextViewHeightConstraint?.constant = subTitleTextView.contentSize.height
+    }
+    
 }

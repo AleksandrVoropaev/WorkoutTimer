@@ -34,7 +34,7 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
                                     let videoObject = AVYouTubeVideoModel()
                                     videoObject.id = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
                                     videoObject.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
-                                    videoObject.videoDecription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
+                                    videoObject.videoDescription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
                                     videoObject.thumbnailImage = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
                                     videoObject.publicationDate = (video as! NSDictionary).value(forKeyPath: "snippet.publishedAt") as! String?
                                     self.getVideoDetailsWithVideoModel(model: videoObject)
