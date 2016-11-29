@@ -26,6 +26,7 @@ class AVYouTubeImageView: UIImageView {
             self.image = imageFromCache
             return
         } else {
+            self.addSubview(AVLoadingView.loadingView(with: self))
             URLSession.shared.dataTask(with: url as! URL, completionHandler: { (data, respones, error) in
                 if error != nil {
                     print(error as Any)

@@ -23,6 +23,7 @@ class AVScheduledTimerModel {
         
         return self.warmupTime + (setTime + self.setsRestTime) * self.setsCount - self.setsRestTime  + self.coolDownTime
     }
+    
     var timeIntervals: Array<AVExerciseModel> {
         var result:Array<AVExerciseModel> = [AVExerciseModel.init(name: "WARMUP", duration: self.warmupTime)]
         

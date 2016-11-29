@@ -13,7 +13,9 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
     
     var videos: [AVYouTubeVideoModel]? {
         didSet {
-            self.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
         }
     }
     

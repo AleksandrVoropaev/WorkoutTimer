@@ -82,6 +82,27 @@ extension UIView {
     }
 }
 
+extension UIView {
+    class func initFromNib() -> UIView {
+        let mainBundle = Bundle.main
+//        let mainBundle = NSBundle.mainBundle()
+        let className = NSStringFromClass(self).components(separatedBy: ".").last ?? ""
+//        let className  = NSStringFromClass(self).componentsSeparatedByString(".").last ?? ""
+        
+        if mainBundle.path(forResource: className, ofType: "nib") != nil {
+            if let objects = mainBundle.loadNibNamed(className, owner: self, options: [:]) {
+                for object in objects {
+                    if let view = object as? UIView {
+                        return view
+                    }
+                }
+            }
+        }
+        
+        return UIView(frame: CGRect.zero)
+    }
+}
+
 extension UIColor {
     static func RGB(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)

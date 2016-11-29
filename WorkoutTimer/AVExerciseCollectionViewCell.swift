@@ -54,7 +54,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
                 self.thumbnailImageView.loadImageWithURLString(URLString: thumbnailImageName)
             }
             
-            if let profileImageName = video?.channel?.thumbnailImage {
+            if let profileImageName = self.video?.channel?.thumbnailImage {
                 self.userProfileView.loadImageWithURLString(URLString: profileImageName)
             }
             
@@ -88,7 +88,6 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
     
     let thumbnailImageView: AVYouTubeImageView = {
         let imageView = AVYouTubeImageView()
-        //        imageView.image = UIImage(named: "tiesto_cover")
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         
@@ -104,10 +103,9 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
     
     let userProfileView: AVYouTubeImageView = {
         let profile = AVYouTubeImageView()
-        //        profile.image = UIImage(named: "tiesto_profile")
-        profile.layer.cornerRadius = 22
-        profile.layer.masksToBounds = true
         profile.contentMode = UIViewContentMode.scaleAspectFill
+        profile.layer.masksToBounds = true
+        profile.layer.cornerRadius = 22
         
         return profile
     }()
@@ -115,7 +113,6 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //        label.text = "Tiësto - Live @ Tomorrowland 2016"
         label.numberOfLines = 2
         
         return label
