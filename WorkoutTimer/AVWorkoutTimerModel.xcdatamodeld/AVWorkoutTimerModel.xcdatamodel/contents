@@ -11,11 +11,11 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="setRestTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="setsCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="warmupTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="exercises" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseModel" inverseName="timerModel" inverseEntity="ExerciseModel" syncable="YES"/>
+        <attribute name="warmupTime" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercises" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseModel" inverseName="timerModel" inverseEntity="ExerciseModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ExerciseModel" positionX="-47" positionY="-99" width="128" height="88"/>
+        <element name="ExerciseModel" positionX="-47" positionY="-99" width="128" height="90"/>
         <element name="TimerModel" positionX="-261" positionY="-159" width="128" height="150"/>
     </elements>
 </model>

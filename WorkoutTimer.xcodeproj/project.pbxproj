@@ -8,20 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		000D3E200B35A80FD88AD147 /* Pods_WorkoutTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */; };
-		1F0E36EB1DD5BB0400C90245 /* AVScheduledTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EA1DD5BB0400C90245 /* AVScheduledTimerModel.swift */; };
 		1F0E36ED1DD5BB2C00C90245 /* AVExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EC1DD5BB2C00C90245 /* AVExerciseModel.swift */; };
 		1F0E36EF1DD622DE00C90245 /* AVProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */; };
-		1F138DA61DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F138DA41DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift */; };
-		1F138DA71DD6362500BE7642 /* AVScheduledTimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F138DA51DD6362500BE7642 /* AVScheduledTimerTableViewCell.xib */; };
-		1F29D86A1DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */; };
-		1F29D86E1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */; };
-		1F29D86F1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */; };
-		1F29D8721DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */; };
-		1F29D8731DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */; };
 		1F5B18F91DE8381800E0313F /* AVLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B18F81DE8381800E0313F /* AVLoadingView.swift */; };
 		1F5B18FB1DE8382C00E0313F /* AVLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5B18FA1DE8382B00E0313F /* AVLoadingView.xib */; };
-		1F87C4CE1DD9DD9A00721EDF /* AVTimerSettingsFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87C4CD1DD9DD9A00721EDF /* AVTimerSettingsFieldView.swift */; };
-		1F87C4D01DD9DDAE00721EDF /* AVTimerSettingsFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F87C4CF1DD9DDAE00721EDF /* AVTimerSettingsFieldView.xib */; };
 		1F97732C1DD355AB008EC44F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97732B1DD355AB008EC44F /* AppDelegate.swift */; };
 		1F97732E1DD355AB008EC44F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97732D1DD355AB008EC44F /* ViewController.swift */; };
 		1F9773311DD355AB008EC44F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F97732F1DD355AB008EC44F /* Main.storyboard */; };
@@ -29,38 +19,41 @@
 		1F9773361DD355AB008EC44F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773341DD355AB008EC44F /* LaunchScreen.storyboard */; };
 		1F97733F1DD35651008EC44F /* AVWorkoutSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */; };
 		1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */; };
-		1F9773431DD3567C008EC44F /* AVTabataTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */; };
-		1F9773441DD3567C008EC44F /* AVTabataTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */; };
-		1F9773471DD356B8008EC44F /* AVScheduledTimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */; };
-		1F9773481DD356B8008EC44F /* AVScheduledTimersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */; };
-		1F97734B1DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */; };
-		1F97734C1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */; };
-		1F97734F1DD35788008EC44F /* AVWorkoutTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */; };
-		1F9773501DD35788008EC44F /* AVWorkoutTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */; };
-		1FA145931DE3852A006B0906 /* AVExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA145921DE3852A006B0906 /* AVExerciseCollectionViewCell.swift */; };
-		1FA145951DE3897C006B0906 /* AVYouTubeVideoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA145941DE3897C006B0906 /* AVYouTubeVideoDetailsViewController.swift */; };
 		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
 		1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* AVExtensions.swift */; };
-		1FD3755A1DDE29A800479BC2 /* AVYouTubeVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */; };
-		1FD3755C1DDEF55200479BC2 /* AVYouTubeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */; };
+		1FB70C551DF174B300E29568 /* AVExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */; };
+		1FB70C561DF174B300E29568 /* AVExerciseCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */; };
+		1FB70C571DF174B300E29568 /* AVExerciseCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */; };
+		1FB70C581DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */; };
+		1FB70C591DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C401DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib */; };
+		1FB70C5A1DF174B300E29568 /* AVScheduledTimerCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C411DF174B300E29568 /* AVScheduledTimerCreationViewController.swift */; };
+		1FB70C5B1DF174B300E29568 /* AVScheduledTimerCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C421DF174B300E29568 /* AVScheduledTimerCreationViewController.xib */; };
+		1FB70C5D1DF174B300E29568 /* AVScheduledTimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C441DF174B300E29568 /* AVScheduledTimersViewController.swift */; };
+		1FB70C5E1DF174B300E29568 /* AVScheduledTimersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C451DF174B300E29568 /* AVScheduledTimersViewController.xib */; };
+		1FB70C5F1DF174B300E29568 /* AVScheduledTimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C461DF174B300E29568 /* AVScheduledTimerTableViewCell.swift */; };
+		1FB70C601DF174B300E29568 /* AVScheduledTimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C471DF174B300E29568 /* AVScheduledTimerTableViewCell.xib */; };
+		1FB70C611DF174B300E29568 /* AVTabataTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C491DF174B300E29568 /* AVTabataTimerViewController.swift */; };
+		1FB70C621DF174B300E29568 /* AVTabataTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C4A1DF174B300E29568 /* AVTabataTimerViewController.xib */; };
+		1FB70C631DF174B300E29568 /* AVTimerSettingsFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C4B1DF174B300E29568 /* AVTimerSettingsFieldView.swift */; };
+		1FB70C641DF174B300E29568 /* AVTimerSettingsFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C4C1DF174B300E29568 /* AVTimerSettingsFieldView.xib */; };
+		1FB70C651DF174B300E29568 /* AVWorkoutTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C4E1DF174B300E29568 /* AVWorkoutTimerViewController.swift */; };
+		1FB70C661DF174B300E29568 /* AVWorkoutTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C4F1DF174B300E29568 /* AVWorkoutTimerViewController.xib */; };
+		1FB70C671DF174B300E29568 /* AVYoutubeExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C511DF174B300E29568 /* AVYoutubeExercisesViewController.swift */; };
+		1FB70C681DF174B300E29568 /* AVYouTubeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C521DF174B300E29568 /* AVYouTubeImageView.swift */; };
+		1FB70C691DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C531DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift */; };
+		1FB70C6A1DF174B300E29568 /* AVYouTubeVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C541DF174B300E29568 /* AVYouTubeVideoModel.swift */; };
+		1FB70C6C1DF1753C00E29568 /* AVScheduledTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6B1DF1753C00E29568 /* AVScheduledTimerModel.swift */; };
+		1FB70C6E1DF1758900E29568 /* AVArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */; };
+		1FB70C701DF175B300E29568 /* AVTimerArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */; };
 		1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */; };
+		1FFD785A1DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F0E36EA1DD5BB0400C90245 /* AVScheduledTimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerModel.swift; sourceTree = "<group>"; };
 		1F0E36EC1DD5BB2C00C90245 /* AVExerciseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseModel.swift; sourceTree = "<group>"; };
 		1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVProtocols.swift; sourceTree = "<group>"; };
-		1F138DA41DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerTableViewCell.swift; sourceTree = "<group>"; };
-		1F138DA51DD6362500BE7642 /* AVScheduledTimerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerTableViewCell.xib; sourceTree = "<group>"; };
-		1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYoutubeExercisesViewController.swift; sourceTree = "<group>"; };
-		1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCreationTableViewCell.swift; sourceTree = "<group>"; };
-		1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseCreationTableViewCell.xib; sourceTree = "<group>"; };
-		1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseDetailsTableViewCell.swift; sourceTree = "<group>"; };
-		1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		1F5B18F81DE8381800E0313F /* AVLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLoadingView.swift; sourceTree = "<group>"; };
 		1F5B18FA1DE8382B00E0313F /* AVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVLoadingView.xib; sourceTree = "<group>"; };
-		1F87C4CD1DD9DD9A00721EDF /* AVTimerSettingsFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTimerSettingsFieldView.swift; sourceTree = "<group>"; };
-		1F87C4CF1DD9DDAE00721EDF /* AVTimerSettingsFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVTimerSettingsFieldView.xib; sourceTree = "<group>"; };
 		1F9773281DD355AB008EC44F /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F97732B1DD355AB008EC44F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F97732D1DD355AB008EC44F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,21 +63,34 @@
 		1F9773371DD355AB008EC44F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutSelectionViewController.swift; sourceTree = "<group>"; };
 		1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutSelectionViewController.xib; sourceTree = "<group>"; };
-		1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTabataTimerViewController.swift; sourceTree = "<group>"; };
-		1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVTabataTimerViewController.xib; sourceTree = "<group>"; };
-		1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimersViewController.swift; sourceTree = "<group>"; };
-		1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimersViewController.xib; sourceTree = "<group>"; };
-		1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerCreationViewController.swift; sourceTree = "<group>"; };
-		1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerCreationViewController.xib; sourceTree = "<group>"; };
-		1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutTimerViewController.swift; sourceTree = "<group>"; };
-		1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutTimerViewController.xib; sourceTree = "<group>"; };
-		1FA145921DE3852A006B0906 /* AVExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
-		1FA145941DE3897C006B0906 /* AVYouTubeVideoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoDetailsViewController.swift; sourceTree = "<group>"; };
 		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
 		1FB272341DD3A223005FEA1B /* AVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExtensions.swift; sourceTree = "<group>"; };
-		1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoModel.swift; sourceTree = "<group>"; };
-		1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeImageView.swift; sourceTree = "<group>"; };
+		1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCreationTableViewCell.swift; sourceTree = "<group>"; };
+		1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseCreationTableViewCell.xib; sourceTree = "<group>"; };
+		1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		1FB70C401DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		1FB70C411DF174B300E29568 /* AVScheduledTimerCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerCreationViewController.swift; sourceTree = "<group>"; };
+		1FB70C421DF174B300E29568 /* AVScheduledTimerCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerCreationViewController.xib; sourceTree = "<group>"; };
+		1FB70C441DF174B300E29568 /* AVScheduledTimersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimersViewController.swift; sourceTree = "<group>"; };
+		1FB70C451DF174B300E29568 /* AVScheduledTimersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimersViewController.xib; sourceTree = "<group>"; };
+		1FB70C461DF174B300E29568 /* AVScheduledTimerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerTableViewCell.swift; sourceTree = "<group>"; };
+		1FB70C471DF174B300E29568 /* AVScheduledTimerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVScheduledTimerTableViewCell.xib; sourceTree = "<group>"; };
+		1FB70C491DF174B300E29568 /* AVTabataTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTabataTimerViewController.swift; sourceTree = "<group>"; };
+		1FB70C4A1DF174B300E29568 /* AVTabataTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVTabataTimerViewController.xib; sourceTree = "<group>"; };
+		1FB70C4B1DF174B300E29568 /* AVTimerSettingsFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTimerSettingsFieldView.swift; sourceTree = "<group>"; };
+		1FB70C4C1DF174B300E29568 /* AVTimerSettingsFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVTimerSettingsFieldView.xib; sourceTree = "<group>"; };
+		1FB70C4E1DF174B300E29568 /* AVWorkoutTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutTimerViewController.swift; sourceTree = "<group>"; };
+		1FB70C4F1DF174B300E29568 /* AVWorkoutTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutTimerViewController.xib; sourceTree = "<group>"; };
+		1FB70C511DF174B300E29568 /* AVYoutubeExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYoutubeExercisesViewController.swift; sourceTree = "<group>"; };
+		1FB70C521DF174B300E29568 /* AVYouTubeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeImageView.swift; sourceTree = "<group>"; };
+		1FB70C531DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoDetailsViewController.swift; sourceTree = "<group>"; };
+		1FB70C541DF174B300E29568 /* AVYouTubeVideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVYouTubeVideoModel.swift; sourceTree = "<group>"; };
+		1FB70C6B1DF1753C00E29568 /* AVScheduledTimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerModel.swift; sourceTree = "<group>"; };
+		1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVArrayModel.swift; sourceTree = "<group>"; };
+		1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTimerArrayModel.swift; sourceTree = "<group>"; };
 		1FE658AC1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AVWorkoutTimerModel.xcdatamodel; sourceTree = "<group>"; };
+		1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCoreDataTimerExtension.swift; sourceTree = "<group>"; };
 		33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5008AD9050D23E2FECCE0988 /* Pods-WorkoutTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer.release.xcconfig"; sourceTree = "<group>"; };
 		FF49480606DBFD7D7097E231 /* Pods-WorkoutTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutTimer/Pods-WorkoutTimer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +138,10 @@
 		1F97732A1DD355AB008EC44F /* WorkoutTimer */ = {
 			isa = PBXGroup;
 			children = (
+				1FB70C481DF174B300E29568 /* Tabata */,
+				1FB70C3B1DF174B300E29568 /* Scheduled */,
+				1FB70C4D1DF174B300E29568 /* Workout */,
+				1FB70C501DF174B300E29568 /* YouTube */,
 				1F97732B1DD355AB008EC44F /* AppDelegate.swift */,
 				1F97732D1DD355AB008EC44F /* ViewController.swift */,
 				1F97732F1DD355AB008EC44F /* Main.storyboard */,
@@ -140,37 +150,68 @@
 				1F9773371DD355AB008EC44F /* Info.plist */,
 				1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */,
 				1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */,
-				1F9773411DD3567C008EC44F /* AVTabataTimerViewController.swift */,
-				1F9773421DD3567C008EC44F /* AVTabataTimerViewController.xib */,
-				1F87C4CD1DD9DD9A00721EDF /* AVTimerSettingsFieldView.swift */,
-				1F87C4CF1DD9DDAE00721EDF /* AVTimerSettingsFieldView.xib */,
-				1F9773451DD356B8008EC44F /* AVScheduledTimersViewController.swift */,
-				1F9773461DD356B8008EC44F /* AVScheduledTimersViewController.xib */,
-				1F138DA41DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift */,
-				1F138DA51DD6362500BE7642 /* AVScheduledTimerTableViewCell.xib */,
-				1F9773491DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift */,
-				1F97734A1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib */,
-				1F29D86C1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift */,
-				1F29D86D1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib */,
-				1F29D8701DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift */,
-				1F29D8711DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib */,
-				1F97734D1DD35788008EC44F /* AVWorkoutTimerViewController.swift */,
-				1F97734E1DD35788008EC44F /* AVWorkoutTimerViewController.xib */,
-				1F29D8681DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift */,
-				1FA145921DE3852A006B0906 /* AVExerciseCollectionViewCell.swift */,
-				1FA145941DE3897C006B0906 /* AVYouTubeVideoDetailsViewController.swift */,
-				1FD375591DDE29A800479BC2 /* AVYouTubeVideoModel.swift */,
-				1F0E36EA1DD5BB0400C90245 /* AVScheduledTimerModel.swift */,
 				1F0E36EC1DD5BB2C00C90245 /* AVExerciseModel.swift */,
+				1FB70C6B1DF1753C00E29568 /* AVScheduledTimerModel.swift */,
 				1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */,
 				1FB272341DD3A223005FEA1B /* AVExtensions.swift */,
 				1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */,
-				1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */,
-				1FD3755B1DDEF55200479BC2 /* AVYouTubeImageView.swift */,
 				1F5B18F81DE8381800E0313F /* AVLoadingView.swift */,
 				1F5B18FA1DE8382B00E0313F /* AVLoadingView.xib */,
+				1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */,
+				1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */,
+				1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */,
+				1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */,
 			);
 			path = WorkoutTimer;
+			sourceTree = "<group>";
+		};
+		1FB70C3B1DF174B300E29568 /* Scheduled */ = {
+			isa = PBXGroup;
+			children = (
+				1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */,
+				1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */,
+				1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */,
+				1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */,
+				1FB70C401DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib */,
+				1FB70C411DF174B300E29568 /* AVScheduledTimerCreationViewController.swift */,
+				1FB70C421DF174B300E29568 /* AVScheduledTimerCreationViewController.xib */,
+				1FB70C441DF174B300E29568 /* AVScheduledTimersViewController.swift */,
+				1FB70C451DF174B300E29568 /* AVScheduledTimersViewController.xib */,
+				1FB70C461DF174B300E29568 /* AVScheduledTimerTableViewCell.swift */,
+				1FB70C471DF174B300E29568 /* AVScheduledTimerTableViewCell.xib */,
+			);
+			path = Scheduled;
+			sourceTree = "<group>";
+		};
+		1FB70C481DF174B300E29568 /* Tabata */ = {
+			isa = PBXGroup;
+			children = (
+				1FB70C491DF174B300E29568 /* AVTabataTimerViewController.swift */,
+				1FB70C4A1DF174B300E29568 /* AVTabataTimerViewController.xib */,
+				1FB70C4B1DF174B300E29568 /* AVTimerSettingsFieldView.swift */,
+				1FB70C4C1DF174B300E29568 /* AVTimerSettingsFieldView.xib */,
+			);
+			path = Tabata;
+			sourceTree = "<group>";
+		};
+		1FB70C4D1DF174B300E29568 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				1FB70C4E1DF174B300E29568 /* AVWorkoutTimerViewController.swift */,
+				1FB70C4F1DF174B300E29568 /* AVWorkoutTimerViewController.xib */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		1FB70C501DF174B300E29568 /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				1FB70C511DF174B300E29568 /* AVYoutubeExercisesViewController.swift */,
+				1FB70C521DF174B300E29568 /* AVYouTubeImageView.swift */,
+				1FB70C531DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift */,
+				1FB70C541DF174B300E29568 /* AVYouTubeVideoModel.swift */,
+			);
+			path = YouTube;
 			sourceTree = "<group>";
 		};
 		BC4F8B38D4BF27C4DB8DE6BB /* Frameworks */ = {
@@ -243,19 +284,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB70C5B1DF174B300E29568 /* AVScheduledTimerCreationViewController.xib in Resources */,
+				1FB70C591DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib in Resources */,
 				1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */,
-				1F29D8731DD383B600F56FCA /* AVExerciseDetailsTableViewCell.xib in Resources */,
-				1F97734C1DD356E9008EC44F /* AVScheduledTimerCreationViewController.xib in Resources */,
-				1F29D86F1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.xib in Resources */,
-				1F9773481DD356B8008EC44F /* AVScheduledTimersViewController.xib in Resources */,
-				1F138DA71DD6362500BE7642 /* AVScheduledTimerTableViewCell.xib in Resources */,
-				1F9773441DD3567C008EC44F /* AVTabataTimerViewController.xib in Resources */,
 				1F9773361DD355AB008EC44F /* LaunchScreen.storyboard in Resources */,
 				1F9773331DD355AB008EC44F /* Assets.xcassets in Resources */,
-				1F9773501DD35788008EC44F /* AVWorkoutTimerViewController.xib in Resources */,
+				1FB70C641DF174B300E29568 /* AVTimerSettingsFieldView.xib in Resources */,
+				1FB70C621DF174B300E29568 /* AVTabataTimerViewController.xib in Resources */,
 				1F5B18FB1DE8382C00E0313F /* AVLoadingView.xib in Resources */,
+				1FB70C601DF174B300E29568 /* AVScheduledTimerTableViewCell.xib in Resources */,
 				1F9773311DD355AB008EC44F /* Main.storyboard in Resources */,
-				1F87C4D01DD9DDAE00721EDF /* AVTimerSettingsFieldView.xib in Resources */,
+				1FB70C5E1DF174B300E29568 /* AVScheduledTimersViewController.xib in Resources */,
+				1FB70C571DF174B300E29568 /* AVExerciseCreationTableViewCell.xib in Resources */,
+				1FB70C661DF174B300E29568 /* AVWorkoutTimerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,29 +355,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FA145951DE3897C006B0906 /* AVYouTubeVideoDetailsViewController.swift in Sources */,
-				1F29D86E1DD37F5E00F56FCA /* AVExerciseCreationTableViewCell.swift in Sources */,
-				1FD3755C1DDEF55200479BC2 /* AVYouTubeImageView.swift in Sources */,
-				1F29D8721DD383B600F56FCA /* AVExerciseDetailsTableViewCell.swift in Sources */,
-				1F9773431DD3567C008EC44F /* AVTabataTimerViewController.swift in Sources */,
-				1F9773471DD356B8008EC44F /* AVScheduledTimersViewController.swift in Sources */,
-				1F0E36EB1DD5BB0400C90245 /* AVScheduledTimerModel.swift in Sources */,
+				1FB70C6A1DF174B300E29568 /* AVYouTubeVideoModel.swift in Sources */,
+				1FB70C6C1DF1753C00E29568 /* AVScheduledTimerModel.swift in Sources */,
+				1FB70C5A1DF174B300E29568 /* AVScheduledTimerCreationViewController.swift in Sources */,
 				1F97732E1DD355AB008EC44F /* ViewController.swift in Sources */,
-				1F87C4CE1DD9DD9A00721EDF /* AVTimerSettingsFieldView.swift in Sources */,
-				1F29D86A1DD35E3200F56FCA /* AVYoutubeExercisesViewController.swift in Sources */,
+				1FB70C691DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift in Sources */,
+				1FFD785A1DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift in Sources */,
 				1F0E36EF1DD622DE00C90245 /* AVProtocols.swift in Sources */,
 				1F97732C1DD355AB008EC44F /* AppDelegate.swift in Sources */,
-				1FD3755A1DDE29A800479BC2 /* AVYouTubeVideoModel.swift in Sources */,
-				1F97734F1DD35788008EC44F /* AVWorkoutTimerViewController.swift in Sources */,
-				1F138DA61DD6362500BE7642 /* AVScheduledTimerTableViewCell.swift in Sources */,
 				1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */,
+				1FB70C651DF174B300E29568 /* AVWorkoutTimerViewController.swift in Sources */,
 				1F5B18F91DE8381800E0313F /* AVLoadingView.swift in Sources */,
-				1FA145931DE3852A006B0906 /* AVExerciseCollectionViewCell.swift in Sources */,
 				1F97733F1DD35651008EC44F /* AVWorkoutSelectionViewController.swift in Sources */,
+				1FB70C631DF174B300E29568 /* AVTimerSettingsFieldView.swift in Sources */,
+				1FB70C671DF174B300E29568 /* AVYoutubeExercisesViewController.swift in Sources */,
+				1FB70C701DF175B300E29568 /* AVTimerArrayModel.swift in Sources */,
+				1FB70C561DF174B300E29568 /* AVExerciseCreationTableViewCell.swift in Sources */,
 				1F0E36ED1DD5BB2C00C90245 /* AVExerciseModel.swift in Sources */,
+				1FB70C5D1DF174B300E29568 /* AVScheduledTimersViewController.swift in Sources */,
 				1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */,
 				1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */,
-				1F97734B1DD356E9008EC44F /* AVScheduledTimerCreationViewController.swift in Sources */,
+				1FB70C6E1DF1758900E29568 /* AVArrayModel.swift in Sources */,
+				1FB70C5F1DF174B300E29568 /* AVScheduledTimerTableViewCell.swift in Sources */,
+				1FB70C581DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift in Sources */,
+				1FB70C681DF174B300E29568 /* AVYouTubeImageView.swift in Sources */,
+				1FB70C611DF174B300E29568 /* AVTabataTimerViewController.swift in Sources */,
+				1FB70C551DF174B300E29568 /* AVExerciseCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +424,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -429,6 +474,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -457,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF49480606DBFD7D7097E231 /* Pods-WorkoutTimer.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -470,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5008AD9050D23E2FECCE0988 /* Pods-WorkoutTimer.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
