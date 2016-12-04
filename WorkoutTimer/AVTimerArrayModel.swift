@@ -11,28 +11,14 @@ import CoreData
 
 class AVTimerArrayModel: AVArrayModel {
     
-//    var objects: NSMutableArray<TimerModel>
-    
     func load() {
-        
-//        let moc = managedObjectContext
-//        let employeesFetch = NSFetchRequest(entityName: "Employee")
-//        
-//        do {
-//            let fetchedEmployees = try moc.executeFetchRequest(employeesFetch) as! [AAAEmployeeMO]
-//        } catch {
-//            fatalError("Failed to fetch employees: \(error)")
-//        }
-//
-        
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TimerModel")
         let fetchRequest: NSFetchRequest<TimerModel> = TimerModel.fetchRequest()
 
         do {
-            let timers = try(context.execute(fetchRequest))// as! [TimerModel]
-            self.objects.addObjects(from: timers.accessibilityElements as! [TimerModel])
+            let timers = try context.fetch(fetchRequest)
+            self.replaceAllObjects(with: timers)
         } catch {
             print(error)
         }
@@ -67,6 +53,25 @@ class AVTimerArrayModel: AVArrayModel {
                 print(error)
             }
         }
+    }
+    
+    func erase() {
+        self.load()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        self.objects.forEach {
+            context.delete($0 as! NSManagedObject)
+        }
+        
+        
+//        do {
+//            self.objects.forEach {
+//                try context.delete($0 as! NSManagedObject)
+//            }
+//        } catch {
+//            print(error)
+//        }
     }
     
 }

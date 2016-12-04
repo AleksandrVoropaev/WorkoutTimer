@@ -12,6 +12,17 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     @IBOutlet weak var startButton: UIButton!
     
+    // try CoreData
+    
+    
+    let timerArray = AVTimerArrayModel()
+//    let tabataTimer = TimerModel()
+    
+    
+    
+    //
+    
+    
     var timerSettingsContainerView = UIView()
     var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 15, setsCount: 2, setsRestTime: 10, restTime: 3, coolDownTime: 15)
     func addExercise() {
@@ -28,6 +39,19 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // try CoreData
+        
+        timerArray.erase()
+        TimerModel.setupTestTabataTimer()
+        timerArray.load()
+        print(timerArray.objects)
+        print((timerArray.objects.firstObject as! TimerModel).exercises?.array as! [ExerciseModel])
+//        print((timerArray.objects[0] as! TimerModel).exercises as Any)
+        
+        //
+        
+        
+        
         self.title = "SET UP TIMER"
         
         self.addExercise()
@@ -62,7 +86,6 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     func setTimerSettingsContainerView() {
-//        timerSettingsContainerView.backgroundColor = UIColor.lightGray
         self.view.addSubview(timerSettingsContainerView)
         timerSettingsContainerView.translatesAutoresizingMaskIntoConstraints = false
         let leftViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView, 

@@ -37,7 +37,7 @@ extension TimerModel {
 //        self.exercises.append(AVExerciseModel(name: exerciseName, duration: exerciseDuration))
 //    }
     
-    func setupTestTabataTimer() {
+    class func setupTestTabataTimer() {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = delegate.persistentContainer.viewContext
@@ -60,7 +60,7 @@ extension TimerModel {
         }
     }
     
-    func setupTestScheduledTimer() {
+    class func setupTestScheduledTimer() {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = delegate.persistentContainer.viewContext
@@ -85,7 +85,7 @@ extension TimerModel {
         }
     }
     
-    func setupTestExercise(context: NSManagedObjectContext, name: String, duration: Int16, timerModel: TimerModel) {
+    class func setupTestExercise(context: NSManagedObjectContext, name: String, duration: Int16, timerModel: TimerModel) {
         let exercise = NSEntityDescription.insertNewObject(forEntityName: "ExerciseModel", into: context) as! ExerciseModel
         exercise.duration = duration
         exercise.name = name
