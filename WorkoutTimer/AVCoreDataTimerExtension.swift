@@ -11,24 +11,35 @@ import UIKit
 import CoreData
 
 extension TimerModel {
-    var timeIntervals: Array<AVExerciseModel> {
-        var result: Array<AVExerciseModel> = [AVExerciseModel.init(name: "WARMUP", duration: Int(self.warmupTime))]
+    var timeIntervals: Array<ExerciseModel> {
+        var result = Array<ExerciseModel>()
+        if self.warmupTime > 0 {
+            result.append(self.timeInterval(name: "WARMUP", duration: Int16(self.warmupTime)))
+        }
+        
         if let exercises = self.exercises {
-            
             for setsIterator in 0...(self.setsCount - 1) {
                 for exerciseIterator in 0...(exercises.count - 1) {
-                    result.append(exercises[exerciseIterator] as! AVExerciseModel)
+                    result.append(exercises[exerciseIterator] as! ExerciseModel)
                     let exercisesLastIndex = exercises.count - 1
                     if exercisesLastIndex != exerciseIterator {
-                        result.append(AVExerciseModel.init(name: "REST", duration: Int(self.exerciseRestTime)))
+                        result.append(self.timeInterval(name: "REST", duration: Int16(self.exerciseRestTime)))
                     } else if setsIterator != (self.setsCount - 1) {
-                        result.append(AVExerciseModel.init(name: "Next Set in:", duration: Int(self.setRestTime)))
+                        result.append(self.timeInterval(name: "Next Set in:", duration: Int16(self.setRestTime)))
                     } else {
-                        result.append(AVExerciseModel.init(name: "COOL DOWN", duration: Int(self.coolDownTime)))
+                        result.append(self.timeInterval(name: "COOL DOWN", duration: Int16(self.coolDownTime)))
                     }
                 }
             }
         }
+        
+        return result
+    }
+    
+    private func timeInterval(name: String, duration: Int16) -> ExerciseModel {
+        let result = ExerciseModel()
+        result.name = name
+        result.duration = duration
         
         return result
     }

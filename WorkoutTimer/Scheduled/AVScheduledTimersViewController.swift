@@ -59,7 +59,7 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutTimerController = AVWorkoutTimerViewController()
-        workoutTimerController.model = (self.tableView.cellForRow(at: indexPath) as! AVScheduledTimerTableViewCell).model
+//        workoutTimerController.model = (self.tableView.cellForRow(at: indexPath) as! AVScheduledTimerTableViewCell).model
         self.tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         self.navigationController?.pushViewController(workoutTimerController, animated: true)
     }

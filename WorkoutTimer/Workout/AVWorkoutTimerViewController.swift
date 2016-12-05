@@ -23,31 +23,42 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     var countUpTimerLabelText: String?
     var totalCountDownTimerLabelText: String?
     
+    var timeIntervals: Array<ExerciseModel> = []
     var totalCountDownTime: Int = 0
     var exerciseCountDown: Int = 0
     var exerciseCountUp: Int = 0
     var activityCountDown: Int = 0
-    var timeIntervals: Array<AVExerciseModel> = []
     var currentTimeIntervalIndex: Int = 0
     
-    var model: AVScheduledTimerModel? {
+    var model: TimerModel? {
         didSet {
-            let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
-            if newModel.warmupTime != 0 {
-                self.captionLabelText = "WARMUP"
-            } else {
-                let exerciseName = newModel.exercises[0].exerciseName
-                self.captionLabelText = exerciseName != "" ? exerciseName : "No exercises"
+            if let newModel = model {
+                let timeIntervals = newModel.timeIntervals
+                var totalCountDownTime = 0
+                timeIntervals.forEach {
+                    totalCountDownTime += Int($0.duration)
+                }
+                
+                self.totalCountDownTime = totalCountDownTime
+                self.timeIntervals = timeIntervals
             }
             
-            let countDownTime = newModel.warmupTime != 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
-            self.countDownTimerLabelText = self.secondsToTimeString(seconds: countDownTime)
-            self.totalCountDownTimerLabelText = self.secondsToTimeString(seconds: newModel.summaryDuration)
-            self.totalCountDownTime = newModel.summaryDuration
-            
-            self.exerciseCountDown = countDownTime
-            self.activityCountDown = newModel.summaryDuration
-            self.timeIntervals = newModel.timeIntervals
+//            let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
+//            if newModel.warmupTime != 0 {
+//                self.captionLabelText = "WARMUP"
+//            } else {
+//                let exerciseName = newModel.exercises[0].exerciseName
+//                self.captionLabelText = exerciseName != "" ? exerciseName : "No exercises"
+//            }
+//            
+//            let countDownTime = newModel.warmupTime != 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
+//            self.countDownTimerLabelText = self.secondsToTimeString(seconds: countDownTime)
+//            self.totalCountDownTimerLabelText = self.secondsToTimeString(seconds: newModel.summaryDuration)
+//            self.totalCountDownTime = newModel.summaryDuration
+//            
+//            self.exerciseCountDown = countDownTime
+//            self.activityCountDown = newModel.summaryDuration
+//            self.timeIntervals = newModel.timeIntervals
         }
     }
     
@@ -78,10 +89,12 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.captionLabel.text = self.captionLabelText
-        self.captionLabel.adjustsFontSizeToFitWidth = true
-        self.countDownTimerLabel.text = self.countDownTimerLabelText
-        self.totalCountDownTimerLabel.text = self.totalCountDownTimerLabelText
+        if let firstTimeInterval = self.timeIntervals.first {
+            self.captionLabel.text = firstTimeInterval.name
+            self.captionLabel.adjustsFontSizeToFitWidth = true
+            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: Int(firstTimeInterval.duration))
+            self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.totalCountDownTime)
+        }
     }
     
     override func viewDidLoad() {
@@ -95,6 +108,10 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     func countDown() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { () -> Void in
             if self.isRunning {
+                if self.exerciseCountDown == 0 {
+                    self.nextTimeInterval()
+                }
+
                 self.exerciseCountUp += 1
                 self.countUpTimerLabel.text = self.secondsToTimeString(seconds: self.exerciseCountUp)
                 self.exerciseCountDown -= 1
@@ -102,10 +119,6 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
                 self.activityCountDown -= 1
                 self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.activityCountDown)
 
-                if self.exerciseCountDown == 0 {
-                    self.nextTimeInterval()
-                }
-                
                 self.countDown()
             }
         }
@@ -115,9 +128,9 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         self.currentTimeIntervalIndex += 1
         if self.currentTimeIntervalIndex < self.timeIntervals.count {
             let currentExercise = self.timeIntervals[self.currentTimeIntervalIndex]
-            self.captionLabel.text = currentExercise.exerciseName
-            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: currentExercise.exerciseDuration)
-            self.exerciseCountDown = currentExercise.exerciseDuration
+            self.captionLabel.text = currentExercise.name
+            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: Int(currentExercise.duration))
+            self.exerciseCountDown = Int(currentExercise.duration)
             self.countUpTimerLabel.text = "00:00"
             self.exerciseCountUp = 0
         } else {
@@ -127,7 +140,6 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             self.countUpTimerLabel.text = "00:00"
             self.pauseButton.isUserInteractionEnabled = false
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

@@ -16,18 +16,16 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     
     let timerArray = AVTimerArrayModel()
-//    let tabataTimer = TimerModel()
-    
-    
+    var tabataTimerModel: TimerModel?
     
     //
     
     
     var timerSettingsContainerView = UIView()
-    var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 15, setsCount: 2, setsRestTime: 10, restTime: 3, coolDownTime: 15)
-    func addExercise() {
-        self.tabataTimerModel.addExercise(exerciseName: "Work", exerciseDuration: 5)
-    }
+//    var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 15, setsCount: 2, setsRestTime: 10, restTime: 3, coolDownTime: 15)
+//    func addExercise() {
+//        self.tabataTimerModel.addExercise(exerciseName: "Work", exerciseDuration: 5)
+//    }
     
     var warmupTimerField: AVTimerSettingsFieldView?
     var setsTimerField: AVTimerSettingsFieldView?
@@ -46,15 +44,17 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         timerArray.load()
         print(timerArray.objects)
         print((timerArray.objects.firstObject as! TimerModel).exercises?.array as! [ExerciseModel])
-//        print((timerArray.objects[0] as! TimerModel).exercises as Any)
         
+        
+        tabataTimerModel = timerArray.object(at: 0) as? TimerModel
+
         //
         
         
         
         self.title = "SET UP TIMER"
         
-        self.addExercise()
+//        self.addExercise()
         
         self.setTimerSettingsContainerView()
         
@@ -178,67 +178,70 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     @IBAction func onWarmupMinusButton(_ sender: Any) {
-        self.tabataTimerModel.warmupTime = self.manageWarmupTimerField(function: -)
+        self.tabataTimerModel?.warmupTime = Int64(self.manageWarmupTimerField(function: -))
     }
     
     @IBAction func onWarmupPlusButton(_ sender: Any) {
-        self.tabataTimerModel.warmupTime = self.manageWarmupTimerField(function: +)
+        self.tabataTimerModel?.warmupTime = Int64(self.manageWarmupTimerField(function: +))
     }
     
     func manageWarmupTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.warmupTime, function: function, label: (self.warmupTimerField?.indicationLabel)!)
+        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.warmupTime), function: function, label: (self.warmupTimerField?.indicationLabel)!)
     }
     
     @IBAction func onSetsMinusButton(_ sender: Any) {
-        self.tabataTimerModel.setsCount = self.manageSetsTimerField(function: -)
+        self.tabataTimerModel?.setsCount = Int16(self.manageSetsTimerField(function: -))
     }
     
     @IBAction func onSetsPlusButton(_ sender: Any) {
-        self.tabataTimerModel.setsCount = self.manageSetsTimerField(function: +)
+        self.tabataTimerModel?.setsCount = Int16(self.manageSetsTimerField(function: +))
     }
     
     func manageSetsTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.countLabelChangeWithFunction(oldValue: self.tabataTimerModel.setsCount, function: function, label: (self.setsTimerField?.indicationLabel)!)
+        return self.countLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.setsCount), function: function, label: (self.setsTimerField?.indicationLabel)!)
     }
 
     @IBAction func onWorkMinusButton(_ sender: Any) {
-        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: -)
+//        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: -)
+        (self.tabataTimerModel?.exercises?.array[0] as! ExerciseModel).duration = Int16(self.manageWorkTimerField(function: -))
     }
     
     @IBAction func onWorkPlusButton(_ sender: Any) {
-        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: +)
+//        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: +)
+        (self.tabataTimerModel?.exercises?.array[0] as! ExerciseModel).duration = Int16(self.manageWorkTimerField(function: +))
     }
     
     func manageWorkTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.exercises[0].exerciseDuration, function: function, label: (self.workTimerField?.indicationLabel)!)
+//        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.exercises[0].exerciseDuration, function: function, label: (self.workTimerField?.indicationLabel)!)
+        return self.timeLabelChangeWithFunction(oldValue: Int((self.tabataTimerModel!.exercises?.array[0] as! ExerciseModel).duration), function: function, label: (self.workTimerField?.indicationLabel)!)
     }
 
     @IBAction func onRestMinusButton(_ sender: Any) {
         let restTime = self.manageRestTimerField(function: -)
-        self.tabataTimerModel.exerciseRestTime = restTime
-        self.tabataTimerModel.setsRestTime = restTime
+        self.tabataTimerModel?.exerciseRestTime = Int16(restTime)
+        self.tabataTimerModel?.setRestTime = Int16(restTime)
     }
     
     @IBAction func onRestPlusButton(_ sender: Any) {
         let restTime = self.manageRestTimerField(function: +)
-        self.tabataTimerModel.exerciseRestTime = restTime
-        self.tabataTimerModel.setsRestTime = restTime
+        self.tabataTimerModel?.exerciseRestTime = Int16(restTime)
+        self.tabataTimerModel?.setRestTime = Int16(restTime)
     }
     
     func manageRestTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.exerciseRestTime, function: function, label: (self.restTimerField?.indicationLabel)!)
+        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.exerciseRestTime), function: function, label: (self.restTimerField?.indicationLabel)!)
     }
     
     @IBAction func onCoolDownMinusButton(_ sender: Any) {
-        self.tabataTimerModel.coolDownTime = self.manageCoolDownTimerField(function: -)
+        self.tabataTimerModel?.coolDownTime = Int16(self.manageCoolDownTimerField(function: -))
     }
     
     @IBAction func onCoolDownPlusButton(_ sender: Any) {
-        self.tabataTimerModel.coolDownTime = self.manageCoolDownTimerField(function: +)
+        self.tabataTimerModel?.coolDownTime = Int16(self.manageCoolDownTimerField(function: +))
     }
     
     func manageCoolDownTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.coolDownTime, function: function, label: (self.coolDownTimerField?.indicationLabel)!)
+        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.coolDownTime), function: function, label: (self.coolDownTimerField?.indicationLabel)!)
     }
     
     @IBAction func onStartButton(_ sender: Any) {
