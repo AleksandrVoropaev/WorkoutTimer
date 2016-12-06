@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 extension TimerModel {
+    
     var timeIntervals: Array<AVTimeInterval> {
         var result = Array<AVTimeInterval>()
         if self.warmupTime > 0 {
@@ -28,7 +29,11 @@ extension TimerModel {
                     if exercisesLastIndex != exerciseIterator {
                         result.append(AVTimeInterval(name: "REST", duration: Int(self.exerciseRestTime)))
                     } else if setsIterator != (self.setsCount - 1) {
-                        result.append(AVTimeInterval(name: "Next Set in:", duration: Int(self.setRestTime)))
+                        if self.setRestTime == 0 {
+                            result.append(AVTimeInterval(name: "REST", duration: Int(self.exerciseRestTime)))
+                        } else {
+                            result.append(AVTimeInterval(name: "Next Set in:", duration: Int(self.setRestTime)))
+                        }
                     } else {
                         result.append(AVTimeInterval(name: "COOL DOWN", duration: Int(self.coolDownTime)))
                     }
@@ -64,7 +69,7 @@ extension TimerModel {
         self.setupTestExercise(context: context, name: "Work", duration: 20, timerModel: timer)
 
         timer.exerciseRestTime = 10
-        timer.setRestTime = 30
+        timer.setRestTime = 0
         timer.coolDownTime = 30
         
         do {

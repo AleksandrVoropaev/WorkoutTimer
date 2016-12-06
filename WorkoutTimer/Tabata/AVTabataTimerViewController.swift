@@ -12,14 +12,8 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     @IBOutlet weak var startButton: UIButton!
     
-    // try CoreData
-    
     var timerArray: AVTimerArrayModel?
-//    let timerArray = AVTimerArrayModel()
     var tabataTimerModel: TimerModel?
-    
-    //
-    
     
     var timerSettingsContainerView = UIView()
     
@@ -32,45 +26,36 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // try CoreData
         
-//        timerArray.erase()
-//        TimerModel.setupTestTabataTimer()
-//        timerArray.load()
-//        print(timerArray.objects)
-//        print((timerArray.objects.firstObject as! TimerModel).exercises?.array as! [ExerciseModel])
-        
-        
-        if let tabataTimerModel = timerArray?.object(at: 0) {
-            self.tabataTimerModel = tabataTimerModel as? TimerModel
+        if let tabataTimerModel = timerArray?.object(at: 0) as? TimerModel {
+            self.tabataTimerModel = tabataTimerModel
             
             self.title = "SET UP TIMER"
 
             self.setTimerSettingsContainerView()
             
             self.warmupTimerField = self.timerField(title: "WARMUP",
-                                                    indication: "00:30",
+                                                    indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.warmupTime)),
                                                     selectorTitle: "onWarmup",
                                                     previousField: nil,
                                                     isOnTop: true)
             self.setsTimerField = self.timerField(title: "SETS",
-                                                  indication: "8",
+                                                  indication: String(tabataTimerModel.setsCount),
                                                   selectorTitle: "onSets",
                                                   previousField: warmupTimerField,
                                                   isOnTop: false)
             self.workTimerField = self.timerField(title: "WORK",
-                                                  indication: "00:20",
+                                                  indication: self.secondsToTimeString(seconds: Int((tabataTimerModel.exercises?.firstObject as! ExerciseModel).duration)),
                                                   selectorTitle: "onWork",
                                                   previousField: setsTimerField,
                                                   isOnTop: false)
             self.restTimerField = self.timerField(title: "REST",
-                                                  indication: "00:10",
+                                                  indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.exerciseRestTime)),
                                                   selectorTitle: "onRest",
                                                   previousField: workTimerField,
                                                   isOnTop: false)
             self.coolDownTimerField = self.timerField(title: "COOL DOWN",
-                                                      indication: "00:30",
+                                                      indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.coolDownTime)),
                                                       selectorTitle: "onCoolDown",
                                                       previousField: restTimerField,
                                                       isOnTop: false)

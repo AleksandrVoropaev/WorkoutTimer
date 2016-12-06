@@ -35,6 +35,8 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             if let newModel = model {
                 self.timeIntervals = newModel.timeIntervals
                 self.totalCountDownTime = self.totalDuration()
+                self.activityCountDown = self.totalCountDownTime
+                self.exerciseCountDown = newModel.timeIntervals.first?.duration ?? 0
             }
             
 //            let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
