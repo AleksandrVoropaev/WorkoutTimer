@@ -13,7 +13,7 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     @IBOutlet weak var exerciseNameField: UITextField!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
     
-    let model = AVExerciseModel(name: "none", duration: 30)
+    let model = AVTimeInterval(name: "none", duration: 0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,18 +27,18 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     }
     
     @IBAction func onExerciseDurationPlusButton(_ sender: Any) {
-        self.model.exerciseDuration = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseDuration,
+        self.model.duration = self.timeLabelChangeWithFunction(oldValue: self.model.duration,
                                                          function: +,
                                                          label: self.exerciseDurationLabel)
     }
     
     @IBAction func onExerciseDurationMinusButton(_ sender: Any) {
-        self.model.exerciseDuration = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseDuration,
+        self.model.duration = self.timeLabelChangeWithFunction(oldValue: self.model.duration,
                                                          function: -,
                                                          label: self.exerciseDurationLabel)
     }
     
     @IBAction func onAddExerciseButton(_ sender: Any) {
-        self.model.exerciseName = self.exerciseNameField.text!
+        self.model.name = self.exerciseNameField.text ?? "none"
     }
 }

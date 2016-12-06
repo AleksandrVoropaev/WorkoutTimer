@@ -19,37 +19,66 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
     @IBOutlet weak var execiseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
     
-    var model = AVScheduledTimerModel(name: "none",
-                                      warmupTime: 30,
-                                      setsCount: 3,
-                                      setsRestTime: 30,
-                                      restTime: 10,
-                                      coolDownTime: 30)
-    {
+//    var model = AVScheduledTimerModel(name: "none",
+//                                      warmupTime: 30,
+//                                      setsCount: 3,
+//                                      setsRestTime: 30,
+//                                      restTime: 10,
+//                                      coolDownTime: 30)
+//    {
+//        didSet {
+//            self.timerNameLabel.text = model.name
+//            self.warmupLabel.text = self.secondsToTimeString(seconds: model.warmupTime)
+//            self.setsLabel.text = String(model.setsCount)
+//            self.restBetweenSetsLabel.text = self.secondsToTimeString(seconds: model.setsRestTime)
+//            self.restBetweenExercisesLabel.text = self.secondsToTimeString(seconds: model.exerciseRestTime)
+//            self.coolDownLabel.text = self.secondsToTimeString(seconds: model.coolDownTime)
+//            
+//            var exerciseNames = ""
+//            var exerciseTimes = ""
+//            for (index, exercise) in model.exercises.enumerated() {
+//                exerciseNames += exercise.exerciseName
+//                exerciseTimes += self.secondsToTimeString(seconds: exercise.exerciseDuration)
+//                if index < model.exercises.count - 1 {
+//                    exerciseNames += "\r\n"
+//                    exerciseTimes += "\r\n"
+//                }
+//            }
+//            
+//            self.execiseNameLabel.text = exerciseNames
+//            self.exerciseDurationLabel.text = exerciseTimes
+//        }
+//    }
+    
+    var model: TimerModel?
+        {
         didSet {
-            self.timerNameLabel.text = model.name
-            self.warmupLabel.text = self.secondsToTimeString(seconds: model.warmupTime)
-            self.setsLabel.text = String(model.setsCount)
-            self.restBetweenSetsLabel.text = self.secondsToTimeString(seconds: model.setsRestTime)
-            self.restBetweenExercisesLabel.text = self.secondsToTimeString(seconds: model.exerciseRestTime)
-            self.coolDownLabel.text = self.secondsToTimeString(seconds: model.coolDownTime)
-            
-            var exerciseNames = ""
-            var exerciseTimes = ""
-            for (index, exercise) in model.exercises.enumerated() {
-                exerciseNames += exercise.exerciseName
-                exerciseTimes += self.secondsToTimeString(seconds: exercise.exerciseDuration)
-                if index < model.exercises.count - 1 {
-                    exerciseNames += "\r\n"
-                    exerciseTimes += "\r\n"
+            if let model = self.model {
+                self.timerNameLabel.text = model.name
+                self.warmupLabel.text = self.secondsToTimeString(seconds: Int(model.warmupTime))
+                self.setsLabel.text = String(model.setsCount)
+                self.restBetweenSetsLabel.text = self.secondsToTimeString(seconds: Int(model.setRestTime))
+                self.restBetweenExercisesLabel.text = self.secondsToTimeString(seconds: Int(model.exerciseRestTime))
+                self.coolDownLabel.text = self.secondsToTimeString(seconds: Int(model.coolDownTime))
+                
+                var exerciseNames = ""
+                var exerciseTimes = ""
+                if let exercises = model.exercises {
+                    for (index, exercise) in exercises.enumerated() {
+                        exerciseNames += (exercise as! ExerciseModel).name ?? ""
+                        exerciseTimes += self.secondsToTimeString(seconds: Int((exercise as! ExerciseModel).duration))
+                        if index < exercises.count - 1 {
+                            exerciseNames += "\r\n"
+                            exerciseTimes += "\r\n"
+                        }
+                    }
                 }
+                self.execiseNameLabel.text = exerciseNames
+                self.exerciseDurationLabel.text = exerciseTimes
             }
-            
-            self.execiseNameLabel.text = exerciseNames
-            self.exerciseDurationLabel.text = exerciseTimes
         }
     }
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

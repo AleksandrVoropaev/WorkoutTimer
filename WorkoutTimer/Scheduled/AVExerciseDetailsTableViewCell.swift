@@ -8,18 +8,15 @@
 
 import UIKit
 
-class AVExerciseDetailsTableViewCell: UITableViewCell {
+class AVExerciseDetailsTableViewCell: UITableViewCell, AVCellsFill {
 
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
-    var exerciseModel = AVExerciseModel(name: "none", duration: 0)
+    var exerciseModel: ExerciseModel?
     
-    func fillWithModel(model: AVExerciseModel) {
-        let seconds = model.exerciseDuration % 60
-//        var minutes = model.exerciseDuration > 60 ? model.exerciseDuration / 60 : 0
-        let minutes = model.exerciseDuration / 60
-        self.exerciseDurationLabel.text = "\(minutes) : \(seconds)"
-        self.exerciseNameLabel.text = model.exerciseName
+    func fillWithModel(model: ExerciseModel) {
+        self.exerciseDurationLabel.text = self.secondsToTimeString(seconds: Int(model.duration))
+        self.exerciseNameLabel.text = model.name
     }
     
     override func awakeFromNib() {

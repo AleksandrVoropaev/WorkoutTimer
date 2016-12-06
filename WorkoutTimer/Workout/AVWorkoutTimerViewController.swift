@@ -18,12 +18,12 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
-    var captionLabelText: String?
-    var countDownTimerLabelText: String?
-    var countUpTimerLabelText: String?
-    var totalCountDownTimerLabelText: String?
+//    var captionLabelText: String?
+//    var countDownTimerLabelText: String?
+//    var countUpTimerLabelText: String?
+//    var totalCountDownTimerLabelText: String?
     
-    var timeIntervals: Array<ExerciseModel> = []
+    var timeIntervals: Array<AVTimeInterval> = []
     var totalCountDownTime: Int = 0
     var exerciseCountDown: Int = 0
     var exerciseCountUp: Int = 0
@@ -33,14 +33,8 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     var model: TimerModel? {
         didSet {
             if let newModel = model {
-                let timeIntervals = newModel.timeIntervals
-                var totalCountDownTime = 0
-                timeIntervals.forEach {
-                    totalCountDownTime += Int($0.duration)
-                }
-                
-                self.totalCountDownTime = totalCountDownTime
-                self.timeIntervals = timeIntervals
+                self.timeIntervals = newModel.timeIntervals
+                self.totalCountDownTime = self.totalDuration()
             }
             
 //            let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
@@ -92,7 +86,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         if let firstTimeInterval = self.timeIntervals.first {
             self.captionLabel.text = firstTimeInterval.name
             self.captionLabel.adjustsFontSizeToFitWidth = true
-            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: Int(firstTimeInterval.duration))
+            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: firstTimeInterval.duration)
             self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.totalCountDownTime)
         }
     }
@@ -105,6 +99,15 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         // Do any additional setup after loading the view.
     }
 
+    func totalDuration() -> Int {
+        var totalDuration = 0
+        self.timeIntervals.forEach {
+            totalDuration += $0.duration
+        }
+        
+        return totalDuration
+    }
+    
     func countDown() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { () -> Void in
             if self.isRunning {
@@ -129,8 +132,8 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         if self.currentTimeIntervalIndex < self.timeIntervals.count {
             let currentExercise = self.timeIntervals[self.currentTimeIntervalIndex]
             self.captionLabel.text = currentExercise.name
-            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: Int(currentExercise.duration))
-            self.exerciseCountDown = Int(currentExercise.duration)
+            self.countDownTimerLabel.text = self.secondsToTimeString(seconds: currentExercise.duration)
+            self.exerciseCountDown = currentExercise.duration
             self.countUpTimerLabel.text = "00:00"
             self.exerciseCountUp = 0
         } else {
@@ -163,7 +166,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             self.startButton.setTitle("START", for: UIControlState.normal)
             self.currentTimeIntervalIndex = -1
             self.nextTimeInterval()
-            self.totalCountDownTimerLabel.text = self.totalCountDownTimerLabelText
+            self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.totalDuration())
             self.activityCountDown = self.totalCountDownTime
             self.isRunning = false
             self.isFirstRun = true

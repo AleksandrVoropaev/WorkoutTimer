@@ -8,12 +8,12 @@
 
 import Foundation
 
-class AVExerciseModel {
-    var exerciseName: String
-    var exerciseDuration: Int
+class AVTimeInterval {
+    var name: String
+    var duration: Int
     
     init(name: String, duration: Int) {
-        self.exerciseName = name
-        self.exerciseDuration = duration
+        self.name = name
+        self.duration = duration
     }
 }

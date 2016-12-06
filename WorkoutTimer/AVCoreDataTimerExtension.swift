@@ -11,23 +11,26 @@ import UIKit
 import CoreData
 
 extension TimerModel {
-    var timeIntervals: Array<ExerciseModel> {
-        var result = Array<ExerciseModel>()
+    var timeIntervals: Array<AVTimeInterval> {
+        var result = Array<AVTimeInterval>()
         if self.warmupTime > 0 {
-            result.append(self.timeInterval(name: "WARMUP", duration: Int16(self.warmupTime)))
+            result.append(AVTimeInterval(name: "WARMUP", duration: Int(self.warmupTime)))
         }
         
         if let exercises = self.exercises {
+            let exercisesLastIndex = exercises.count - 1
             for setsIterator in 0...(self.setsCount - 1) {
-                for exerciseIterator in 0...(exercises.count - 1) {
-                    result.append(exercises[exerciseIterator] as! ExerciseModel)
-                    let exercisesLastIndex = exercises.count - 1
+                for exerciseIterator in 0...(exercisesLastIndex) {
+                    let name = (exercises[exerciseIterator] as! ExerciseModel).name ?? "no name"
+                    let duration = (exercises[exerciseIterator] as! ExerciseModel).duration
+                    result.append(AVTimeInterval(name: name, duration: Int(duration)))
+                    
                     if exercisesLastIndex != exerciseIterator {
-                        result.append(self.timeInterval(name: "REST", duration: Int16(self.exerciseRestTime)))
+                        result.append(AVTimeInterval(name: "REST", duration: Int(self.exerciseRestTime)))
                     } else if setsIterator != (self.setsCount - 1) {
-                        result.append(self.timeInterval(name: "Next Set in:", duration: Int16(self.setRestTime)))
+                        result.append(AVTimeInterval(name: "Next Set in:", duration: Int(self.setRestTime)))
                     } else {
-                        result.append(self.timeInterval(name: "COOL DOWN", duration: Int16(self.coolDownTime)))
+                        result.append(AVTimeInterval(name: "COOL DOWN", duration: Int(self.coolDownTime)))
                     }
                 }
             }
@@ -36,13 +39,13 @@ extension TimerModel {
         return result
     }
     
-    private func timeInterval(name: String, duration: Int16) -> ExerciseModel {
-        let result = ExerciseModel()
-        result.name = name
-        result.duration = duration
-        
-        return result
-    }
+//    private func timeInterval(name: String, duration: Int16) -> ExerciseModel {
+//        let result = ExerciseModel()
+//        result.name = name
+//        result.duration = duration
+//        
+//        return result
+//    }
     
 //    func addExercise(exerciseName: String, exerciseDuration: Int) {
 //        self.exercises.append(AVExerciseModel(name: exerciseName, duration: exerciseDuration))

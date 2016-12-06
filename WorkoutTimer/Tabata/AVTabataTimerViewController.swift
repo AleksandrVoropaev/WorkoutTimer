@@ -14,7 +14,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     // try CoreData
     
-    
+//    let timerArray: AVTimerArrayModel?
     let timerArray = AVTimerArrayModel()
     var tabataTimerModel: TimerModel?
     
@@ -22,10 +22,6 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     
     var timerSettingsContainerView = UIView()
-//    var tabataTimerModel = AVScheduledTimerModel(name: "Tabata", warmupTime: 15, setsCount: 2, setsRestTime: 10, restTime: 3, coolDownTime: 15)
-//    func addExercise() {
-//        self.tabataTimerModel.addExercise(exerciseName: "Work", exerciseDuration: 5)
-//    }
     
     var warmupTimerField: AVTimerSettingsFieldView?
     var setsTimerField: AVTimerSettingsFieldView?

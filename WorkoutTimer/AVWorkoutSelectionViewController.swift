@@ -10,6 +10,14 @@ import UIKit
 
 class AVWorkoutSelectionViewController: UIViewController {
 
+    var model: AVTimerArrayModel?
+    
+//    init(model: AVTimerArrayModel) {
+//        super.init()
+//        
+//        self.model = model
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +36,7 @@ class AVWorkoutSelectionViewController: UIViewController {
 
     @IBAction func onScheduledButton(_ sender: Any) {
         let scheduledTimerController = AVScheduledTimersViewController()
+        scheduledTimerController.model = self.model
         self.navigationController?.pushViewController(scheduledTimerController, animated: true)
     }
     

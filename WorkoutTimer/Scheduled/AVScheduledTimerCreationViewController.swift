@@ -16,9 +16,10 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     @IBOutlet weak var restLabel: UILabel!
     @IBOutlet weak var coolDownLabel: UILabel!
     
-    var model = AVScheduledTimerModel(name: "none", warmupTime: 30, setsCount: 1, setsRestTime: 30, restTime: 10, coolDownTime: 30)
+//    var model = AVScheduledTimerModel(name: "none", warmupTime: 30, setsCount: 1, setsRestTime: 30, restTime: 10, coolDownTime: 30)
     
-    
+    var model: TimerModel?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -84,53 +85,53 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         return newValue
     }
     
-    @IBAction func onPlusWarmupButton(_ sender: Any) {
-        self.model.warmupTime = self.timeLabelChangeWithFunction(oldValue: self.model.warmupTime,
-                                                                 function: +,
-                                                                 label: self.warmupLabel)
-    }
-    
-    @IBAction func onMinusWarmupButton(_ sender: Any) {
-        self.model.warmupTime = self.timeLabelChangeWithFunction(oldValue: self.model.warmupTime,
-                                                                 function: -,
-                                                                 label: self.warmupLabel)
-    }
-    
-    @IBAction func onPlusSetsButton(_ sender: Any) {
-        self.model.setsCount = self.countLabelChangeWithFunction(oldValue: self.model.setsCount,
-                                                                 function: +,
-                                                                 label: self.setsLabel)
-    }
-    
-    @IBAction func onMinusSetsButton(_ sender: Any) {
-        self.model.setsCount = self.countLabelChangeWithFunction(oldValue: self.model.setsCount,
-                                                                 function: -,
-                                                                 label: self.setsLabel)
-    }
-    
-    @IBAction func onPlusRestButton(_ sender: Any) {
-        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
-                                                                 function: +,
-                                                                 label: self.restLabel)
-    }
-    
-    @IBAction func onMinusRestButton(_ sender: Any) {
-        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
-                                                               function: -,
-                                                               label: self.restLabel)
-    }
-    
-    @IBAction func onPlusCoolDownButton(_ sender: Any) {
-        self.model.coolDownTime = self.timeLabelChangeWithFunction(oldValue: self.model.coolDownTime,
-                                                               function: +,
-                                                               label: self.coolDownLabel)
-    }
-    
-    @IBAction func onMinusCoolDownButton(_ sender: Any) {
-        self.model.coolDownTime = self.timeLabelChangeWithFunction(oldValue: self.model.coolDownTime,
-                                                                   function: +,
-                                                                   label: self.coolDownLabel)
-    }
+//    @IBAction func onPlusWarmupButton(_ sender: Any) {
+//        self.model.warmupTime = self.timeLabelChangeWithFunction(oldValue: self.model.warmupTime,
+//                                                                 function: +,
+//                                                                 label: self.warmupLabel)
+//    }
+//    
+//    @IBAction func onMinusWarmupButton(_ sender: Any) {
+//        self.model.warmupTime = self.timeLabelChangeWithFunction(oldValue: self.model.warmupTime,
+//                                                                 function: -,
+//                                                                 label: self.warmupLabel)
+//    }
+//    
+//    @IBAction func onPlusSetsButton(_ sender: Any) {
+//        self.model.setsCount = self.countLabelChangeWithFunction(oldValue: self.model.setsCount,
+//                                                                 function: +,
+//                                                                 label: self.setsLabel)
+//    }
+//    
+//    @IBAction func onMinusSetsButton(_ sender: Any) {
+//        self.model.setsCount = self.countLabelChangeWithFunction(oldValue: self.model.setsCount,
+//                                                                 function: -,
+//                                                                 label: self.setsLabel)
+//    }
+//    
+//    @IBAction func onPlusRestButton(_ sender: Any) {
+//        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
+//                                                                 function: +,
+//                                                                 label: self.restLabel)
+//    }
+//    
+//    @IBAction func onMinusRestButton(_ sender: Any) {
+//        self.model.exerciseRestTime = self.timeLabelChangeWithFunction(oldValue: self.model.exerciseRestTime,
+//                                                               function: -,
+//                                                               label: self.restLabel)
+//    }
+//    
+//    @IBAction func onPlusCoolDownButton(_ sender: Any) {
+//        self.model.coolDownTime = self.timeLabelChangeWithFunction(oldValue: self.model.coolDownTime,
+//                                                               function: +,
+//                                                               label: self.coolDownLabel)
+//    }
+//    
+//    @IBAction func onMinusCoolDownButton(_ sender: Any) {
+//        self.model.coolDownTime = self.timeLabelChangeWithFunction(oldValue: self.model.coolDownTime,
+//                                                                   function: +,
+//                                                                   label: self.coolDownLabel)
+//    }
     
     @IBAction func onSaveButton(_ sender: Any) {
 
