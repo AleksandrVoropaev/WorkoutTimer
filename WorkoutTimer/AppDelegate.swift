@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let model = AVTimerArrayModel()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.model.erase()
+        TimerModel.setupTestTabataTimer()
+        TimerModel.setupTestScheduledTimer()
         self.model.load()
         
         let viewController = AVWorkoutSelectionViewController()

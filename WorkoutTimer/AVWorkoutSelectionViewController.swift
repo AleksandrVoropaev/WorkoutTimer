@@ -31,6 +31,7 @@ class AVWorkoutSelectionViewController: UIViewController {
     
     @IBAction func onTabataButton(_ sender: Any) {
         let tabataTimerController = AVTabataTimerViewController()
+        tabataTimerController.timerArray = self.model
         self.navigationController?.pushViewController(tabataTimerController, animated: true)
     }
 

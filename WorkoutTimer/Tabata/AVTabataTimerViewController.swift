@@ -14,8 +14,8 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     // try CoreData
     
-//    let timerArray: AVTimerArrayModel?
-    let timerArray = AVTimerArrayModel()
+    var timerArray: AVTimerArrayModel?
+//    let timerArray = AVTimerArrayModel()
     var tabataTimerModel: TimerModel?
     
     //
@@ -35,50 +35,46 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
 
         // try CoreData
         
-        timerArray.erase()
-        TimerModel.setupTestTabataTimer()
-        timerArray.load()
-        print(timerArray.objects)
-        print((timerArray.objects.firstObject as! TimerModel).exercises?.array as! [ExerciseModel])
+//        timerArray.erase()
+//        TimerModel.setupTestTabataTimer()
+//        timerArray.load()
+//        print(timerArray.objects)
+//        print((timerArray.objects.firstObject as! TimerModel).exercises?.array as! [ExerciseModel])
         
         
-        tabataTimerModel = timerArray.object(at: 0) as? TimerModel
+        if let tabataTimerModel = timerArray?.object(at: 0) {
+            self.tabataTimerModel = tabataTimerModel as? TimerModel
+            
+            self.title = "SET UP TIMER"
 
-        //
-        
-        
-        
-        self.title = "SET UP TIMER"
-        
-//        self.addExercise()
-        
-        self.setTimerSettingsContainerView()
-        
-        self.warmupTimerField = self.timerField(title: "WARMUP",
-                                               indication: "00:30",
-                                               selectorTitle: "onWarmup",
-                                               previousField: nil,
-                                               isOnTop: true)
-        self.setsTimerField = self.timerField(title: "SETS",
-                                             indication: "8",
-                                             selectorTitle: "onSets",
-                                             previousField: warmupTimerField,
-                                             isOnTop: false)
-        self.workTimerField = self.timerField(title: "WORK",
-                                             indication: "00:20",
-                                             selectorTitle: "onWork",
-                                             previousField: setsTimerField,
-                                             isOnTop: false)
-        self.restTimerField = self.timerField(title: "REST",
-                                             indication: "00:10",
-                                             selectorTitle: "onRest",
-                                             previousField: workTimerField,
-                                             isOnTop: false)
-        self.coolDownTimerField = self.timerField(title: "COOL DOWN",
-                                                 indication: "00:30",
-                                                 selectorTitle: "onCoolDown",
-                                                 previousField: restTimerField,
-                                                 isOnTop: false)
+            self.setTimerSettingsContainerView()
+            
+            self.warmupTimerField = self.timerField(title: "WARMUP",
+                                                    indication: "00:30",
+                                                    selectorTitle: "onWarmup",
+                                                    previousField: nil,
+                                                    isOnTop: true)
+            self.setsTimerField = self.timerField(title: "SETS",
+                                                  indication: "8",
+                                                  selectorTitle: "onSets",
+                                                  previousField: warmupTimerField,
+                                                  isOnTop: false)
+            self.workTimerField = self.timerField(title: "WORK",
+                                                  indication: "00:20",
+                                                  selectorTitle: "onWork",
+                                                  previousField: setsTimerField,
+                                                  isOnTop: false)
+            self.restTimerField = self.timerField(title: "REST",
+                                                  indication: "00:10",
+                                                  selectorTitle: "onRest",
+                                                  previousField: workTimerField,
+                                                  isOnTop: false)
+            self.coolDownTimerField = self.timerField(title: "COOL DOWN",
+                                                      indication: "00:30",
+                                                      selectorTitle: "onCoolDown",
+                                                      previousField: restTimerField,
+                                                      isOnTop: false)
+        }
     }
     
     func setTimerSettingsContainerView() {
