@@ -18,7 +18,6 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     var exerciseName = "Exercise"
     var exerciseDuration = 20
     
-    var addExerciseButtonAction: ((UITableViewCell) -> Void)?
     var onButton: ((AnyObject?) -> ())?
     
     override func awakeFromNib() {
@@ -26,17 +25,7 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
         
         self.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exerciseDuration)
 
-//        self.addExerciseButton.addTarget(self, action: #selector(AVScheduledTimerCreationViewController.onAddExerciseButton(_:)), for: .touchUpInside)
-
         // Initialization code
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if let action = self.onButton {
-            action(self)
-        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,9 +47,9 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     }
 
     @IBAction func onAddExerciseButton(_ sender: Any) {
-//        if let action = self.onButton {
-//            action(self)
-//        }
+        if let action = self.onButton {
+            action(self)
+        }
     }
 
 }

@@ -36,14 +36,16 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
 
         self.title = "ADD NEW TIMER"
         
-        tableView.rowHeight = 196
-        
+        self.setupLabels()
+        // Do any additional setup after loading the view.
+    }
+    
+    func setupLabels() {
         self.warmupTimeLabel.text = self.secondsToTimeString(seconds: Int(self.warmupTime))
         self.setsCountLabel.text = String(self.warmupTime)
         self.setsRestTimeLabel.text = self.secondsToTimeString(seconds: Int(self.setRestTime))
         self.exerciseRestTimeLabel.text = self.secondsToTimeString(seconds: Int(self.exerciseRestTime))
         self.coolDownTimeLabel.text = self.secondsToTimeString(seconds: Int(self.coolDownTime))
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,10 +83,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
             cls = AVExerciseCreationTableViewCell.self
             let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
             
-            cell.onButton = { (anotherCellName) in
-                (anotherCellName as! AVExerciseCreationTableViewCell).addExerciseButton.addTarget(self, action: #selector(self.onAddExerciseButton(_:)), for: .touchUpInside)
-            }
-//            cell.onButton = onAddExerciseButton
+            cell.onButton = onAddExerciseButton
             return cell
         }
     }
