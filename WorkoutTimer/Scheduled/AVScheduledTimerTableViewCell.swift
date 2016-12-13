@@ -19,37 +19,6 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
     @IBOutlet weak var execiseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
     
-//    var model = AVScheduledTimerModel(name: "none",
-//                                      warmupTime: 30,
-//                                      setsCount: 3,
-//                                      setsRestTime: 30,
-//                                      restTime: 10,
-//                                      coolDownTime: 30)
-//    {
-//        didSet {
-//            self.timerNameLabel.text = model.name
-//            self.warmupLabel.text = self.secondsToTimeString(seconds: model.warmupTime)
-//            self.setsLabel.text = String(model.setsCount)
-//            self.restBetweenSetsLabel.text = self.secondsToTimeString(seconds: model.setsRestTime)
-//            self.restBetweenExercisesLabel.text = self.secondsToTimeString(seconds: model.exerciseRestTime)
-//            self.coolDownLabel.text = self.secondsToTimeString(seconds: model.coolDownTime)
-//            
-//            var exerciseNames = ""
-//            var exerciseTimes = ""
-//            for (index, exercise) in model.exercises.enumerated() {
-//                exerciseNames += exercise.exerciseName
-//                exerciseTimes += self.secondsToTimeString(seconds: exercise.exerciseDuration)
-//                if index < model.exercises.count - 1 {
-//                    exerciseNames += "\r\n"
-//                    exerciseTimes += "\r\n"
-//                }
-//            }
-//            
-//            self.execiseNameLabel.text = exerciseNames
-//            self.exerciseDurationLabel.text = exerciseTimes
-//        }
-//    }
-    
     var model: TimerModel?
         {
         didSet {
@@ -73,6 +42,7 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
                         }
                     }
                 }
+                
                 self.execiseNameLabel.text = exerciseNames
                 self.exerciseDurationLabel.text = exerciseTimes
             }

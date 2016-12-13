@@ -85,7 +85,7 @@
                         <rect key="frame" x="0.0" y="157" width="320" height="30"/>
                         <state key="normal" title="Add exercise"/>
                         <connections>
-                            <action selector="onAddExerciseButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qgl-0V-zeD"/>
+                            <action selector="onAddExerciseButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NOV-at-kC5"/>
                         </connections>
                     </button>
                 </subviews>
@@ -108,6 +108,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addExerciseButton" destination="eJH-61-byI" id="bfV-j3-H09"/>
                 <outlet property="exerciseDurationLabel" destination="Eo5-aC-i3s" id="kE2-eG-40r"/>
                 <outlet property="exerciseNameField" destination="MrR-cz-lWg" id="ER1-0h-X38"/>
             </connections>

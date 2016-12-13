@@ -21,7 +21,6 @@
 		1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */; };
 		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
 		1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* AVExtensions.swift */; };
-		1FB70C551DF174B300E29568 /* AVExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */; };
 		1FB70C561DF174B300E29568 /* AVExerciseCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */; };
 		1FB70C571DF174B300E29568 /* AVExerciseCreationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */; };
 		1FB70C581DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */; };
@@ -45,6 +44,7 @@
 		1FB70C6C1DF1753C00E29568 /* AVScheduledTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6B1DF1753C00E29568 /* AVScheduledTimerModel.swift */; };
 		1FB70C6E1DF1758900E29568 /* AVArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */; };
 		1FB70C701DF175B300E29568 /* AVTimerArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */; };
+		1FDE13101DFEB2B200285439 /* AVExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE130F1DFEB2B200285439 /* AVExerciseCollectionViewCell.swift */; };
 		1FE658AD1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE658AB1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodeld */; };
 		1FFD785A1DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,6 @@
 		1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutSelectionViewController.xib; sourceTree = "<group>"; };
 		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
 		1FB272341DD3A223005FEA1B /* AVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExtensions.swift; sourceTree = "<group>"; };
-		1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCreationTableViewCell.swift; sourceTree = "<group>"; };
 		1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVExerciseCreationTableViewCell.xib; sourceTree = "<group>"; };
 		1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		1FB70C6B1DF1753C00E29568 /* AVScheduledTimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVScheduledTimerModel.swift; sourceTree = "<group>"; };
 		1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVArrayModel.swift; sourceTree = "<group>"; };
 		1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTimerArrayModel.swift; sourceTree = "<group>"; };
+		1FDE130F1DFEB2B200285439 /* AVExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FE658AC1DDCD2590059F1E3 /* AVWorkoutTimerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AVWorkoutTimerModel.xcdatamodel; sourceTree = "<group>"; };
 		1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCoreDataTimerExtension.swift; sourceTree = "<group>"; };
 		33ED429F8353C94DA026E2AB /* Pods_WorkoutTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,17 +168,16 @@
 		1FB70C3B1DF174B300E29568 /* Scheduled */ = {
 			isa = PBXGroup;
 			children = (
-				1FB70C3C1DF174B300E29568 /* AVExerciseCollectionViewCell.swift */,
-				1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */,
-				1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */,
-				1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */,
-				1FB70C401DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib */,
-				1FB70C411DF174B300E29568 /* AVScheduledTimerCreationViewController.swift */,
-				1FB70C421DF174B300E29568 /* AVScheduledTimerCreationViewController.xib */,
 				1FB70C441DF174B300E29568 /* AVScheduledTimersViewController.swift */,
 				1FB70C451DF174B300E29568 /* AVScheduledTimersViewController.xib */,
 				1FB70C461DF174B300E29568 /* AVScheduledTimerTableViewCell.swift */,
 				1FB70C471DF174B300E29568 /* AVScheduledTimerTableViewCell.xib */,
+				1FB70C411DF174B300E29568 /* AVScheduledTimerCreationViewController.swift */,
+				1FB70C421DF174B300E29568 /* AVScheduledTimerCreationViewController.xib */,
+				1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */,
+				1FB70C3E1DF174B300E29568 /* AVExerciseCreationTableViewCell.xib */,
+				1FB70C3F1DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift */,
+				1FB70C401DF174B300E29568 /* AVExerciseDetailsTableViewCell.xib */,
 			);
 			path = Scheduled;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 				1FB70C521DF174B300E29568 /* AVYouTubeImageView.swift */,
 				1FB70C531DF174B300E29568 /* AVYouTubeVideoDetailsViewController.swift */,
 				1FB70C541DF174B300E29568 /* AVYouTubeVideoModel.swift */,
+				1FDE130F1DFEB2B200285439 /* AVExerciseCollectionViewCell.swift */,
 			);
 			path = YouTube;
 			sourceTree = "<group>";
@@ -373,6 +373,7 @@
 				1FB70C561DF174B300E29568 /* AVExerciseCreationTableViewCell.swift in Sources */,
 				1F0E36ED1DD5BB2C00C90245 /* AVTimeInterval.swift in Sources */,
 				1FB70C5D1DF174B300E29568 /* AVScheduledTimersViewController.swift in Sources */,
+				1FDE13101DFEB2B200285439 /* AVExerciseCollectionViewCell.swift in Sources */,
 				1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */,
 				1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */,
 				1FB70C6E1DF1758900E29568 /* AVArrayModel.swift in Sources */,
@@ -380,7 +381,6 @@
 				1FB70C581DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift in Sources */,
 				1FB70C681DF174B300E29568 /* AVYouTubeImageView.swift in Sources */,
 				1FB70C611DF174B300E29568 /* AVTabataTimerViewController.swift in Sources */,
-				1FB70C551DF174B300E29568 /* AVExerciseCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

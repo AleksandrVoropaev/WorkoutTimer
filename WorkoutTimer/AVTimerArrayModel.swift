@@ -55,6 +55,42 @@ class AVTimerArrayModel: AVArrayModel {
         }
     }
     
+    func addTimer(name: String,
+                  warmupTime: Int64,
+                  setsCount: Int16,
+                  exercises: [AVTimeInterval],
+                  exerciseRestTime: Int16,
+                  setRestTime: Int16,
+                  coolDownTime: Int16)
+    {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
+        
+        timer.name = name
+        timer.warmupTime = warmupTime
+        timer.setsCount = setsCount
+        
+        exercises.forEach {
+            let exercise = NSEntityDescription.insertNewObject(forEntityName: "ExerciseModel", into: context) as! ExerciseModel
+            exercise.duration = Int16($0.duration)
+            exercise.name = $0.name
+            exercise.timerModel = timer
+
+        }
+        
+        timer.exerciseRestTime = exerciseRestTime
+        timer.setRestTime = setRestTime
+        timer.coolDownTime = coolDownTime
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     func erase() {
         self.load()
         let delegate = UIApplication.shared.delegate as! AppDelegate
