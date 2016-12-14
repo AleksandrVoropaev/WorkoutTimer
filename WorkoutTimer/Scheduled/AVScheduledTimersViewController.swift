@@ -11,8 +11,10 @@ import UIKit
 class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var removeTimerButton: UIButton!
     
     var model: AVTimerArrayModel?
+    var editingTableView: Bool = false
     
     let estimatedRowHeight: CGFloat = 198
 
@@ -32,6 +34,8 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         
         if let model = self.model {
             model.load()
+            
+            self.tableView.reloadData()
         }
     }
 
@@ -64,10 +68,30 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         self.navigationController?.pushViewController(workoutTimerController, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            if let model = self.model {
+                model.delete(timer:model.object(at: indexPath.row + 1) as! TimerModel)
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     @IBAction func onAddTimerButton(_ sender: Any) {
         let timerCreationController = AVScheduledTimerCreationViewController()
         timerCreationController.model = self.model
         self.navigationController?.pushViewController(timerCreationController, animated: true)
+    }
+    
+    @IBAction func onRemoveTimerButton(_ sender: Any) {
+        let editing = !self.editingTableView
+        
+        self.tableView.setEditing(editing, animated: true)
+        let title = editing ? "OK" : "REMOVE"
+        self.removeTimerButton.setTitle(title, for: UIControlState.normal)
+        
+        self.editingTableView = editing
     }
 
 }

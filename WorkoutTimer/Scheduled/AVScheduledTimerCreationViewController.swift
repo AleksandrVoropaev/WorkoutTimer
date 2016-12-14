@@ -164,5 +164,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
                              exerciseRestTime: self.exerciseRestTime,
                              setRestTime: self.setRestTime,
                              coolDownTime: self.coolDownTime)
+        
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

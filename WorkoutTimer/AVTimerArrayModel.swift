@@ -94,6 +94,14 @@ class AVTimerArrayModel: AVArrayModel {
         }
     }
     
+    func delete(timer: TimerModel) {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        context.delete(timer)
+        self.remove(object: timer)
+    }
+    
     func erase() {
         self.load()
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -102,15 +110,6 @@ class AVTimerArrayModel: AVArrayModel {
         self.objects.forEach {
             context.delete($0 as! NSManagedObject)
         }
-        
-        
-//        do {
-//            self.objects.forEach {
-//                try context.delete($0 as! NSManagedObject)
-//            }
-//        } catch {
-//            print(error)
-//        }
     }
     
 }
