@@ -29,6 +29,9 @@ class AVTimerArrayModel: AVArrayModel {
         let context = delegate.persistentContainer.viewContext
         
         self.objects.forEach {
+            //=======
+            context.delete($0 as! NSManagedObject)
+            //=======
             let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
             
             timer.name = ($0 as! TimerModel).name

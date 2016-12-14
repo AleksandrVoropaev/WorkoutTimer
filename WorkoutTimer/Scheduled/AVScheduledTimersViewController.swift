@@ -13,6 +13,8 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     
     var model: AVTimerArrayModel?
+    
+    let estimatedRowHeight: CGFloat = 198
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +22,17 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         self.title = "SELECT TIMER"
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 198
+        tableView.estimatedRowHeight = self.estimatedRowHeight
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let model = self.model {
+            model.load()
+        }
     }
 
     override func didReceiveMemoryWarning() {

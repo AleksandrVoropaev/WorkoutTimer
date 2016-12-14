@@ -20,7 +20,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     
     var model: AVTimerArrayModel?
     
-    var exercises: [AVTimeInterval]?
+    var exercises: [AVTimeInterval] = []
     var warmupTime: Int64 = 30
     var setsCount: Int16 = 3
     var exerciseRestTime: Int16 = 10
@@ -28,8 +28,8 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     var coolDownTime: Int16 = 30
 
     
-    let exerciseCreationCellHeight: CGFloat = 196
-    let exerciseDetailsCellHeight: CGFloat = 80
+    let exerciseCreationCellHeight: CGFloat = 164
+    let exerciseDetailsCellHeight: CGFloat = 62
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,50 +54,35 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = self.exercises?.count {
-            return count + 1
-        }
-        
-        return 1
+        return self.exercises.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cls: AnyClass
         
-        if let count = self.exercises?.count {
-            if indexPath.row == count + 1 {
-                cls = AVExerciseCreationTableViewCell.self
-                let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
-                cell.onButton = { (anotherCellName) in
-                    (anotherCellName as! AVExerciseCreationTableViewCell).addExerciseButton.addTarget(self, action: #selector(self.onAddExerciseButton(_:)), for: .touchUpInside)
-                }
-                
-                return cell
-            } else {
-                cls = AVExerciseDetailsTableViewCell.self
-                let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseDetailsTableViewCell
-                
-                return cell
-            }
-        } else {
+        if indexPath.row == self.exercises.count {
             cls = AVExerciseCreationTableViewCell.self
             let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
             
             cell.onButton = onAddExerciseButton
+            
+            return cell
+        } else {
+            cls = AVExerciseDetailsTableViewCell.self
+            let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseDetailsTableViewCell
+            cell.exerciseNameLabel.text = self.exercises[indexPath.row].name
+            cell.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exercises[indexPath.row].duration)
+            
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let count = self.exercises?.count {
-            if indexPath.row == count + 1 {
-                return self.exerciseCreationCellHeight
-            } else {
-                return self.exerciseDetailsCellHeight
-            }
+        if indexPath.row == self.exercises.count {
+            return self.exerciseCreationCellHeight
+        } else {
+            return self.exerciseDetailsCellHeight
         }
-        
-        return self.exerciseCreationCellHeight
     }
     
     @IBAction func onPlusWarmupButton(_ sender: Any) {
@@ -161,18 +146,23 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     }
     
     @IBAction func onAddExerciseButton(_ sender: Any) {
-        print("PRESSED")
+        let cell = sender as! AVExerciseCreationTableViewCell
+        var name = ""
+        if let text = cell.exerciseNameField.text {
+            name = text.isEmpty ? "Exercise" : text
+        }
+
+        self.exercises.append(AVTimeInterval(name: name, duration: cell.exerciseDuration))
+        self.tableView.reloadData()
     }
     
     @IBAction func onSaveButton(_ sender: Any) {
-        if let exercises = self.exercises {
-            self.model?.addTimer(name: self.timerNameLabel.text ?? "No Name",
-                                 warmupTime: self.warmupTime,
-                                 setsCount: self.setsCount,
-                                 exercises: exercises,
-                                 exerciseRestTime: self.exerciseRestTime,
-                                 setRestTime: self.setRestTime,
-                                 coolDownTime: self.coolDownTime)
-        }
+        self.model?.addTimer(name: self.timerNameLabel.text ?? "Workout",
+                             warmupTime: self.warmupTime,
+                             setsCount: self.setsCount,
+                             exercises: self.exercises,
+                             exerciseRestTime: self.exerciseRestTime,
+                             setRestTime: self.setRestTime,
+                             coolDownTime: self.coolDownTime)
     }
 }
