@@ -18,7 +18,7 @@ extension TimerModel {
             result.append(AVTimeInterval(name: "WARMUP", duration: Int(self.warmupTime)))
         }
         
-        if let exercises = self.exercises {
+        if let exercises = self.exercises, exercises.count > 0 {
             let exercisesLastIndex = exercises.count - 1
             for setsIterator in 0...(self.setsCount - 1) {
                 for exerciseIterator in 0...(exercisesLastIndex) {
@@ -34,9 +34,11 @@ extension TimerModel {
                         } else {
                             result.append(AVTimeInterval(name: "Next Set in:", duration: Int(self.setRestTime)))
                         }
-                    } else {
-                        result.append(AVTimeInterval(name: "COOL DOWN", duration: Int(self.coolDownTime)))
                     }
+                }
+                
+                if self.coolDownTime > 0 {
+                    result.append(AVTimeInterval(name: "COOL DOWN", duration: Int(self.coolDownTime)))
                 }
             }
         }

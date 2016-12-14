@@ -18,11 +18,6 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
-//    var captionLabelText: String?
-//    var countDownTimerLabelText: String?
-//    var countUpTimerLabelText: String?
-//    var totalCountDownTimerLabelText: String?
-    
     var timeIntervals: Array<AVTimeInterval> = []
     var totalCountDownTime: Int = 0
     var exerciseCountDown: Int = 0
@@ -38,23 +33,6 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
                 self.activityCountDown = self.totalCountDownTime
                 self.exerciseCountDown = newModel.timeIntervals.first?.duration ?? 0
             }
-            
-//            let newModel = model ?? AVScheduledTimerModel(name: "none", warmupTime: 0, setsCount: 0, setsRestTime: 0, exercises: [AVExerciseModel(name: "none", duration: 0)], exerciseRestTime: 0, coolDownTime: 0)
-//            if newModel.warmupTime != 0 {
-//                self.captionLabelText = "WARMUP"
-//            } else {
-//                let exerciseName = newModel.exercises[0].exerciseName
-//                self.captionLabelText = exerciseName != "" ? exerciseName : "No exercises"
-//            }
-//            
-//            let countDownTime = newModel.warmupTime != 0 ? newModel.warmupTime : newModel.exercises[0].exerciseDuration
-//            self.countDownTimerLabelText = self.secondsToTimeString(seconds: countDownTime)
-//            self.totalCountDownTimerLabelText = self.secondsToTimeString(seconds: newModel.summaryDuration)
-//            self.totalCountDownTime = newModel.summaryDuration
-//            
-//            self.exerciseCountDown = countDownTime
-//            self.activityCountDown = newModel.summaryDuration
-//            self.timeIntervals = newModel.timeIntervals
         }
     }
     
@@ -111,7 +89,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     }
     
     func countDown() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { () -> Void in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(900)) { () -> Void in
             if self.isRunning {
                 if self.exerciseCountDown == 0 {
                     self.nextTimeInterval()
@@ -143,6 +121,8 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             self.isRunning = false
             self.captionLabel.text = "END"
             self.countUpTimerLabel.text = "00:00"
+            self.countDownTimerLabel.text = "00:00"
+            self.totalCountDownTimerLabel.text = "00:00"
             self.pauseButton.isUserInteractionEnabled = false
         }
     }
