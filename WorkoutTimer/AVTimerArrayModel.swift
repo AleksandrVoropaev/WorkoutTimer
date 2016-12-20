@@ -13,6 +13,11 @@ import MagicalRecord
 class AVTimerArrayModel: AVArrayModel {
     
     func load() {
+//        if let timers = TimerModel.mr_find(byAttribute: "name", withValue: "", andOrderBy: "createdDate", ascending: true) {
+//            self.replaceAllObjects(with: timers)
+//
+//        }
+
         let timers = TimerModel.mr_findAll() as! [TimerModel]
         self.replaceAllObjects(with: timers)
         
@@ -48,6 +53,10 @@ class AVTimerArrayModel: AVArrayModel {
                 timer.setRestTime = ($0 as! TimerModel).setRestTime
                 timer.coolDownTime = ($0 as! TimerModel).coolDownTime
             }
+            
+//            NSManagedObjectContext.defaultContext().saveToPersistentStoreAndWait()
+//            NSManagedObjectContext.mr_default().save()
+            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
         }
         
 //        let delegate = UIApplication.shared.delegate as! AppDelegate
