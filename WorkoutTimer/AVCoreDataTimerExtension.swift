@@ -60,6 +60,7 @@ extension TimerModel {
     
     class func setupTestTabataTimer() {
         if let timer = TimerModel.mr_createEntity() {
+            timer.id = 0
             timer.name = "Tabata Timer"
             timer.warmupTime = 30
             timer.setsCount = 8
@@ -95,6 +96,7 @@ extension TimerModel {
     
     class func setupTestScheduledTimer() {
         if let timer = TimerModel.mr_createEntity() {
+            timer.id = 1
             timer.name = "Scheduled Timer"
             timer.warmupTime = 30
             timer.setsCount = 3

@@ -13,13 +13,17 @@ import MagicalRecord
 class AVTimerArrayModel: AVArrayModel {
     
     func load() {
-//        if let timers = TimerModel.mr_find(byAttribute: "name", withValue: "", andOrderBy: "createdDate", ascending: true) {
+//        if let timers = TimerModel.mr_find(byAttribute: "createdDate", withValue: "", andOrderBy: nil, ascending: true) {
 //            self.replaceAllObjects(with: timers)
 //
 //        }
 
-        let timers = TimerModel.mr_findAll() as! [TimerModel]
-        self.replaceAllObjects(with: timers)
+        if let timers = TimerModel.mr_findAllSorted(by: "id", ascending: true) {
+            self.replaceAllObjects(with: timers)
+        }
+        
+        let anotherTimers = TimerModel.mr_findAll() as! [TimerModel]
+//        self.replaceAllObjects(with: timers)
         
 //        let delegate = UIApplication.shared.delegate as! AppDelegate
 //        let context = delegate.persistentContainer.viewContext
@@ -34,15 +38,24 @@ class AVTimerArrayModel: AVArrayModel {
     }
     
     func save() {
+//        TimerModel.mr_truncateAll()
+        var timerId: Int16 = 0
         self.objects.forEach {
             ($0 as! NSManagedObject).mr_deleteEntity()
             if let timer = TimerModel.mr_createEntity() {
+//                let timerid = TimerModel.mr_countOfEntities()
+//                timer.id = Int16(TimerModel.mr_countOfEntities())
+                timer.id = timerId
+                timerId += 1
                 timer.name = ($0 as! TimerModel).name
                 timer.warmupTime = ($0 as! TimerModel).warmupTime
                 timer.setsCount = ($0 as! TimerModel).setsCount
-
+                
+                var exerciseId: Int16 = 0
                 ($0 as! TimerModel).exercises?.forEach {
                     if let exercise = ExerciseModel.mr_createEntity() {
+                        exercise.id = exerciseId
+                        exerciseId += 1
                         exercise.name = ($0 as! ExerciseModel).name
                         exercise.duration = ($0 as! ExerciseModel).duration
                         exercise.timerModel = timer
@@ -100,6 +113,7 @@ class AVTimerArrayModel: AVArrayModel {
                   coolDownTime: Int16)
     {
         if let timer = TimerModel.mr_createEntity() {
+            timer.id = Int16(TimerModel.mr_countOfEntities())
             timer.name = name
             timer.warmupTime = warmupTime
             timer.setsCount = setsCount

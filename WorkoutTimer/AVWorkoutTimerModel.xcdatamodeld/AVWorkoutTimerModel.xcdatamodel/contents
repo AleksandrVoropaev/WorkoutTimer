@@ -2,20 +2,22 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseModel" representedClassName="ExerciseModel" syncable="YES" codeGenerationType="class">
         <attribute name="duration" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="timerModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimerModel" inverseName="exercises" inverseEntity="TimerModel" syncable="YES"/>
     </entity>
     <entity name="TimerModel" representedClassName="TimerModel" syncable="YES" codeGenerationType="class">
         <attribute name="coolDownTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="exerciseRestTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="setRestTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="setsCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="warmupTime" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="exercises" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseModel" inverseName="timerModel" inverseEntity="ExerciseModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ExerciseModel" positionX="-47" positionY="-99" width="128" height="90"/>
-        <element name="TimerModel" positionX="-261" positionY="-159" width="128" height="150"/>
+        <element name="ExerciseModel" positionX="-47" positionY="-99" width="128" height="105"/>
+        <element name="TimerModel" positionX="-261" positionY="-159" width="128" height="165"/>
     </elements>
 </model>
