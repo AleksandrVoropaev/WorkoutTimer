@@ -11,15 +11,7 @@ import UIKit
 class AVArrayModel: NSObject {
     
     var objects = NSMutableArray()
-    
-//    var count: Int = {
-//        if let count = self.objects.count {
-//            return count
-//        } else {
-//            return 0
-//        }
-//    }()
-    
+        
     func count() -> Int {
         return self.objects.count 
     }
@@ -27,10 +19,6 @@ class AVArrayModel: NSObject {
     func object(at index: Int) -> Any? {
         return self.objects.object(at: index)
     }
-    
-//    func object(at indexedSubscript: Int) -> Any? {
-//        return self.objects.obje
-//    }
     
     func add(object: Any) {
         self.objects.add(object)
@@ -43,10 +31,6 @@ class AVArrayModel: NSObject {
     func add(objects: [Any]) {
         self.objects.addObjects(from: objects)
     }
-    
-//    func set(object: Any, at indexedSubscript: Int) {
-//        
-//    }
     
     func remove(object: Any) {
         self.objects.remove(object)

@@ -59,59 +59,93 @@ extension TimerModel {
 //    }
     
     class func setupTestTabataTimer() {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let context = delegate.persistentContainer.viewContext
-        let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
-        
-        timer.name = "Tabata Timer"
-        timer.warmupTime = 30
-        timer.setsCount = 8
-        
-        self.setupTestExercise(context: context, name: "Work", duration: 20, timerModel: timer)
+        if let timer = TimerModel.mr_createEntity() {
+            timer.name = "Tabata Timer"
+            timer.warmupTime = 30
+            timer.setsCount = 8
+            
+            self.setupTestExercise(name: "Work", duration: 20, timerModel: timer)
 
-        timer.exerciseRestTime = 10
-        timer.setRestTime = 0
-        timer.coolDownTime = 30
-        
-        do {
-            try context.save()
-        } catch {
-            print(error)
+            timer.exerciseRestTime = 10
+            timer.setRestTime = 0
+            timer.coolDownTime = 30
+
         }
+//        let delegate = UIApplication.shared.delegate as! AppDelegate
+//        
+//        let context = delegate.persistentContainer.viewContext
+//        let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
+//        
+//        timer.name = "Tabata Timer"
+//        timer.warmupTime = 30
+//        timer.setsCount = 8
+//        
+//        self.setupTestExercise(context: context, name: "Work", duration: 20, timerModel: timer)
+//
+//        timer.exerciseRestTime = 10
+//        timer.setRestTime = 0
+//        timer.coolDownTime = 30
+//        
+//        do {
+//            try context.save()
+//        } catch {
+//            print(error)
+//        }
     }
     
     class func setupTestScheduledTimer() {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let context = delegate.persistentContainer.viewContext
-        let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
-        
-        timer.name = "Scheduled Timer"
-        timer.warmupTime = 30
-        timer.setsCount = 3
-        
-        self.setupTestExercise(context: context, name: "First Exercise", duration: 15, timerModel: timer)
-        self.setupTestExercise(context: context, name: "Second Exercise", duration: 20, timerModel: timer)
-        self.setupTestExercise(context: context, name: "Third Exercise", duration: 25, timerModel: timer)
-        
-        timer.exerciseRestTime = 10
-        timer.setRestTime = 30
-        timer.coolDownTime = 30
-        
-        do {
-            try context.save()
-        } catch {
-            print(error)
+        if let timer = TimerModel.mr_createEntity() {
+            timer.name = "Scheduled Timer"
+            timer.warmupTime = 30
+            timer.setsCount = 3
+            
+            self.setupTestExercise(name: "First Exercise", duration: 15, timerModel: timer)
+            self.setupTestExercise(name: "Second Exercise", duration: 20, timerModel: timer)
+            self.setupTestExercise(name: "Third Exercise", duration: 25, timerModel: timer)
+            
+            timer.exerciseRestTime = 10
+            timer.setRestTime = 30
+            timer.coolDownTime = 30
         }
+        
+//        let delegate = UIApplication.shared.delegate as! AppDelegate
+//        
+//        let context = delegate.persistentContainer.viewContext
+//        let timer = NSEntityDescription.insertNewObject(forEntityName: "TimerModel", into: context) as! TimerModel
+//        
+//        timer.name = "Scheduled Timer"
+//        timer.warmupTime = 30
+//        timer.setsCount = 3
+//        
+//        self.setupTestExercise(context: context, name: "First Exercise", duration: 15, timerModel: timer)
+//        self.setupTestExercise(context: context, name: "Second Exercise", duration: 20, timerModel: timer)
+//        self.setupTestExercise(context: context, name: "Third Exercise", duration: 25, timerModel: timer)
+//        
+//        timer.exerciseRestTime = 10
+//        timer.setRestTime = 30
+//        timer.coolDownTime = 30
+//        
+//        do {
+//            try context.save()
+//        } catch {
+//            print(error)
+//        }
     }
     
-    class func setupTestExercise(context: NSManagedObjectContext, name: String, duration: Int16, timerModel: TimerModel) {
-        let exercise = NSEntityDescription.insertNewObject(forEntityName: "ExerciseModel", into: context) as! ExerciseModel
-        exercise.duration = duration
-        exercise.name = name
-        exercise.timerModel = timerModel
+    class func setupTestExercise(name: String, duration: Int16, timerModel: TimerModel) {
+        if let exercise = ExerciseModel.mr_createEntity() {
+            exercise.duration = duration
+            exercise.name = name
+            exercise.timerModel = timerModel
+        }
     }
+
+//    class func setupTestExercise(context: NSManagedObjectContext, name: String, duration: Int16, timerModel: TimerModel) {
+//        let exercise = NSEntityDescription.insertNewObject(forEntityName: "ExerciseModel", into: context) as! ExerciseModel
+//        exercise.duration = duration
+//        exercise.name = name
+//        exercise.timerModel = timerModel
+//    }
     
 }
 

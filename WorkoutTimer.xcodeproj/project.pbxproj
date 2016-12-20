@@ -54,6 +54,7 @@
 		1F0E36EE1DD622DE00C90245 /* AVProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVProtocols.swift; sourceTree = "<group>"; };
 		1F5B18F81DE8381800E0313F /* AVLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVLoadingView.swift; sourceTree = "<group>"; };
 		1F5B18FA1DE8382B00E0313F /* AVLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVLoadingView.xib; sourceTree = "<group>"; };
+		1F70BCA71E0965160013FB56 /* WorkoutTimer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorkoutTimer-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F9773281DD355AB008EC44F /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F97732B1DD355AB008EC44F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F97732D1DD355AB008EC44F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */,
 				1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */,
 				1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */,
+				1F70BCA71E0965160013FB56 /* WorkoutTimer-Bridging-Header.h */,
 			);
 			path = WorkoutTimer;
 			sourceTree = "<group>";
