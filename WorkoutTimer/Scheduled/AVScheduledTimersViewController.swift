@@ -25,8 +25,6 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = self.estimatedRowHeight
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +39,6 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate, UI
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

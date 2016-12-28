@@ -179,17 +179,14 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
 
     @IBAction func onWorkMinusButton(_ sender: Any) {
-//        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: -)
         (self.tabataTimerModel?.exercises?.array[0] as! ExerciseModel).duration = Int16(self.manageWorkTimerField(function: -))
     }
     
     @IBAction func onWorkPlusButton(_ sender: Any) {
-//        self.tabataTimerModel.exercises[0].exerciseDuration = self.manageWorkTimerField(function: +)
         (self.tabataTimerModel?.exercises?.array[0] as! ExerciseModel).duration = Int16(self.manageWorkTimerField(function: +))
     }
     
     func manageWorkTimerField(function:(Int, Int) -> Int) -> Int {
-//        return self.timeLabelChangeWithFunction(oldValue: self.tabataTimerModel.exercises[0].exerciseDuration, function: function, label: (self.workTimerField?.indicationLabel)!)
         return self.timeLabelChangeWithFunction(oldValue: Int((self.tabataTimerModel!.exercises?.array[0] as! ExerciseModel).duration), function: function, label: (self.workTimerField?.indicationLabel)!)
     }
 
@@ -229,7 +226,6 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

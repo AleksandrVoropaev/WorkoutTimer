@@ -37,7 +37,6 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         self.title = "ADD NEW TIMER"
         
         self.setupLabels()
-        // Do any additional setup after loading the view.
     }
     
     func setupLabels() {
@@ -50,7 +49,6 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,8 +61,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         if indexPath.row == self.exercises.count {
             cls = AVExerciseCreationTableViewCell.self
             let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
-            
-            cell.onButton = onAddExerciseButton
+            cell.exerciseCreateButtonAction = onAddExerciseButton
             
             return cell
         } else {

@@ -9,6 +9,7 @@
 import Foundation
 
 class AVTimeInterval {
+    
     var name: String
     var duration: Int
     
@@ -16,4 +17,5 @@ class AVTimeInterval {
         self.name = name
         self.duration = duration
     }
+    
 }

@@ -9,14 +9,17 @@
 import UIKit
 
 extension Array {
+    
     func firstObjectWithClass(cls:AnyClass) -> Any? {
         return self.first(where: { (evaluatedObject) -> Bool in
             return type(of: evaluatedObject) == cls
         })
     }
+    
 }
 
 extension UINib {
+    
     class func nibWithClass(cls: AnyClass) -> UINib {
         return self.nibWithClass(cls: cls, bundle: nil)
     }
@@ -50,9 +53,11 @@ extension UINib {
     func object(withClass cls:AnyClass, owner:Any?, options:[AnyHashable : Any]?) -> Any? {
         return self.instantiate(withOwner: owner, options: options).firstObjectWithClass(cls: cls)
     }
+    
 }
 
 extension UITableView {
+    
     func dequeueReusableCell(withClass cls: AnyClass) -> UITableViewCell? {
         let identifier = NSStringFromClass(cls)
         var cell = self.dequeueReusableCell(withIdentifier: identifier)
@@ -62,9 +67,11 @@ extension UITableView {
         
         return cell
     }
+    
 }
 
 extension UIView {
+    
     func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String : UIView]()
         for (index, view) in views.enumerated() {
@@ -78,16 +85,15 @@ extension UIView {
                                                            options: NSLayoutFormatOptions(),
                                                            metrics: nil,
                                                            views: viewsDictionary))
-
     }
+    
 }
 
 extension UIView {
+    
     class func initFromNib() -> UIView {
         let mainBundle = Bundle.main
-//        let mainBundle = NSBundle.mainBundle()
         let className = NSStringFromClass(self).components(separatedBy: ".").last ?? ""
-//        let className  = NSStringFromClass(self).componentsSeparatedByString(".").last ?? ""
         
         if mainBundle.path(forResource: className, ofType: "nib") != nil {
             if let objects = mainBundle.loadNibNamed(className, owner: self, options: [:]) {
@@ -101,10 +107,13 @@ extension UIView {
         
         return UIView(frame: CGRect.zero)
     }
+    
 }
 
 extension UIColor {
+    
     static func RGB(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
+
 }

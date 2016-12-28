@@ -16,7 +16,7 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     var titleLabelHeightConstraint: NSLayoutConstraint?
@@ -120,7 +120,6 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
     
     let subTitleTextView: UITextView = {
         let subTitle = UITextView()
-        //        subTitle.text = "Watch Tiësto's entire performance from Tomorrowland 2016."
         subTitle.textColor = UIColor.lightGray
         subTitle.textContainerInset = UIEdgeInsetsMake(0, -5, 0, 0)
         subTitle.translatesAutoresizingMaskIntoConstraints = false

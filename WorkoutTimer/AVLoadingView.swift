@@ -64,43 +64,6 @@ class AVLoadingView: UIView {
                                 }
                             })
         }
-        
-        
     }
-    
-//    - (void)setVisible:(BOOL)visible {
-//      [self setVisible:visible animated:YES];
-//    }
-//    
-//    - (void)setVisible:(BOOL)visible animated:(BOOL)animated {
-//      [self setVisible:visible animated:animated completionHandler:nil];
-//    }
-//    
-//    - (void)setVisible:(BOOL)visible animated:(BOOL)animated completionHandler:(void (^)(void))completion {
-//      if (_visible != visible) {
-//          _visible = visible;
-//    
-//          if (visible) {
-//              [self.superview bringSubviewToFront:self];
-//          }
-//    
-//          [UIView animateWithDuration:animated ? kAVLoadingViewDurationWithAnimation : kAVLoadingViewDurationWithoutAnimation
-//              delay:kAVLoadingViewDelay
-//              options:UIViewAnimationOptionBeginFromCurrentState
-//              animations:^{
-//                  self.alpha = visible ? kAlphaVisible : kAlphaInvisible;
-//              }
-//              completion:^(BOOL finished) {
-//                  if (!visible) {
-//                      [self.superview sendSubviewToBack:self];
-//                  }
-//    
-//                  if (completion) {
-//                      completion();
-//                  }
-//              }];
-//      }
-//    }
-
     
 }

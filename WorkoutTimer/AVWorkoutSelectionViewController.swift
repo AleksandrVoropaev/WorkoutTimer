@@ -12,21 +12,12 @@ class AVWorkoutSelectionViewController: UIViewController {
 
     var model: AVTimerArrayModel?
     
-//    init(model: AVTimerArrayModel) {
-//        super.init()
-//        
-//        self.model = model
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onTabataButton(_ sender: Any) {

@@ -10,7 +10,6 @@ import UIKit
 
 class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
     
-//    var webViewHeight: CGFloat = 0
     var webViewHeightConstraint: NSLayoutConstraint?
     var subTitleTextViewHeightConstraint: NSLayoutConstraint?
     var titleLabelHeightConstraint: NSLayoutConstraint?
@@ -28,13 +27,6 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         
         return webView
     }()
-    
-//    func webViewDidFinishLoad(_ webView: UIWebView) {
-//        if let heightConstraint = self.webViewHeightConstraint {
-//            self.view.removeConstraint(heightConstraint)
-//            self.view.addConstraint(NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: self.webViewHeight))
-//        }
-//    }
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -86,19 +78,9 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         self.view.backgroundColor = UIColor.white
         
         self.subTitleTextView.addObserver(self, forKeyPath: "contentSize", options:NSKeyValueObservingOptions.new, context: nil)
-        
-//        self.webView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-//        if let heightConstraint = self.webViewHeightConstraint {
-//            self.view.removeConstraint(heightConstraint)
-//            self.view.addConstraint(NSLayoutConstraint(item: webView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: self.webViewHeight))
-//        }
-        
-        
-        
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -113,7 +95,6 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
             let height = width / 16 * 9
             
             self.webViewHeightConstraint?.constant = height
-//            self.webViewHeight = height
             self.scrollView.contentSize.width = width
 
             if let id = video.id {
