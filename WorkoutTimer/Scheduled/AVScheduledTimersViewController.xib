@@ -43,7 +43,7 @@
                         <constraint firstAttribute="height" constant="70" id="SAc-El-o7f"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="40"/>
-                    <state key="normal" title="REMOVE"/>
+                    <state key="normal" title="EDIT"/>
                     <connections>
                         <action selector="onRemoveTimerButton:" destination="-1" eventType="touchUpInside" id="SxC-Gb-Tld"/>
                     </connections>

@@ -82,7 +82,7 @@ class AVObservableTimersArrayModel {
         }
     }
     
-    func delete(timer: TimerModel) {
+    func remove(timer: TimerModel) {
         timer.mr_deleteEntity()
         if let index = self.timers.index(of: timer) {
             _ = self.timers.remove(at: index)
@@ -90,9 +90,22 @@ class AVObservableTimersArrayModel {
 //        _ = self.timers.remove(at: self.timers.index(of: timer)!)
     }
     
+    func removeTimer(at index: Int) {
+        self.timers[index].mr_deleteEntity()
+        _ = self.timers.remove(at: index)
+    }
+    
     func erase() {
         TimerModel.mr_truncateAll()
         self.timers.removeAll(keepingCapacity: false)
     }
+    
+    func moveTimer(from index: Int, to targetIndex: Int) {
+        self.timers.insert(self.timers.remove(at: index), at: targetIndex)
+    }
+    
+//    fileprivate func recalculateIndexes {
+//        
+//    }
     
 }

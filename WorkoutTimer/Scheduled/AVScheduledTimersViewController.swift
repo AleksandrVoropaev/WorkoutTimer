@@ -7,10 +7,12 @@
 //
 
 import UIKit
+#if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
+#endif
 
-class AVScheduledTimersViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSource*/ {
+class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var removeTimerButton: UIButton!
@@ -41,22 +43,49 @@ class AVScheduledTimersViewController: UIViewController/*, UITableViewDelegate, 
         
         self.observableModel.timers.rx_elements()
             .observeOn(MainScheduler.instance)
+            .map({ elements in
+                elements.filter({ (model: TimerModel) -> Bool in
+//                    if elements.last == model {
+//                        return false
+//                    }
+//                    
+//                    return true
+                    return elements.last != model
+                })
+            })
             .bindTo(tableView.rx.items) { (tableView, row, element) in
-                if row == 0 {
-                    let cell = UITableViewCell()
-//                    cell.rowHeight = 0
-                    
-                    return cell
-                }
-                
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AVScheduledTimerTableViewCell") as! AVScheduledTimerTableViewCell
-                
-//                cell.label.text = "\(element.name) \(element.warmapTime) \(element.coolDownTime)"
-                cell.model = self.observableModel.timers[row]
-
+                cell.model = self.observableModel.timers[row + 1]
                 
                 return cell
-            }
+            }.addDisposableTo(disposeBag)
+        
+        self.tableView.rx.itemSelected
+            .subscribe { indexPathEvent in
+                if let indexPath = indexPathEvent.element {
+                    let workoutTimerController = AVWorkoutTimerViewController()
+                    workoutTimerController.model = self.observableModel.timers[indexPath.row + 1]
+                    self.tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+                    self.navigationController?.pushViewController(workoutTimerController,
+                                                                  animated: true)
+                }
+            }.addDisposableTo(disposeBag)
+        
+        self.tableView.rx.itemDeleted
+            .subscribe { indexPath in
+                if let index = indexPath.element?.row {
+                    self.observableModel.removeTimer(at: index + 1)
+                }
+            }.addDisposableTo(disposeBag)
+        
+        self.tableView.rx.itemMoved
+            .subscribe {
+                if let index = $0.element?.sourceIndex.row, let targetIndex = $0.element?.destinationIndex.row {
+                    self.observableModel.moveTimer(from: index + 1, to: targetIndex + 1)
+                }
+            }.addDisposableTo(disposeBag)
+        
+        self.tableView.rx.setDelegate(self)
             .addDisposableTo(disposeBag)
         //----=--=-==--==-=-=-=-=-=-=-=-=-=---
 
@@ -121,7 +150,7 @@ class AVScheduledTimersViewController: UIViewController/*, UITableViewDelegate, 
         let editing = !self.editingTableView
         
         self.tableView.setEditing(editing, animated: true)
-        let title = editing ? "OK" : "REMOVE"
+        let title = editing ? "OK" : "EDIT"
         self.removeTimerButton.setTitle(title, for: UIControlState.normal)
         
         self.editingTableView = editing
