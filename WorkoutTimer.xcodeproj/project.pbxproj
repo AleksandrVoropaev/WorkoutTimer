@@ -20,6 +20,8 @@
 		1F97733F1DD35651008EC44F /* AVWorkoutSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */; };
 		1F9773401DD35651008EC44F /* AVWorkoutSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */; };
 		1F9C2B591E143D9E00CDB859 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C2B581E143D9E00CDB859 /* ObservableArray.swift */; };
+		1F9C2B5B1E143F6E00CDB859 /* AVObservableTimersArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C2B5A1E143F6E00CDB859 /* AVObservableTimersArrayModel.swift */; };
+		1F9C2B5D1E143FFA00CDB859 /* ObservableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9C2B5C1E143FFA00CDB859 /* ObservableArrayExtension.swift */; };
 		1FB272331DD3A135005FEA1B /* AVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */; };
 		1FB272351DD3A223005FEA1B /* AVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB272341DD3A223005FEA1B /* AVExtensions.swift */; };
 		1FB70C561DF174B300E29568 /* AVExerciseCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */; };
@@ -65,6 +67,8 @@
 		1F97733D1DD35651008EC44F /* AVWorkoutSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVWorkoutSelectionViewController.swift; sourceTree = "<group>"; };
 		1F97733E1DD35651008EC44F /* AVWorkoutSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVWorkoutSelectionViewController.xib; sourceTree = "<group>"; };
 		1F9C2B581E143D9E00CDB859 /* ObservableArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
+		1F9C2B5A1E143F6E00CDB859 /* AVObservableTimersArrayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVObservableTimersArrayModel.swift; sourceTree = "<group>"; };
+		1F9C2B5C1E143FFA00CDB859 /* ObservableArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableArrayExtension.swift; sourceTree = "<group>"; };
 		1FB272321DD3A135005FEA1B /* AVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVTableViewCell.swift; sourceTree = "<group>"; };
 		1FB272341DD3A223005FEA1B /* AVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExtensions.swift; sourceTree = "<group>"; };
 		1FB70C3D1DF174B300E29568 /* AVExerciseCreationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVExerciseCreationTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,9 +164,11 @@
 				1FFD78591DEEDFC900A47CE9 /* AVCoreDataTimerExtension.swift */,
 				1F0E36EC1DD5BB2C00C90245 /* AVTimeInterval.swift */,
 				1F9C2B581E143D9E00CDB859 /* ObservableArray.swift */,
+				1F9C2B5C1E143FFA00CDB859 /* ObservableArrayExtension.swift */,
 				1FB70C6D1DF1758900E29568 /* AVArrayModel.swift */,
 				1FB70C6F1DF175B300E29568 /* AVTimerArrayModel.swift */,
 				1F70BCA71E0965160013FB56 /* WorkoutTimer-Bridging-Header.h */,
+				1F9C2B5A1E143F6E00CDB859 /* AVObservableTimersArrayModel.swift */,
 			);
 			path = WorkoutTimer;
 			sourceTree = "<group>";
@@ -381,7 +387,9 @@
 				1FB70C6E1DF1758900E29568 /* AVArrayModel.swift in Sources */,
 				1FB70C5F1DF174B300E29568 /* AVScheduledTimerTableViewCell.swift in Sources */,
 				1FB70C581DF174B300E29568 /* AVExerciseDetailsTableViewCell.swift in Sources */,
+				1F9C2B5B1E143F6E00CDB859 /* AVObservableTimersArrayModel.swift in Sources */,
 				1FB70C681DF174B300E29568 /* AVYouTubeImageView.swift in Sources */,
+				1F9C2B5D1E143FFA00CDB859 /* ObservableArrayExtension.swift in Sources */,
 				1FB70C611DF174B300E29568 /* AVTabataTimerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

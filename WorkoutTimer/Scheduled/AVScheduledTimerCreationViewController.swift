@@ -18,7 +18,10 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     @IBOutlet weak var exerciseRestTimeLabel: UILabel!
     @IBOutlet weak var coolDownTimeLabel: UILabel!
     
-    var model: AVTimerArrayModel?
+//    var model: AVTimerArrayModel?
+    
+    //try observable
+    var model: AVObservableTimersArrayModel?
     
     var exercises: [AVTimeInterval] = []
     var warmupTime: Int64 = 30
