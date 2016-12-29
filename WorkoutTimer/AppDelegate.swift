@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let model = AVTimerArrayModel()
+    let observableModel = AVObservableTimersArrayModel()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -23,10 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.model.erase()
 //        TimerModel.setupTestTabataTimer()
 //        TimerModel.setupTestScheduledTimer()
-        self.model.load()
+//        self.model.load()
+        
+        self.observableModel.load()
 
         let viewController = AVWorkoutSelectionViewController()
-        viewController.model = self.model
+//        viewController.model = self.model
+        viewController.observableModel = self.observableModel
         let navigationController = UINavigationController(rootViewController: viewController)
         
         let window = self.window

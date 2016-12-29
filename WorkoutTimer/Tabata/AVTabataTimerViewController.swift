@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     @IBOutlet weak var startButton: UIButton!
+    
+    //try observable
+    let disposeBag = DisposeBag()
+    var observableModel: AVObservableTimersArrayModel?
+    //--------------
     
     var timerArray: AVTimerArrayModel?
     var tabataTimerModel: TimerModel?
@@ -27,38 +34,13 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let tabataTimerModel = timerArray?.object(at: 0) as? TimerModel {
-            self.tabataTimerModel = tabataTimerModel
-            
-            self.title = "SET UP TIMER"
+        self.title = "SET UP TIMER"
 
+        if let tabataTimerModel = self.observableModel?.timers[0] {
             self.setTimerSettingsContainerView()
+            self.setupTimerSettings(timerModel: tabataTimerModel)
             
-            self.warmupTimerField = self.timerField(title: "WARMUP",
-                                                    indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.warmupTime)),
-                                                    selectorTitle: "onWarmup",
-                                                    previousField: nil,
-                                                    isOnTop: true)
-            self.setsTimerField = self.timerField(title: "SETS",
-                                                  indication: String(tabataTimerModel.setsCount),
-                                                  selectorTitle: "onSets",
-                                                  previousField: warmupTimerField,
-                                                  isOnTop: false)
-            self.workTimerField = self.timerField(title: "WORK",
-                                                  indication: self.secondsToTimeString(seconds: Int((tabataTimerModel.exercises?.firstObject as! ExerciseModel).duration)),
-                                                  selectorTitle: "onWork",
-                                                  previousField: setsTimerField,
-                                                  isOnTop: false)
-            self.restTimerField = self.timerField(title: "REST",
-                                                  indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.exerciseRestTime)),
-                                                  selectorTitle: "onRest",
-                                                  previousField: workTimerField,
-                                                  isOnTop: false)
-            self.coolDownTimerField = self.timerField(title: "COOL DOWN",
-                                                      indication: self.secondsToTimeString(seconds: Int(tabataTimerModel.coolDownTime)),
-                                                      selectorTitle: "onCoolDown",
-                                                      previousField: restTimerField,
-                                                      isOnTop: false)
+            self.tabataTimerModel = tabataTimerModel
         }
     }
     
@@ -96,10 +78,51 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         self.view.addConstraints([leftViewConstraint, rightViewConstraint, heightViewContsraint, centerYViewConstraint])
     }
     
-    func timerField(title: String, indication: String, selectorTitle: String, previousField: AVTimerSettingsFieldView?, isOnTop: Bool) -> AVTimerSettingsFieldView {
+    func setupTimerSettings(timerModel: TimerModel) {
+        self.warmupTimerField = self.timerField(title: "WARMUP",
+                                                indication: self.secondsToTimeString(seconds: Int(timerModel.warmupTime)),
+                                                selectorTitle: "onWarmup",
+                                                previousField: nil,
+                                                isOnTop: true)
+        self.setsTimerField = self.timerField(title: "SETS",
+                                              indication: String(timerModel.setsCount),
+                                              selectorTitle: "onSets",
+                                              previousField: warmupTimerField,
+                                              isOnTop: false)
+        self.workTimerField = self.timerField(title: "WORK",
+                                              indication: self.secondsToTimeString(seconds: Int((timerModel.exercises?.firstObject as! ExerciseModel).duration)),
+                                              selectorTitle: "onWork",
+                                              previousField: setsTimerField,
+                                              isOnTop: false)
+        self.restTimerField = self.timerField(title: "REST",
+                                              indication: self.secondsToTimeString(seconds: Int(timerModel.exerciseRestTime)),
+                                              selectorTitle: "onRest",
+                                              previousField: workTimerField,
+                                              isOnTop: false)
+        self.coolDownTimerField = self.timerField(title: "COOL DOWN",
+                                                  indication: self.secondsToTimeString(seconds: Int(timerModel.coolDownTime)),
+                                                  selectorTitle: "onCoolDown",
+                                                  previousField: restTimerField,
+                                                  isOnTop: false)
+    }
+    
+    func timerField(title: String,
+                    indication: String,
+                    selectorTitle: String,
+                    previousField: AVTimerSettingsFieldView?,
+                    isOnTop: Bool) -> AVTimerSettingsFieldView {
         let timerField = UINib.object(withClass: AVTimerSettingsFieldView.self) as! AVTimerSettingsFieldView
         timerField.titleLabel.text = title
         timerField.indicationLabel.text = indication
+        
+        //try observation
+//        var subject = self.tabataTimerModel?.coolDownTime
+//        timerField.minusButton.rx.tap
+//            .subscribe {
+//                subject = subject! - 1
+//                
+//        }.addDisposableTo(disposeBag)
+        //---------------
         timerField.minusButton.addTarget(self,
                                          action: NSSelectorFromString(selectorTitle + "MinusButton:"),
                                          for: UIControlEvents.touchUpInside)

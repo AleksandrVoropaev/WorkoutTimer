@@ -17,12 +17,12 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var removeTimerButton: UIButton!
     
-    var model: AVTimerArrayModel?
+//    var model: AVTimerArrayModel?
     var editingTableView: Bool = false
     
     //try observable
     let disposeBag = DisposeBag()
-    var observableModel = AVObservableTimersArrayModel()
+    var observableModel: AVObservableTimersArrayModel?
     
     
     let estimatedRowHeight: CGFloat = 198
@@ -37,25 +37,22 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
         
         
         //try observable
-        self.observableModel.load()
-        
+//        self.observableModel.load()
+        if let model = self.observableModel {
         tableView.register(UINib.init(nibName: "AVScheduledTimerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "AVScheduledTimerTableViewCell")
         
-        self.observableModel.timers.rx_elements()
+//            self.observableModel.timers.rx_elements()
+        model.timers.rx_elements()
             .observeOn(MainScheduler.instance)
             .map({ elements in
                 elements.filter({ (model: TimerModel) -> Bool in
-//                    if elements.last == model {
-//                        return false
-//                    }
-//                    
-//                    return true
                     return elements.last != model
                 })
             })
             .bindTo(tableView.rx.items) { (tableView, row, element) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AVScheduledTimerTableViewCell") as! AVScheduledTimerTableViewCell
-                cell.model = self.observableModel.timers[row + 1]
+//                cell.model = self.observableModel.timers[row + 1]
+                cell.model = model.timers[row + 1]
                 
                 return cell
             }.addDisposableTo(disposeBag)
@@ -64,7 +61,8 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
             .subscribe { indexPathEvent in
                 if let indexPath = indexPathEvent.element {
                     let workoutTimerController = AVWorkoutTimerViewController()
-                    workoutTimerController.model = self.observableModel.timers[indexPath.row + 1]
+//                    workoutTimerController.model = self.observableModel.timers[indexPath.row + 1]
+                    workoutTimerController.model = model.timers[indexPath.row + 1]
                     self.tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
                     self.navigationController?.pushViewController(workoutTimerController,
                                                                   animated: true)
@@ -74,19 +72,22 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
         self.tableView.rx.itemDeleted
             .subscribe { indexPath in
                 if let index = indexPath.element?.row {
-                    self.observableModel.removeTimer(at: index + 1)
+//                    self.observableModel.removeTimer(at: index + 1)
+                    model.removeTimer(at: index + 1)
                 }
             }.addDisposableTo(disposeBag)
         
         self.tableView.rx.itemMoved
             .subscribe {
                 if let index = $0.element?.sourceIndex.row, let targetIndex = $0.element?.destinationIndex.row {
-                    self.observableModel.moveTimer(from: index + 1, to: targetIndex + 1)
+//                    self.observableModel.moveTimer(from: index + 1, to: targetIndex + 1)
+                    model.moveTimer(from: index + 1, to: targetIndex + 1)
                 }
             }.addDisposableTo(disposeBag)
         
         self.tableView.rx.setDelegate(self)
             .addDisposableTo(disposeBag)
+        }
         //----=--=-==--==-=-=-=-=-=-=-=-=-=---
 
     }
