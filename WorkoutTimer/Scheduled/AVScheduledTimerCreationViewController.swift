@@ -18,9 +18,6 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     @IBOutlet weak var exerciseRestTimeLabel: UILabel!
     @IBOutlet weak var coolDownTimeLabel: UILabel!
     
-//    var model: AVTimerArrayModel?
-    
-    //try observable
     var model: AVObservableTimersArrayModel?
     
     var exercises: [AVTimeInterval] = []
@@ -64,7 +61,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         if indexPath.row == self.exercises.count {
             cls = AVExerciseCreationTableViewCell.self
             let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
-            cell.exerciseCreateButtonAction = onAddExerciseButton
+            cell.addExerciseButtonAction = self.onAddExerciseButton
             
             return cell
         } else {

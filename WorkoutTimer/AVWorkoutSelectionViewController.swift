@@ -10,8 +10,7 @@ import UIKit
 
 class AVWorkoutSelectionViewController: UIViewController {
 
-//    var model: AVTimerArrayModel?
-    var observableModel: AVObservableTimersArrayModel?
+    var model: AVObservableTimersArrayModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +22,13 @@ class AVWorkoutSelectionViewController: UIViewController {
     
     @IBAction func onTabataButton(_ sender: Any) {
         let tabataTimerController = AVTabataTimerViewController()
-//        tabataTimerController.timerArray = self.model
-        tabataTimerController.observableModel = self.observableModel
+        tabataTimerController.model = self.model
         self.navigationController?.pushViewController(tabataTimerController, animated: true)
     }
 
     @IBAction func onScheduledButton(_ sender: Any) {
         let scheduledTimerController = AVScheduledTimersViewController()
-//        scheduledTimerController.model = self.model
-        scheduledTimerController.observableModel = self.observableModel
+        scheduledTimerController.model = self.model
         self.navigationController?.pushViewController(scheduledTimerController, animated: true)
     }
     

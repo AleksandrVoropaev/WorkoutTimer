@@ -63,7 +63,6 @@ extension TimerModel {
             timer.exerciseRestTime = 10
             timer.setRestTime = 0
             timer.coolDownTime = 30
-
         }
     }
     

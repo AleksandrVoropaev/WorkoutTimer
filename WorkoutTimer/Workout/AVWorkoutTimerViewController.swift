@@ -36,9 +36,9 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         }
     }
     
-    var isStopped = false
+    var isStopped = false // true when timer is stopped
     var isFirstRun = true
-    var isRunning: Bool {
+    var isRunning: Bool { // false when timer is paused (not stopped)
         didSet {
             if !isStopped {
                 self.stopButton.isHidden = !isRunning
@@ -46,7 +46,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
                 self.startButton.isHidden = isRunning
                 if isFirstRun {
                     self.startButton.setTitle("RESUME", for: UIControlState.normal)
-                    isFirstRun = false
+                    self.isFirstRun = false
                 }
             }
         }
@@ -91,24 +91,28 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             if self.isRunning {
                 if self.exerciseCountDown == 0 {
                     self.nextTimeInterval()
+                } else {
+                    let countUp = self.exerciseCountUp + 1
+                    self.countUpTimerLabel.text = self.secondsToTimeString(seconds: countUp)
+                    self.exerciseCountUp = countUp
+                    let countDown = self.exerciseCountDown - 1
+                    self.countDownTimerLabel.text = self.secondsToTimeString(seconds: countDown)
+                    self.exerciseCountDown = countDown
+                    let activityCountDown = self.activityCountDown - 1
+                    self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: activityCountDown)
+                    self.activityCountDown = activityCountDown
                 }
-
-                self.exerciseCountUp += 1
-                self.countUpTimerLabel.text = self.secondsToTimeString(seconds: self.exerciseCountUp)
-                self.exerciseCountDown -= 1
-                self.countDownTimerLabel.text = self.secondsToTimeString(seconds: self.exerciseCountDown)
-                self.activityCountDown -= 1
-                self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.activityCountDown)
-
+                
                 self.countDown()
             }
         }
     }
     
     func nextTimeInterval() {
-        self.currentTimeIntervalIndex += 1
-        if self.currentTimeIntervalIndex < self.timeIntervals.count {
-            let currentExercise = self.timeIntervals[self.currentTimeIntervalIndex]
+        let currentTimeIntervalIndex = self.currentTimeIntervalIndex + 1
+        self.currentTimeIntervalIndex = currentTimeIntervalIndex
+        if currentTimeIntervalIndex < self.timeIntervals.count {
+            let currentExercise = self.timeIntervals[currentTimeIntervalIndex]
             self.captionLabel.text = currentExercise.name
             self.countDownTimerLabel.text = self.secondsToTimeString(seconds: currentExercise.duration)
             self.exerciseCountDown = currentExercise.duration

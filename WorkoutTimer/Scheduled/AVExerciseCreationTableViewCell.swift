@@ -12,22 +12,17 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
 
     @IBOutlet weak var exerciseNameField: UITextField!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
-    
     @IBOutlet weak var addExerciseButton: UIButton!
     
     var exerciseName = "Exercise"
     var exerciseDuration = 20
     
-    var exerciseCreateButtonAction: ((AnyObject?) -> ())? // change name
+    var addExerciseButtonAction: ((AnyObject?) -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exerciseDuration)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     @IBAction func onExerciseDurationPlusButton(_ sender: Any) {
@@ -43,7 +38,7 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     }
 
     @IBAction func onAddExerciseButton(_ sender: Any) {
-        if let action = self.exerciseCreateButtonAction {
+        if let action = self.addExerciseButtonAction {
             action(self)
         }
     }

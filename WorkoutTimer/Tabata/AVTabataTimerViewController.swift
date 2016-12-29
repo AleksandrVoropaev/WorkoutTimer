@@ -7,19 +7,12 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class AVTabataTimerViewController: UIViewController, AVCellsFill {
     
     @IBOutlet weak var startButton: UIButton!
     
-    //try observable
-    let disposeBag = DisposeBag()
-    var observableModel: AVObservableTimersArrayModel?
-    //--------------
-    
-    var timerArray: AVTimerArrayModel?
+    var model: AVObservableTimersArrayModel?
     var tabataTimerModel: TimerModel?
     
     var timerSettingsContainerView = UIView()
@@ -36,46 +29,53 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         
         self.title = "SET UP TIMER"
 
-        if let tabataTimerModel = self.observableModel?.timers[0] {
+        if let model = self.model {
+            if model.timers.count == 0 {
+                TimerModel.setupTestTabataTimer()
+            }
+            
+            let tabataTimerModel = model.timers[0]
             self.setTimerSettingsContainerView()
             self.setupTimerSettings(timerModel: tabataTimerModel)
-            
             self.tabataTimerModel = tabataTimerModel
         }
     }
     
     func setTimerSettingsContainerView() {
-        self.view.addSubview(timerSettingsContainerView)
-        timerSettingsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        let leftViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView, 
-                                                    attribute: NSLayoutAttribute.left,
-                                                    relatedBy: NSLayoutRelation.equal,
-                                                    toItem: self.view,
-                                                    attribute: NSLayoutAttribute.leftMargin,
-                                                    multiplier: 1.0,
-                                                    constant: 0)
-        let rightViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView,
-                                                     attribute: NSLayoutAttribute.right,
-                                                     relatedBy: NSLayoutRelation.equal,
-                                                     toItem: self.view,
-                                                     attribute: NSLayoutAttribute.rightMargin,
-                                                     multiplier: 1.0,
-                                                     constant: 0)
-        let heightViewContsraint = NSLayoutConstraint(item: timerSettingsContainerView,
-                                                      attribute: NSLayoutAttribute.height,
-                                                      relatedBy: NSLayoutRelation.equal,
-                                                      toItem: nil,
-                                                      attribute: NSLayoutAttribute.height,
-                                                      multiplier: 1.0,
-                                                      constant: 357)
-        let centerYViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView,
-                                                       attribute: NSLayoutAttribute.centerY,
-                                                       relatedBy: NSLayoutRelation.equal,
-                                                       toItem: self.view,
-                                                       attribute: NSLayoutAttribute.centerY,
-                                                       multiplier: 1.0,
-                                                       constant: 0)
-        self.view.addConstraints([leftViewConstraint, rightViewConstraint, heightViewContsraint, centerYViewConstraint])
+        if let view = self.view {
+            let timerSettingsContainerView = self.timerSettingsContainerView
+            view.addSubview(timerSettingsContainerView)
+            timerSettingsContainerView.translatesAutoresizingMaskIntoConstraints = false
+            let leftViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView, 
+                                                        attribute: NSLayoutAttribute.left,
+                                                        relatedBy: NSLayoutRelation.equal,
+                                                        toItem: view,
+                                                        attribute: NSLayoutAttribute.leftMargin,
+                                                        multiplier: 1.0,
+                                                        constant: 0)
+            let rightViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView,
+                                                         attribute: NSLayoutAttribute.right,
+                                                         relatedBy: NSLayoutRelation.equal,
+                                                         toItem: view,
+                                                         attribute: NSLayoutAttribute.rightMargin,
+                                                         multiplier: 1.0,
+                                                         constant: 0)
+            let heightViewContsraint = NSLayoutConstraint(item: timerSettingsContainerView,
+                                                          attribute: NSLayoutAttribute.height,
+                                                          relatedBy: NSLayoutRelation.equal,
+                                                          toItem: nil,
+                                                          attribute: NSLayoutAttribute.height,
+                                                          multiplier: 1.0,
+                                                          constant: 357)
+            let centerYViewConstraint = NSLayoutConstraint(item: timerSettingsContainerView,
+                                                           attribute: NSLayoutAttribute.centerY,
+                                                           relatedBy: NSLayoutRelation.equal,
+                                                           toItem: view,
+                                                           attribute: NSLayoutAttribute.centerY,
+                                                           multiplier: 1.0,
+                                                           constant: 0)
+            view.addConstraints([leftViewConstraint, rightViewConstraint, heightViewContsraint, centerYViewConstraint])
+        }
     }
     
     func setupTimerSettings(timerModel: TimerModel) {
@@ -114,25 +114,17 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         let timerField = UINib.object(withClass: AVTimerSettingsFieldView.self) as! AVTimerSettingsFieldView
         timerField.titleLabel.text = title
         timerField.indicationLabel.text = indication
-        
-        //try observation
-//        var subject = self.tabataTimerModel?.coolDownTime
-//        timerField.minusButton.rx.tap
-//            .subscribe {
-//                subject = subject! - 1
-//                
-//        }.addDisposableTo(disposeBag)
-        //---------------
         timerField.minusButton.addTarget(self,
                                          action: NSSelectorFromString(selectorTitle + "MinusButton:"),
                                          for: UIControlEvents.touchUpInside)
         timerField.plusButton.addTarget(self,
                                         action: NSSelectorFromString(selectorTitle + "PlusButton:"),
                                         for: UIControlEvents.touchUpInside)
-        self.timerSettingsContainerView.addSubview(timerField)
+        
+        let timerSettingsContainerView = self.timerSettingsContainerView
+        timerSettingsContainerView.addSubview(timerField)
         timerField.translatesAutoresizingMaskIntoConstraints = false
         let topTestViewConstraint: NSLayoutConstraint
-        
         let heightTestViewContsraint = NSLayoutConstraint(item: timerField,
                                                           attribute: NSLayoutAttribute.height,
                                                           relatedBy: NSLayoutRelation.equal,
@@ -215,14 +207,16 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
 
     @IBAction func onRestMinusButton(_ sender: Any) {
         let restTime = self.manageRestTimerField(function: -)
-        self.tabataTimerModel?.exerciseRestTime = Int16(restTime)
-        self.tabataTimerModel?.setRestTime = Int16(restTime)
+        let tabataTimerModel = self.tabataTimerModel
+        tabataTimerModel?.exerciseRestTime = Int16(restTime)
+        tabataTimerModel?.setRestTime = Int16(restTime)
     }
     
     @IBAction func onRestPlusButton(_ sender: Any) {
         let restTime = self.manageRestTimerField(function: +)
-        self.tabataTimerModel?.exerciseRestTime = Int16(restTime)
-        self.tabataTimerModel?.setRestTime = Int16(restTime)
+        let tabataTimerModel = self.tabataTimerModel
+        tabataTimerModel?.exerciseRestTime = Int16(restTime)
+        tabataTimerModel?.setRestTime = Int16(restTime)
     }
     
     func manageRestTimerField(function:(Int, Int) -> Int) -> Int {
