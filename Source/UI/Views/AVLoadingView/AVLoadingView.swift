@@ -30,6 +30,7 @@ class AVLoadingView: UIView {
         loadingView.alpha = alphaInvisible
 
         view.addSubview(loadingView)
+        view.bringSubview(toFront: loadingView)
         
         return loadingView
     }

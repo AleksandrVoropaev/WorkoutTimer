@@ -9,7 +9,8 @@
 import UIKit
 import Alamofire
 
-class AVYoutubeExercisesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AVYoutubeExercisesViewController: UICollectionViewController,
+                                        UICollectionViewDelegateFlowLayout {
     
     var videos: [AVYouTubeVideoModel]? {
         didSet {
@@ -18,7 +19,7 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
             }
         }
     }
-    
+
     func getVideos() {
         Alamofire.request("https://www.googleapis.com/youtube/v3/search",
                           method: .get,
@@ -30,29 +31,26 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
                           encoding: URLEncoding.default,
                           headers: nil).responseJSON { (response) in
                             if let JSON = response.result.value {
-//                                print(JSON)
                                 var videos = [AVYouTubeVideoModel]()
                                 for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
-                                    let videoObject = AVYouTubeVideoModel()
-                                    videoObject.id = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
-                                    videoObject.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
-                                    videoObject.videoDescription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
-                                    videoObject.thumbnailImage = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
-                                    videoObject.publicationDate = (video as! NSDictionary).value(forKeyPath: "snippet.publishedAt") as! String?
-                                    self.getVideoDetailsWithVideoModel(model: videoObject)
-                                    
-                                    videoObject.channel = AVYouTubeChannel()
-                                    videoObject.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
-                                    self.getChannelDetailsWithVideoModel(model: videoObject)
-                                    videos.append(videoObject)
-                                    
+                                    let videoModel = AVYouTubeVideoModel()
+                                    videoModel.id = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
+                                    videoModel.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
+                                    videoModel.videoDescription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
+                                    videoModel.thumbnailImage = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
+                                    videoModel.publicationDate = (video as! NSDictionary).value(forKeyPath: "snippet.publishedAt") as! String?
+                                    videoModel.channel = AVYouTubeChannel()
+                                    videoModel.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
+                                    self.getVideoDetailsWithVideoModel(model: videoModel)
+                                    self.getChannelDetailsWithVideoModel(model: videoModel)
+                                    videos.append(videoModel)
                                 }
                                 
                                 self.videos = videos
                             }
         }
     }
-    
+
     func getVideoDetailsWithVideoModel(model: AVYouTubeVideoModel) {
         if let videoId = model.id {
             Alamofire.request("https://www.googleapis.com/youtube/v3/videos",
@@ -63,7 +61,6 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
                               encoding: URLEncoding.default,
                               headers: nil).responseJSON { (response) in
                                 if let JSON = response.result.value {
-//                                    print(JSON)
                                     for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
                                         let stringViewCount = (video as! NSDictionary).value(forKeyPath: "statistics.viewCount") as! String?
                                         model.viewCount = Int(stringViewCount!)
@@ -83,7 +80,6 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
                               encoding: URLEncoding.default,
                               headers: nil).responseJSON { (response) in
                                 if let JSON = response.result.value {
-//                                    print(JSON)
                                     for channel in (JSON as! [String: AnyObject])["items"] as! NSArray {
                                         model.channel?.name = (channel as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
                                         model.channel?.thumbnailImage = (channel as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
@@ -92,6 +88,7 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
             }
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="163"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNK-vQ-RJ1">
@@ -49,10 +49,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MrR-cz-lWg">
-                        <rect key="frame" x="102" y="33" width="116" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter exercise name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MrR-cz-lWg">
+                        <rect key="frame" x="82" y="33" width="156" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="116" id="7Tq-pT-soy"/>
+                            <constraint firstAttribute="width" constant="156" id="7Tq-pT-soy"/>
                             <constraint firstAttribute="height" constant="30" id="uUa-B8-uhJ"/>
                         </constraints>
                         <nil key="textColor"/>

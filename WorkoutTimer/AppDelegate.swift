@@ -35,24 +35,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        
-    }
-
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.model.save()
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        self.saveModelInBackgroud(application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        self.model.save()
+        self.saveModelInBackgroud(application)
+    }
+    
+    func saveModelInBackgroud(_ application: UIApplication) {
+        let backgroundTask = application.beginBackgroundTask {}
+        DispatchQueue.global().async {
+            self.model.saveBeforeExit()
+            application.endBackgroundTask(backgroundTask)
+//            MagicalRecord.cleanUp()
+        }
     }
     
 }
