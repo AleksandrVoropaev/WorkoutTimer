@@ -12,10 +12,10 @@ import CoreData
 
 extension TimerModel {
     
-    var timeIntervals: Array<AVTimeInterval> {
-        var result = Array<AVTimeInterval>()
+    var timeIntervals: Array<AVTimeIntervalModel> {
+        var result = Array<AVTimeIntervalModel>()
         if self.warmupTime > 0 {
-            result.append(AVTimeInterval(name: "WARMUP", duration: Int(self.warmupTime)))
+            result.append(AVTimeIntervalModel(name: "WARMUP", duration: Int(self.warmupTime)))
         }
         
         if let exercises = self.exercises, exercises.count > 0 {
@@ -25,17 +25,17 @@ extension TimerModel {
                 for exerciseIterator in 0...(exercisesLastIndex) {
                     let name = (exercises[exerciseIterator] as! ExerciseModel).name ?? "Work"
                     let duration = (exercises[exerciseIterator] as! ExerciseModel).duration
-                    result.append(AVTimeInterval(name: name, duration: Int(duration)))
+                    result.append(AVTimeIntervalModel(name: name, duration: Int(duration)))
                     
                     if exercisesLastIndex != exerciseIterator {
-                        result.append(AVTimeInterval(name: "REST",
+                        result.append(AVTimeIntervalModel(name: "REST",
                                                      duration: Int(self.exerciseRestTime)))
                     } else if setsIterator != setsLastIndex {
                         if self.setRestTime == 0 {
-                            result.append(AVTimeInterval(name: "REST",
+                            result.append(AVTimeIntervalModel(name: "REST",
                                                          duration: Int(self.exerciseRestTime)))
                         } else {
-                            result.append(AVTimeInterval(name: "Next Set in:",
+                            result.append(AVTimeIntervalModel(name: "Next Set in:",
                                                          duration: Int(self.setRestTime)))
                         }
                     }
@@ -45,10 +45,19 @@ extension TimerModel {
         }
         
         if self.coolDownTime > 0 {
-            result.append(AVTimeInterval(name: "COOL DOWN", duration: Int(self.coolDownTime)))
+            result.append(AVTimeIntervalModel(name: "COOL DOWN", duration: Int(self.coolDownTime)))
         }
 
         return result
+    }
+    
+    var totalDuration: Int {
+        var totalDuration = 0
+        self.timeIntervals.forEach {
+            totalDuration += $0.duration
+        }
+        
+        return totalDuration
     }
     
     class func setupTestTabataTimer() {

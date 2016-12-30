@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AVTimeInterval {
+class AVTimeIntervalModel {
     
     var name: String
     var duration: Int

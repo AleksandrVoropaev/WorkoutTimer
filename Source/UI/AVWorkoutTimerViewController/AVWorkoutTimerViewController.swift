@@ -18,7 +18,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
-    var timeIntervals: Array<AVTimeInterval> = []
+    var timeIntervals: Array<AVTimeIntervalModel> = []
     var totalCountDownTime: Int = 0
     var exerciseCountDown: Int = 0
     var exerciseCountUp: Int = 0
@@ -29,7 +29,7 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         didSet {
             if let newModel = model {
                 self.timeIntervals = newModel.timeIntervals
-                self.totalCountDownTime = self.totalDuration()
+                self.totalCountDownTime = newModel.totalDuration
                 self.activityCountDown = self.totalCountDownTime
                 self.exerciseCountDown = newModel.timeIntervals.first?.duration ?? 0
             }
@@ -77,15 +77,6 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
         self.title = "TIMER"
     }
 
-    func totalDuration() -> Int {
-        var totalDuration = 0
-        self.timeIntervals.forEach {
-            totalDuration += $0.duration
-        }
-        
-        return totalDuration
-    }
-    
     func countDown() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(900)) { () -> Void in
             if self.isRunning {
@@ -149,7 +140,8 @@ class AVWorkoutTimerViewController: UIViewController, AVCellsFill {
             self.startButton.setTitle("START", for: UIControlState.normal)
             self.currentTimeIntervalIndex = -1
             self.nextTimeInterval()
-            self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.totalDuration())
+            self.totalCountDownTimerLabel.text = self.secondsToTimeString(seconds: self.model?.totalDuration ?? 0)
+
             self.activityCountDown = self.totalCountDownTime
             self.isRunning = false
             self.isFirstRun = true

@@ -55,7 +55,7 @@ class AVObservableTimersArrayModel {
     func addTimer(name: String,
                   warmupTime: Int64,
                   setsCount: Int16,
-                  exercises: [AVTimeInterval],
+                  exercises: [AVTimeIntervalModel],
                   exerciseRestTime: Int16,
                   setRestTime: Int16,
                   coolDownTime: Int16)
@@ -87,7 +87,6 @@ class AVObservableTimersArrayModel {
         if let index = self.timers.index(of: timer) {
             _ = self.timers.remove(at: index)
         }
-//        _ = self.timers.remove(at: self.timers.index(of: timer)!)
     }
     
     func removeTimer(at index: Int) {
@@ -103,9 +102,5 @@ class AVObservableTimersArrayModel {
     func moveTimer(from index: Int, to targetIndex: Int) {
         self.timers.insert(self.timers.remove(at: index), at: targetIndex)
     }
-    
-//    fileprivate func recalculateIndexes {
-//        
-//    }
     
 }

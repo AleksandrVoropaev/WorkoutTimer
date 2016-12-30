@@ -20,14 +20,13 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     
     var model: AVObservableTimersArrayModel?
     
-    var exercises: [AVTimeInterval] = []
+    var exercises: [AVTimeIntervalModel] = []
     var warmupTime: Int64 = 30
     var setsCount: Int16 = 3
     var exerciseRestTime: Int16 = 10
     var setRestTime: Int16 = 20
     var coolDownTime: Int16 = 30
 
-    
     let exerciseCreationCellHeight: CGFloat = 164
     let exerciseDetailsCellHeight: CGFloat = 62
     
@@ -149,7 +148,7 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
             name = text.isEmpty ? "Exercise" : text
         }
 
-        self.exercises.append(AVTimeInterval(name: name, duration: cell.exerciseDuration))
+        self.exercises.append(AVTimeIntervalModel(name: name, duration: cell.exerciseDuration))
         self.tableView.reloadData()
     }
     

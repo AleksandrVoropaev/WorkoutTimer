@@ -45,6 +45,7 @@ class AVYoutubeExercisesViewController: UICollectionViewController, UICollection
                                     videoObject.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
                                     self.getChannelDetailsWithVideoModel(model: videoObject)
                                     videos.append(videoObject)
+                                    
                                 }
                                 
                                 self.videos = videos

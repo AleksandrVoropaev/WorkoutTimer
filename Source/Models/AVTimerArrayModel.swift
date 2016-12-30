@@ -52,7 +52,7 @@ class AVTimerArrayModel: AVArrayModel {
     func addTimer(name: String,
                   warmupTime: Int64,
                   setsCount: Int16,
-                  exercises: [AVTimeInterval],
+                  exercises: [AVTimeIntervalModel],
                   exerciseRestTime: Int16,
                   setRestTime: Int16,
                   coolDownTime: Int16)
