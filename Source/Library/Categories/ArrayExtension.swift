@@ -10,7 +10,9 @@ import Foundation
 
 extension Array {
     
-    func firstObjectWithClass(cls:AnyClass) -> Any? {
+//	MARK: Public
+
+    public func firstObjectWithClass(cls:AnyClass) -> Any? {
         return self.first(where: { (evaluatedObject) -> Bool in
             return type(of: evaluatedObject) == cls
         })

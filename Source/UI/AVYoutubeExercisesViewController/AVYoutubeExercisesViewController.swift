@@ -20,75 +20,7 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
         }
     }
 
-    func getVideos() {
-        Alamofire.request("https://www.googleapis.com/youtube/v3/search",
-                          method: .get,
-                          parameters: ["part":"snippet",
-                                       "q":"tabata workout",
-                                       "type":"video",
-                                       "maxResults":10,
-                                       "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
-                          encoding: URLEncoding.default,
-                          headers: nil).responseJSON { (response) in
-                            if let JSON = response.result.value {
-                                var videos = [AVYouTubeVideoModel]()
-                                for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
-                                    let videoModel = AVYouTubeVideoModel()
-                                    videoModel.id = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
-                                    videoModel.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
-                                    videoModel.videoDescription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
-                                    videoModel.thumbnailImage = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
-                                    videoModel.publicationDate = (video as! NSDictionary).value(forKeyPath: "snippet.publishedAt") as! String?
-                                    videoModel.channel = AVYouTubeChannel()
-                                    videoModel.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
-                                    self.getVideoDetailsWithVideoModel(model: videoModel)
-                                    self.getChannelDetailsWithVideoModel(model: videoModel)
-                                    videos.append(videoModel)
-                                }
-                                
-                                self.videos = videos
-                            }
-        }
-    }
-
-    func getVideoDetailsWithVideoModel(model: AVYouTubeVideoModel) {
-        if let videoId = model.id {
-            Alamofire.request("https://www.googleapis.com/youtube/v3/videos",
-                              method: .get,
-                              parameters: ["part":"statistics",
-                                           "id":videoId,
-                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
-                              encoding: URLEncoding.default,
-                              headers: nil).responseJSON { (response) in
-                                if let JSON = response.result.value {
-                                    for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
-                                        let stringViewCount = (video as! NSDictionary).value(forKeyPath: "statistics.viewCount") as! String?
-                                        model.viewCount = Int(stringViewCount!)
-                                    }
-                                }
-            }
-        }
-    }
-    
-    func getChannelDetailsWithVideoModel(model: AVYouTubeVideoModel) {
-        if let channelId = model.channel?.id {
-            Alamofire.request("https://www.googleapis.com/youtube/v3/channels",
-                              method: .get,
-                              parameters: ["part":"snippet",
-                                           "id":channelId,
-                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
-                              encoding: URLEncoding.default,
-                              headers: nil).responseJSON { (response) in
-                                if let JSON = response.result.value {
-                                    for channel in (JSON as! [String: AnyObject])["items"] as! NSArray {
-                                        model.channel?.name = (channel as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
-                                        model.channel?.thumbnailImage = (channel as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
-                                    }
-                                }
-            }
-        }
-    }
-    
+//	MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +52,79 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
     }
     
+//	MARK: Private
+
+    fileprivate func getVideos() {
+        Alamofire.request("https://www.googleapis.com/youtube/v3/search",
+                          method: .get,
+                          parameters: ["part":"snippet",
+                                       "q":"tabata workout",
+                                       "type":"video",
+                                       "maxResults":10,
+                                       "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                          encoding: URLEncoding.default,
+                          headers: nil).responseJSON { (response) in
+                            if let JSON = response.result.value {
+                                var videos = [AVYouTubeVideoModel]()
+                                for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
+                                    let videoModel = AVYouTubeVideoModel()
+                                    videoModel.id = (video as! NSDictionary).value(forKeyPath: "id.videoId") as! String?
+                                    videoModel.title = (video as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
+                                    videoModel.videoDescription = (video as! NSDictionary).value(forKeyPath: "snippet.description") as! String?
+                                    videoModel.thumbnailImage = (video as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
+                                    videoModel.publicationDate = (video as! NSDictionary).value(forKeyPath: "snippet.publishedAt") as! String?
+                                    videoModel.channel = AVYouTubeChannel()
+                                    videoModel.channel?.id = (video as! NSDictionary).value(forKeyPath: "snippet.channelId") as! String?
+                                    self.getVideoDetailsWithVideoModel(model: videoModel)
+                                    self.getChannelDetailsWithVideoModel(model: videoModel)
+                                    videos.append(videoModel)
+                                }
+                                
+                                self.videos = videos
+                            }
+        }
+    }
+    
+    fileprivate func getVideoDetailsWithVideoModel(model: AVYouTubeVideoModel) {
+        if let videoId = model.id {
+            Alamofire.request("https://www.googleapis.com/youtube/v3/videos",
+                              method: .get,
+                              parameters: ["part":"statistics",
+                                           "id":videoId,
+                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                              encoding: URLEncoding.default,
+                              headers: nil).responseJSON { (response) in
+                                if let JSON = response.result.value {
+                                    for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
+                                        let stringViewCount = (video as! NSDictionary).value(forKeyPath: "statistics.viewCount") as! String?
+                                        model.viewCount = Int(stringViewCount!)
+                                    }
+                                }
+            }
+        }
+    }
+    
+    fileprivate func getChannelDetailsWithVideoModel(model: AVYouTubeVideoModel) {
+        if let channelId = model.channel?.id {
+            Alamofire.request("https://www.googleapis.com/youtube/v3/channels",
+                              method: .get,
+                              parameters: ["part":"snippet",
+                                           "id":channelId,
+                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                              encoding: URLEncoding.default,
+                              headers: nil).responseJSON { (response) in
+                                if let JSON = response.result.value {
+                                    for channel in (JSON as! [String: AnyObject])["items"] as! NSArray {
+                                        model.channel?.name = (channel as! NSDictionary).value(forKeyPath: "snippet.title") as! String?
+                                        model.channel?.thumbnailImage = (channel as! NSDictionary).value(forKeyPath: "snippet.thumbnails.high.url") as! String?
+                                    }
+                                }
+            }
+        }
+    }
+    
+//	MARK: UICollectionView
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.videos?.count ?? 0
     }

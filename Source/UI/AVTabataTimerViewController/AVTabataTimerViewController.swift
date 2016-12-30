@@ -24,6 +24,8 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     var restTimerField: AVTimerSettingsFieldView?
     var coolDownTimerField: AVTimerSettingsFieldView?
     
+//	MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +42,10 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
             self.tabataTimerModel = tabataTimerModel
         }
     }
-    
-    func setTimerSettingsContainerView() {
+
+//	MARK: Private
+
+    fileprivate func setTimerSettingsContainerView() {
         if let view = self.view {
             let timerSettingsContainerView = self.timerSettingsContainerView
             view.addSubview(timerSettingsContainerView)
@@ -78,7 +82,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         }
     }
     
-    func setupTimerSettings(timerModel: TimerModel) {
+    fileprivate func setupTimerSettings(timerModel: TimerModel) {
         self.warmupTimerField = self.timerField(title: "WARMUP",
                                                 indication: self.secondsToTimeString(seconds: Int(timerModel.warmupTime)),
                                                 selectorTitle: "onWarmup",
@@ -106,7 +110,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
                                                   isOnTop: false)
     }
     
-    func timerField(title: String,
+    fileprivate func timerField(title: String,
                     indication: String,
                     selectorTitle: String,
                     previousField: AVTimerSettingsFieldView?,
@@ -168,6 +172,8 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         
         return timerField
     }
+
+//	MARK: Interface Handling
     
     @IBAction func onWarmupMinusButton(_ sender: Any) {
         self.tabataTimerModel?.warmupTime = Int64(self.manageWarmupTimerField(function: -))
@@ -177,7 +183,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         self.tabataTimerModel?.warmupTime = Int64(self.manageWarmupTimerField(function: +))
     }
     
-    func manageWarmupTimerField(function:(Int, Int) -> Int) -> Int {
+    fileprivate func manageWarmupTimerField(function:(Int, Int) -> Int) -> Int {
         return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.warmupTime), function: function, label: (self.warmupTimerField?.indicationLabel)!)
     }
     
@@ -189,7 +195,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         self.tabataTimerModel?.setsCount = Int16(self.manageSetsTimerField(function: +))
     }
     
-    func manageSetsTimerField(function:(Int, Int) -> Int) -> Int {
+    fileprivate func manageSetsTimerField(function:(Int, Int) -> Int) -> Int {
         return self.countLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.setsCount), function: function, label: (self.setsTimerField?.indicationLabel)!)
     }
 
@@ -201,7 +207,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         (self.tabataTimerModel?.exercises?.array[0] as! ExerciseModel).duration = Int16(self.manageWorkTimerField(function: +))
     }
     
-    func manageWorkTimerField(function:(Int, Int) -> Int) -> Int {
+    fileprivate func manageWorkTimerField(function:(Int, Int) -> Int) -> Int {
         return self.timeLabelChangeWithFunction(oldValue: Int((self.tabataTimerModel!.exercises?.array[0] as! ExerciseModel).duration), function: function, label: (self.workTimerField?.indicationLabel)!)
     }
 
@@ -219,7 +225,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         tabataTimerModel?.setRestTime = Int16(restTime)
     }
     
-    func manageRestTimerField(function:(Int, Int) -> Int) -> Int {
+    fileprivate func manageRestTimerField(function:(Int, Int) -> Int) -> Int {
         return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.exerciseRestTime), function: function, label: (self.restTimerField?.indicationLabel)!)
     }
     
@@ -231,7 +237,7 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         self.tabataTimerModel?.coolDownTime = Int16(self.manageCoolDownTimerField(function: +))
     }
     
-    func manageCoolDownTimerField(function:(Int, Int) -> Int) -> Int {
+    fileprivate func manageCoolDownTimerField(function:(Int, Int) -> Int) -> Int {
         return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.coolDownTime), function: function, label: (self.coolDownTimerField?.indicationLabel)!)
     }
     
@@ -239,10 +245,6 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         let workoutTimerController = AVWorkoutTimerViewController()
         workoutTimerController.model = self.tabataTimerModel
         self.navigationController?.pushViewController(workoutTimerController, animated: true)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
 }

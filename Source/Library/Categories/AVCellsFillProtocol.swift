@@ -16,25 +16,32 @@ protocol AVCellsFill {
 }
 
 extension AVCellsFill {
-    func timeLabelChangeWithFunction(oldValue: Int, function: (Int, Int) -> Int, label: UILabel) -> Int {
+    
+//	MARK: Public
+
+    public func timeLabelChangeWithFunction(oldValue: Int,
+                                            function: (Int, Int) -> Int,
+                                            label: UILabel) -> Int {
         let newValue = function(oldValue, 1)
         label.text = self.secondsToTimeString(seconds: newValue)
         
         return newValue
     }
-
-    func secondsToTimeString(seconds value: Int) -> String {
+    
+    public func countLabelChangeWithFunction(oldValue: Int,
+                                             function: (Int, Int) -> Int,
+                                             label: UILabel) -> Int {
+        let newValue = function(oldValue, 1)
+        label.text = "\(newValue)"
+        
+        return newValue
+    }
+    
+    public func secondsToTimeString(seconds value: Int) -> String {
         let seconds = String(format:"%02d", value % 60)
         let minutes = String(format:"%02d", value / 60)
         
         return "\(minutes):\(seconds)"
     }
-    
-    func countLabelChangeWithFunction(oldValue: Int, function: (Int, Int) -> Int, label: UILabel) -> Int {
-        let newValue = function(oldValue, 1)
-        
-        label.text = "\(newValue)"
-        
-        return newValue
-    }
+
 }

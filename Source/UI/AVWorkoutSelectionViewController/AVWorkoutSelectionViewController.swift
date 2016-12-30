@@ -11,15 +11,9 @@ import UIKit
 class AVWorkoutSelectionViewController: UIViewController {
 
     var model: AVObservableTimersArrayModel?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
+//	MARK: Interface Handling
+  
     @IBAction func onTabataButton(_ sender: Any) {
         let tabataTimerController = AVTabataTimerViewController()
         tabataTimerController.model = self.model

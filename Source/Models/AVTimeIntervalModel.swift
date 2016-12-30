@@ -12,7 +12,9 @@ class AVTimeIntervalModel {
     
     var name: String
     var duration: Int
-    
+
+//	MARK: Initializations and Deallocations
+
     init(name: String, duration: Int) {
         self.name = name
         self.duration = duration

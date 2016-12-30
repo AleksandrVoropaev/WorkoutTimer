@@ -13,16 +13,12 @@ import MagicalRecord
 class AVObservableTimersArrayModel {
     
     var timers = ObservableArray<TimerModel>()
-    
-    func sync(lock: AnyObject, closure: () -> Void) {
-        objc_sync_enter(lock)
-        closure()
-        objc_sync_exit(lock)
-    }
+
+//	MARK: Public
 
     func load() {
         DispatchQueue.global().sync {
-            self.sync(lock: self, closure: { 
+            AVSynchronized.sync(lock: self, closure: {
                 if let timers = TimerModel.mr_findAllSorted(by: "id", ascending: true) {
                     self.timers.removeAll(keepingCapacity: false)
                     self.timers.appendContentsOf(timers as! [TimerModel])
@@ -32,16 +28,8 @@ class AVObservableTimersArrayModel {
     }
     
     func save() {
-        self.save(beforeExit: false)
-    }
-    
-    func saveBeforeExit() {
-        self.save(beforeExit: true)
-    }
-    
-    func save(beforeExit: Bool) {
         DispatchQueue.global().sync {
-            self.sync(lock: self, closure: { 
+            AVSynchronized.sync(lock: self, closure: {
                 var timerId: Int16 = 0
                 self.timers.forEach {
                     $0.mr_deleteEntity()
@@ -67,12 +55,9 @@ class AVObservableTimersArrayModel {
                         timer.setRestTime = $0.setRestTime
                         timer.coolDownTime = $0.coolDownTime
                     }
-                    
-                    NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
-                    if beforeExit {
-                        MagicalRecord.cleanUp()
-                    }
                 }
+                
+                NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
             })
         }
     }
@@ -85,7 +70,7 @@ class AVObservableTimersArrayModel {
                   setRestTime: Int16,
                   coolDownTime: Int16)
     {
-        self.sync(lock: self, closure:{
+        AVSynchronized.sync(lock: self, closure:{
             if let timer = TimerModel.mr_createEntity() {
                 timer.id = Int16(TimerModel.mr_countOfEntities())
                 timer.name = name
@@ -110,7 +95,7 @@ class AVObservableTimersArrayModel {
     }
     
     func remove(timer: TimerModel) {
-        self.sync(lock: self, closure: {
+        AVSynchronized.sync(lock: self, closure: {
             timer.mr_deleteEntity()
             if let index = self.timers.index(of: timer) {
                 _ = self.timers.remove(at: index)
@@ -119,21 +104,21 @@ class AVObservableTimersArrayModel {
     }
     
     func removeTimer(at index: Int) {
-        self.sync(lock: self, closure: {
+        AVSynchronized.sync(lock: self, closure: {
             self.timers[index].mr_deleteEntity()
             _ = self.timers.remove(at: index)
         })
     }
     
     func erase() {
-        self.sync(lock: self, closure: {
+        AVSynchronized.sync(lock: self, closure: {
             TimerModel.mr_truncateAll()
             self.timers.removeAll(keepingCapacity: false)
         })
     }
     
     func moveTimer(from index: Int, to targetIndex: Int) {
-        self.sync(lock: self, closure: {
+        AVSynchronized.sync(lock: self, closure: {
             self.timers.insert(self.timers.remove(at: index), at: targetIndex)
         })
     }

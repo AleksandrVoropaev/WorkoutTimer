@@ -19,8 +19,7 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
     @IBOutlet weak var execiseNameLabel: UILabel!
     @IBOutlet weak var exerciseDurationLabel: UILabel!
     
-    var model: TimerModel?
-        {
+    var model: TimerModel? {
         didSet {
             if let model = self.model {
                 self.timerNameLabel.text = model.name
@@ -47,15 +46,6 @@ class AVScheduledTimerTableViewCell: UITableViewCell, AVCellsFill {
                 self.exerciseDurationLabel.text = exerciseTimes
             }
         }
-    }
-
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
 }

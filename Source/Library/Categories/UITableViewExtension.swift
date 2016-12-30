@@ -10,7 +10,9 @@ import UIKit
 
 extension UITableView {
     
-    func dequeueReusableCell(withClass cls: AnyClass) -> UITableViewCell? {
+//	MARK: Public
+    
+    public func dequeueReusableCell(withClass cls: AnyClass) -> UITableViewCell? {
         let identifier = NSStringFromClass(cls)
         var cell = self.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil {

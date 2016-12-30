@@ -30,6 +30,8 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     let exerciseCreationCellHeight: CGFloat = 164
     let exerciseDetailsCellHeight: CGFloat = 62
     
+//	MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,42 +47,9 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         self.exerciseRestTimeLabel.text = self.secondsToTimeString(seconds: Int(self.exerciseRestTime))
         self.coolDownTimeLabel.text = self.secondsToTimeString(seconds: Int(self.coolDownTime))
     }
+    
+//	MARK: Interface Handling
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.exercises.count + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cls: AnyClass
-        
-        if indexPath.row == self.exercises.count {
-            cls = AVExerciseCreationTableViewCell.self
-            let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
-            cell.addExerciseButtonAction = self.onAddExerciseButton
-            
-            return cell
-        } else {
-            cls = AVExerciseDetailsTableViewCell.self
-            let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseDetailsTableViewCell
-            cell.exerciseNameLabel.text = self.exercises[indexPath.row].name
-            cell.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exercises[indexPath.row].duration)
-            
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == self.exercises.count {
-            return self.exerciseCreationCellHeight
-        } else {
-            return self.exerciseDetailsCellHeight
-        }
-    }
-    
     @IBAction func onPlusWarmupButton(_ sender: Any) {
         self.warmupTime = Int64(self.timeLabelChangeWithFunction(oldValue: Int(self.warmupTime),
                                                                  function: +,
@@ -163,4 +132,38 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
         
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
+//	MARK: UITableViewDelegate, UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.exercises.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cls: AnyClass
+        
+        if indexPath.row == self.exercises.count {
+            cls = AVExerciseCreationTableViewCell.self
+            let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseCreationTableViewCell
+            cell.addExerciseButtonAction = self.onAddExerciseButton
+            
+            return cell
+        } else {
+            cls = AVExerciseDetailsTableViewCell.self
+            let cell = tableView.dequeueReusableCell(withClass: cls) as! AVExerciseDetailsTableViewCell
+            cell.exerciseNameLabel.text = self.exercises[indexPath.row].name
+            cell.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exercises[indexPath.row].duration)
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == self.exercises.count {
+            return self.exerciseCreationCellHeight
+        } else {
+            return self.exerciseDetailsCellHeight
+        }
+    }
+
 }

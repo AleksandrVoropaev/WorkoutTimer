@@ -9,6 +9,8 @@
 import Foundation
 
 extension ObservableArray {
+
+//	MARK: Public
     
     public mutating func replaceAllElements(_ newElements: [Element], atIndex i: Int) {
         self.removeAll(keepingCapacity: false)

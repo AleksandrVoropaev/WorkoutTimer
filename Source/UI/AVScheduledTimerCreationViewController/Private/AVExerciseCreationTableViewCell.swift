@@ -19,12 +19,16 @@ class AVExerciseCreationTableViewCell: UITableViewCell, AVCellsFill {
     
     var addExerciseButtonAction: ((AnyObject?) -> ())?
     
+//	MARK: View Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.exerciseDurationLabel.text = self.secondsToTimeString(seconds: self.exerciseDuration)
     }
     
+//	MARK: Interface Handling
+
     @IBAction func onExerciseDurationPlusButton(_ sender: Any) {
         self.exerciseDuration = self.timeLabelChangeWithFunction(oldValue: self.exerciseDuration,
                                                          function: +,

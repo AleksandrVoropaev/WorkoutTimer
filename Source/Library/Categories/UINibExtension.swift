@@ -10,6 +10,8 @@ import UIKit
 
 extension UINib {
     
+//	MARK: Class methods
+
     class func nibWithClass(cls: AnyClass) -> UINib {
         return self.nibWithClass(cls: cls, bundle: nil)
     }
@@ -31,6 +33,8 @@ extension UINib {
     class func object(withClass cls:AnyClass, owner:Any?, options:[AnyHashable : Any]?) -> Any? {
         return self.nibWithClass(cls: cls).instantiate(withOwner: owner, options: options).firstObjectWithClass(cls: cls)
     }
+
+//	MARK: Public
 
     func object(withClass cls:AnyClass) -> Any? {
         return self.object(withClass: cls, owner: nil)

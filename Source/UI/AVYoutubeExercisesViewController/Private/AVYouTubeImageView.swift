@@ -14,7 +14,7 @@ class AVYouTubeImageView: UIImageView {
 
     var imageURLString: String? = nil
     
-    func loadImageWithURLString(URLString: String) {
+    public func loadImageWithURLString(URLString: String) {
         self.imageURLString = URLString
         let url = NSURL(string: URLString)
         
@@ -44,4 +44,5 @@ class AVYouTubeImageView: UIImageView {
             }).resume()
         }
     }
+    
 }

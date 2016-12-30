@@ -17,8 +17,11 @@ let alphaInvisible: CGFloat = 0.0
 class AVLoadingView: UIView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var visible: Bool = true
     
+//	MARK: Class methods
+
     static func loadingView(with view: UIView) -> AVLoadingView {
         var loadingView = self.initFromNib() as! AVLoadingView
         if loadingView.frame == CGRect.zero {
@@ -35,6 +38,8 @@ class AVLoadingView: UIView {
         return loadingView
     }
     
+//	MARK: Public
+
     func setVisible(visible:Bool) {
         self.setVisible(visible: visible, animated: true)
     }
@@ -46,7 +51,6 @@ class AVLoadingView: UIView {
     func setVisible(visible: Bool, animated: Bool, completion: ((Bool) -> Void)?) {
         if visible != self.visible {
             self.visible = visible
-            
             if visible {
                 self.superview?.bringSubview(toFront: self)
             }

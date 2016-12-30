@@ -60,6 +60,8 @@ extension TimerModel {
         return totalDuration
     }
     
+//	MARK: Class methods
+
     class func setupTestTabataTimer() {
         if let timer = TimerModel.mr_createEntity() {
             timer.id = 0

@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         MagicalRecord.setupCoreDataStack(withStoreNamed: "AVWorkoutTimerModel")
-        
 //        self.model.erase()
         self.model.load()
         if self.model.timers.count == 0 {
@@ -45,10 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func saveModelInBackgroud(_ application: UIApplication) {
         let backgroundTask = application.beginBackgroundTask {}
-        DispatchQueue.global().async {
-            self.model.saveBeforeExit()
+        DispatchQueue.global().sync {
+            self.model.save()
             application.endBackgroundTask(backgroundTask)
-//            MagicalRecord.cleanUp()
         }
     }
     

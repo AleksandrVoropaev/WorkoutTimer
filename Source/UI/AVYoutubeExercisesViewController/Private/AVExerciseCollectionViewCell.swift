@@ -9,43 +9,9 @@
 import UIKit
 
 class AVExerciseCollectionViewCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     var titleLabelHeightConstraint: NSLayoutConstraint?
-    
-    func setupViews() {
-        self.addSubview(self.thumbnailImageView)
-        self.addSubview(self.separatorView)
-        self.addSubview(self.userProfileView)
-        self.addSubview(self.titleLabel)
-        self.addSubview(self.subTitleTextView)
-        
-        self.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: self.thumbnailImageView)
-        self.addConstraintsWithFormat(format: "H:|-16-[v0(44)]", views: self.userProfileView)
-        self.addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", views: self.thumbnailImageView, self.userProfileView, self.separatorView)
-        self.addConstraintsWithFormat(format: "H:|[v0]|", views: self.separatorView)
-        
-        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.thumbnailImageView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8))
-        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.userProfileView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
-        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.thumbnailImageView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-        self.titleLabelHeightConstraint = NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 44)
-        self.addConstraint(self.titleLabelHeightConstraint!)
-        
-        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 4))
-        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 30))
-        
-    }
-    
+
     var video: AVYouTubeVideoModel? {
         didSet {
             self.titleLabel.text = video?.title
@@ -127,4 +93,45 @@ class AVExerciseCollectionViewCell: UICollectionViewCell {
         
         return subTitle
     }()
+
+//	MARK: Initializations and Deallocations
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setupViews()
+    }
+    
+//	MARK: View Lifecycle
+
+    fileprivate func setupViews() {
+        self.addSubview(self.thumbnailImageView)
+        self.addSubview(self.separatorView)
+        self.addSubview(self.userProfileView)
+        self.addSubview(self.titleLabel)
+        self.addSubview(self.subTitleTextView)
+        
+        self.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: self.thumbnailImageView)
+        self.addConstraintsWithFormat(format: "H:|-16-[v0(44)]", views: self.userProfileView)
+        self.addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-36-[v2(1)]|", views: self.thumbnailImageView, self.userProfileView, self.separatorView)
+        self.addConstraintsWithFormat(format: "H:|[v0]|", views: self.separatorView)
+        
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.thumbnailImageView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8))
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.userProfileView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
+        self.addConstraint(NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.thumbnailImageView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
+        self.titleLabelHeightConstraint = NSLayoutConstraint(item: self.titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 44)
+        self.addConstraint(self.titleLabelHeightConstraint!)
+        
+        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 4))
+        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self.subTitleTextView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 30))
+    }
+    
 }

@@ -10,14 +10,6 @@ import UIKit
 
 class AVTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     override var reuseIdentifier: String? {
         return NSStringFromClass(type(of: self))
     }

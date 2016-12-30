@@ -10,6 +10,8 @@ import UIKit
 
 extension UIView {
     
+//	MARK: Class methods
+
     class func initFromNib() -> UIView {
         let mainBundle = Bundle.main
         let className = NSStringFromClass(self).components(separatedBy: ".").last ?? ""
@@ -26,8 +28,10 @@ extension UIView {
         
         return UIView(frame: CGRect.zero)
     }
-    
-    func addConstraintsWithFormat(format: String, views: UIView...) {
+
+//	MARK: Public
+
+    public func addConstraintsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String : UIView]()
         for (index, view) in views.enumerated() {
             view.translatesAutoresizingMaskIntoConstraints = false

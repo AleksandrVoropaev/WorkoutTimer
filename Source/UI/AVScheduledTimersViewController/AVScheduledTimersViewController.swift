@@ -24,6 +24,8 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
     var editingTableView: Bool = false    
     let estimatedRowHeight: CGFloat = 198
 
+//	MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +38,7 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
         self.setupRx()
     }
     
-    func setupRx() {
+    fileprivate func setupRx() {
         if let model = self.model, let tableView = self.tableView {
             tableView.register(UINib.init(nibName: "AVScheduledTimerTableViewCell",
                                           bundle: Bundle.main),
@@ -85,11 +87,9 @@ class AVScheduledTimersViewController: UIViewController, UITableViewDelegate {
                 .addDisposableTo(disposeBag)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
+//	MARK: Interface Handling
+
     @IBAction func onAddTimerButton(_ sender: Any) {
         let timerCreationController = AVScheduledTimerCreationViewController()
         timerCreationController.model = self.model

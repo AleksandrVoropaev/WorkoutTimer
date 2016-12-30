@@ -53,6 +53,8 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
     
     var video: AVYouTubeVideoModel?
     
+//	MARK: Initializations and Deallocations
+
     deinit {
         self.subTitleTextView.removeObserver(self, forKeyPath: "contentSize")
     }
@@ -69,6 +71,8 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         self.setupViews()
     }
     
+//	MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -115,7 +119,7 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func setupViews() {
+    fileprivate func setupViews() {
         self.view.addSubview(self.webView)
         self.view.addSubview(self.scrollView)
 
@@ -148,6 +152,8 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         self.scrollView.addConstraint(self.subTitleTextViewHeightConstraint!)
     }
     
+//	MARK: Observation
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         self.subTitleTextViewHeightConstraint?.constant = subTitleTextView.contentSize.height
     }
