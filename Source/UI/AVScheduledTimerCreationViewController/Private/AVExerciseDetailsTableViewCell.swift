@@ -15,7 +15,7 @@ class AVExerciseDetailsTableViewCell: UITableViewCell, AVCellsFill {
     
     var exerciseModel: ExerciseModel?
     
-    func fillWithModel(model: ExerciseModel) {
+    public func fillWithModel(model: ExerciseModel) {
         self.exerciseDurationLabel.text = self.secondsToTimeString(seconds: Int(model.duration))
         self.exerciseNameLabel.text = model.name
     }

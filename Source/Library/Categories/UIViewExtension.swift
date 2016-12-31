@@ -15,7 +15,6 @@ extension UIView {
     class func initFromNib() -> UIView {
         let mainBundle = Bundle.main
         let className = NSStringFromClass(self).components(separatedBy: ".").last ?? ""
-        
         if mainBundle.path(forResource: className, ofType: "nib") != nil {
             if let objects = mainBundle.loadNibNamed(className, owner: self, options: [:]) {
                 for object in objects {
@@ -35,7 +34,6 @@ extension UIView {
         var viewsDictionary = [String : UIView]()
         for (index, view) in views.enumerated() {
             view.translatesAutoresizingMaskIntoConstraints = false
-            
             let key = "v\(index)"
             viewsDictionary[key] = view
         }

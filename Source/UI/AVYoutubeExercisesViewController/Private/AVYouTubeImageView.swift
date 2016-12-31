@@ -17,11 +17,10 @@ class AVYouTubeImageView: UIImageView {
     public func loadImageWithURLString(URLString: String) {
         self.imageURLString = URLString
         let url = NSURL(string: URLString)
-        
         self.image = nil
-        
         if let imageFromCache = imageCache.object(forKey: URLString as NSString) {
             self.image = imageFromCache
+            
             return
         } else {
             self.addSubview(AVLoadingView.loadingView(with: self))

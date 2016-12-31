@@ -31,7 +31,6 @@ class AVLoadingView: UIView {
         loadingView.frame = view.bounds
         loadingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         loadingView.alpha = alphaInvisible
-
         view.addSubview(loadingView)
         view.bringSubview(toFront: loadingView)
         

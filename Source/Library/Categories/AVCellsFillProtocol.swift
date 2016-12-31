@@ -22,19 +22,19 @@ extension AVCellsFill {
     public func timeLabelChangeWithFunction(oldValue: Int,
                                             function: (Int, Int) -> Int,
                                             label: UILabel) -> Int {
-        let newValue = function(oldValue, 1)
-        label.text = self.secondsToTimeString(seconds: newValue)
-        
-        return newValue
+        return self.labelChangeWithFunction(oldValue: oldValue,
+                                            function: function,
+                                            label: label,
+                                            isTimeIndicator: true)
     }
     
     public func countLabelChangeWithFunction(oldValue: Int,
                                              function: (Int, Int) -> Int,
                                              label: UILabel) -> Int {
-        let newValue = function(oldValue, 1)
-        label.text = "\(newValue)"
-        
-        return newValue
+        return self.labelChangeWithFunction(oldValue: oldValue,
+                                            function: function,
+                                            label: label,
+                                            isTimeIndicator: false)
     }
     
     public func secondsToTimeString(seconds value: Int) -> String {
@@ -42,6 +42,18 @@ extension AVCellsFill {
         let minutes = String(format:"%02d", value / 60)
         
         return "\(minutes):\(seconds)"
+    }
+    
+//	MARK: Private
+
+    fileprivate func labelChangeWithFunction(oldValue: Int,
+                                             function: (Int, Int) -> Int,
+                                             label: UILabel,
+                                             isTimeIndicator: Bool) -> Int {
+        let newValue = oldValue  > 0 ? function(oldValue, 1) : 0
+        label.text = isTimeIndicator ? self.secondsToTimeString(seconds: newValue) : "\(newValue)"
+        
+        return newValue
     }
 
 }

@@ -18,4 +18,12 @@ class AVSynchronized {
         objc_sync_exit(lock)
     }
     
+    static func syncAndReturn<T>(lock: AnyObject, closure: () -> T) -> T {
+        objc_sync_enter(lock)
+        let result: T = closure()
+        objc_sync_exit(lock)
+        
+        return result
+    }
+    
 }

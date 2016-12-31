@@ -36,15 +36,15 @@ extension UINib {
 
 //	MARK: Public
 
-    func object(withClass cls:AnyClass) -> Any? {
+    public func object(withClass cls:AnyClass) -> Any? {
         return self.object(withClass: cls, owner: nil)
     }
     
-    func object(withClass cls:AnyClass, owner:Any?) -> Any? {
+    public func object(withClass cls:AnyClass, owner:Any?) -> Any? {
         return self.object(withClass: cls, owner: owner, options: nil)
     }
     
-    func object(withClass cls:AnyClass, owner:Any?, options:[AnyHashable : Any]?) -> Any? {
+    public func object(withClass cls:AnyClass, owner:Any?, options:[AnyHashable : Any]?) -> Any? {
         return self.instantiate(withOwner: owner, options: options).firstObjectWithClass(cls: cls)
     }
     

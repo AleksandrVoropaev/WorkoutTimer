@@ -124,7 +124,6 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
         timerField.plusButton.addTarget(self,
                                         action: NSSelectorFromString(selectorTitle + "PlusButton:"),
                                         for: UIControlEvents.touchUpInside)
-        
         let timerSettingsContainerView = self.timerSettingsContainerView
         timerSettingsContainerView.addSubview(timerField)
         timerField.translatesAutoresizingMaskIntoConstraints = false
@@ -150,24 +149,13 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
                                                            attribute: NSLayoutAttribute.centerX,
                                                            multiplier: 1.0,
                                                            constant: 0)
-        if isOnTop {
-            topTestViewConstraint = NSLayoutConstraint(item: timerField,
-                                                       attribute: NSLayoutAttribute.top,
-                                                       relatedBy: NSLayoutRelation.equal,
-                                                       toItem: timerSettingsContainerView,
-                                                       attribute: NSLayoutAttribute.top,
-                                                       multiplier: 1.0,
-                                                       constant: 0)
-        } else {
-            topTestViewConstraint = NSLayoutConstraint(item: timerField,
-                                                       attribute: NSLayoutAttribute.top,
-                                                       relatedBy: NSLayoutRelation.equal,
-                                                       toItem: previousField,
-                                                       attribute: NSLayoutAttribute.bottom,
-                                                       multiplier: 1.0,
-                                                       constant: 8)
-        }
-
+        topTestViewConstraint = NSLayoutConstraint(item: timerField,
+                                                   attribute: NSLayoutAttribute.top,
+                                                   relatedBy: NSLayoutRelation.equal,
+                                                   toItem: isOnTop ? timerSettingsContainerView : previousField,
+                                                   attribute: isOnTop ? .top : .bottom,
+                                                   multiplier: 1.0,
+                                                   constant: isOnTop ? 0 : 8)
         self.view.addConstraints([topTestViewConstraint, heightTestViewContsraint, widthTestViewContsraint, centerXTestViewConstraint])
         
         return timerField
@@ -184,11 +172,21 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     fileprivate func manageWarmupTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.warmupTime), function: function, label: (self.warmupTimerField?.indicationLabel)!)
+        if let tabataTimerModel = self.tabataTimerModel,
+            let label = self.warmupTimerField?.indicationLabel
+        {
+            return self.timeLabelChangeWithFunction(oldValue: Int(tabataTimerModel.warmupTime),
+                                                    function: function,
+                                                    label: label)
+        }
+        
+        return 0
     }
     
     @IBAction func onSetsMinusButton(_ sender: Any) {
-        self.tabataTimerModel?.setsCount = Int16(self.manageSetsTimerField(function: -))
+        if let setsCount = self.tabataTimerModel?.setsCount, setsCount > 1 {
+            self.tabataTimerModel?.setsCount = Int16(self.manageSetsTimerField(function: -))
+        }
     }
     
     @IBAction func onSetsPlusButton(_ sender: Any) {
@@ -196,7 +194,15 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     fileprivate func manageSetsTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.countLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.setsCount), function: function, label: (self.setsTimerField?.indicationLabel)!)
+        if let tabataTimerModel = self.tabataTimerModel,
+            let label = self.setsTimerField?.indicationLabel
+        {
+            return self.countLabelChangeWithFunction(oldValue: Int(tabataTimerModel.setsCount),
+                                                     function: function,
+                                                     label: label)
+        }
+        
+        return 1
     }
 
     @IBAction func onWorkMinusButton(_ sender: Any) {
@@ -208,7 +214,17 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     fileprivate func manageWorkTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: Int((self.tabataTimerModel!.exercises?.array[0] as! ExerciseModel).duration), function: function, label: (self.workTimerField?.indicationLabel)!)
+        if let tabataTimerModel = self.tabataTimerModel,
+            let label = self.workTimerField?.indicationLabel
+        {
+            let exercise = tabataTimerModel.exercises?.array[0] as! ExerciseModel
+            
+            return self.timeLabelChangeWithFunction(oldValue: Int(exercise.duration),
+                                                    function: function,
+                                                    label: label)
+        }
+        
+        return 0
     }
 
     @IBAction func onRestMinusButton(_ sender: Any) {
@@ -226,7 +242,15 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     fileprivate func manageRestTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.exerciseRestTime), function: function, label: (self.restTimerField?.indicationLabel)!)
+        if let exerciseRestTime = self.tabataTimerModel?.exerciseRestTime,
+            let label = self.restTimerField?.indicationLabel
+        {
+            return self.timeLabelChangeWithFunction(oldValue: Int(exerciseRestTime),
+                                                    function: function,
+                                                    label: label)
+        }
+        
+        return 0
     }
     
     @IBAction func onCoolDownMinusButton(_ sender: Any) {
@@ -238,7 +262,14 @@ class AVTabataTimerViewController: UIViewController, AVCellsFill {
     }
     
     fileprivate func manageCoolDownTimerField(function:(Int, Int) -> Int) -> Int {
-        return self.timeLabelChangeWithFunction(oldValue: Int(self.tabataTimerModel!.coolDownTime), function: function, label: (self.coolDownTimerField?.indicationLabel)!)
+        if let tabataTimerModel = self.tabataTimerModel,
+            let label = self.coolDownTimerField?.indicationLabel
+        {
+            return self.timeLabelChangeWithFunction(oldValue: Int(tabataTimerModel.coolDownTime),
+                                                    function: function,
+                                                    label: label)
+        }
+        return 0
     }
     
     @IBAction func onStartButton(_ sender: Any) {

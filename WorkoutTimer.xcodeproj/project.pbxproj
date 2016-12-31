@@ -411,6 +411,7 @@
 				TargetAttributes = {
 					1F9773271DD355AA008EC44F = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P69WPVTUW2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -665,6 +666,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P69WPVTUW2;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AV.WorkoutTimer;
@@ -679,6 +681,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = P69WPVTUW2;
 				INFOPLIST_FILE = WorkoutTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AV.WorkoutTimer;

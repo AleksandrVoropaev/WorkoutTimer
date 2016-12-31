@@ -17,16 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         MagicalRecord.setupCoreDataStack(withStoreNamed: "AVWorkoutTimerModel")
-//        self.model.erase()
-        self.model.load()
-        if self.model.timers.count == 0 {
+        let model = self.model
+//        model.erase()
+        model.load()
+        if model.timers.count == 0 {
             TimerModel.setupTestTabataTimer()
             TimerModel.setupTestScheduledTimer()
-            self.model.load()
+            model.load()
         }
 
         let viewController = AVWorkoutSelectionViewController()
-        viewController.model = self.model
+        viewController.model = model
         let navigationController = UINavigationController(rootViewController: viewController)
         let window = self.window
         window?.rootViewController = navigationController

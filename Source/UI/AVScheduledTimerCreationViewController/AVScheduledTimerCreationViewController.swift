@@ -35,14 +35,13 @@ class AVScheduledTimerCreationViewController: UIViewController, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "ADD NEW TIMER"
-        
+        self.title = "ADD NEW TIMER"        
         self.setupLabels()
     }
     
     func setupLabels() {
         self.warmupTimeLabel.text = self.secondsToTimeString(seconds: Int(self.warmupTime))
-        self.setsCountLabel.text = String(self.warmupTime)
+        self.setsCountLabel.text = String(self.setsCount)
         self.setsRestTimeLabel.text = self.secondsToTimeString(seconds: Int(self.setRestTime))
         self.exerciseRestTimeLabel.text = self.secondsToTimeString(seconds: Int(self.exerciseRestTime))
         self.coolDownTimeLabel.text = self.secondsToTimeString(seconds: Int(self.coolDownTime))

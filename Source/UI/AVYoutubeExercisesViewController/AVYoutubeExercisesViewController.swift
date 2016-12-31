@@ -9,6 +9,13 @@
 import UIKit
 import Alamofire
 
+let youtubeSearchURLString = "https://www.googleapis.com/youtube/v3/search"
+let youtubeVideosURLString = "https://www.googleapis.com/youtube/v3/videos"
+let youtubeChannelsURLString = "https://www.googleapis.com/youtube/v3/channels"
+let youtubeKey = "AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"
+let collectionViewItemHeightFix = CGFloat(32 + 8 + 44 + 1 + 20)
+let youtubeSearchString = "best tabata workout"
+
 class AVYoutubeExercisesViewController: UICollectionViewController,
                                         UICollectionViewDelegateFlowLayout {
     
@@ -26,42 +33,40 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
         super.viewDidLoad()
         
         self.getVideos()
-
         self.title = "WATCH EXERCISES"
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
-        self.collectionView?.backgroundColor = UIColor.white
-        
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.isTranslucent = false
+        navigationBar?.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
+        navigationBar?.tintColor = UIColor.white
+        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        let collectionView = self.collectionView
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.register(AVExerciseCollectionViewCell.self,
+                                 forCellWithReuseIdentifier: "cellID")
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
-
-        self.collectionView?.register(AVExerciseCollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
 
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.isTranslucent = true
+        navigationBar?.barTintColor = UIColor.white
+        navigationBar?.tintColor = UIColor.black
+        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
     }
     
 //	MARK: Private
 
     fileprivate func getVideos() {
-        Alamofire.request("https://www.googleapis.com/youtube/v3/search",
+        Alamofire.request(youtubeSearchURLString,
                           method: .get,
                           parameters: ["part":"snippet",
-                                       "q":"tabata workout",
+                                       "q":youtubeSearchString,
                                        "type":"video",
                                        "maxResults":10,
-                                       "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                                       "key":youtubeKey],
                           encoding: URLEncoding.default,
                           headers: nil).responseJSON { (response) in
                             if let JSON = response.result.value {
@@ -87,17 +92,18 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
     
     fileprivate func getVideoDetailsWithVideoModel(model: AVYouTubeVideoModel) {
         if let videoId = model.id {
-            Alamofire.request("https://www.googleapis.com/youtube/v3/videos",
+            Alamofire.request(youtubeVideosURLString,
                               method: .get,
                               parameters: ["part":"statistics",
                                            "id":videoId,
-                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                                           "key":youtubeKey],
                               encoding: URLEncoding.default,
                               headers: nil).responseJSON { (response) in
                                 if let JSON = response.result.value {
                                     for video in (JSON as! [String: AnyObject])["items"] as! NSArray {
-                                        let stringViewCount = (video as! NSDictionary).value(forKeyPath: "statistics.viewCount") as! String?
-                                        model.viewCount = Int(stringViewCount!)
+                                        if let stringViewCount = (video as! NSDictionary).value(forKeyPath: "statistics.viewCount") as! String? {
+                                            model.viewCount = Int(stringViewCount)
+                                        }
                                     }
                                 }
             }
@@ -106,11 +112,11 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
     
     fileprivate func getChannelDetailsWithVideoModel(model: AVYouTubeVideoModel) {
         if let channelId = model.channel?.id {
-            Alamofire.request("https://www.googleapis.com/youtube/v3/channels",
+            Alamofire.request(youtubeChannelsURLString,
                               method: .get,
                               parameters: ["part":"snippet",
                                            "id":channelId,
-                                           "key":"AIzaSyBX6boFzDlQ8R_0vG8waoar57wwHaKfzCc"],
+                                           "key":youtubeKey],
                               encoding: URLEncoding.default,
                               headers: nil).responseJSON { (response) in
                                 if let JSON = response.result.value {
@@ -140,7 +146,8 @@ class AVYoutubeExercisesViewController: UICollectionViewController,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (collectionView.frame.width - 32) / 16 * 9
         
-        return CGSize.init(width: self.view.frame.width, height: height + 32 + 8 + 44 + 1 + 20)
+        return CGSize.init(width: self.view.frame.width,
+                           height: height + collectionViewItemHeightFix)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

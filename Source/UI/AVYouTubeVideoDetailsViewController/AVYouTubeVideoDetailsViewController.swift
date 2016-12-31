@@ -27,7 +27,6 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         scrollView.isDirectionalLockEnabled = true
 
         return scrollView
@@ -75,20 +74,28 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
         
-        self.subTitleTextView.addObserver(self, forKeyPath: "contentSize", options:NSKeyValueObservingOptions.new, context: nil)
+        self.view.backgroundColor = UIColor.white
+        self.subTitleTextView.addObserver(self,
+                                          forKeyPath: "contentSize",
+                                          options:NSKeyValueObservingOptions.new,
+                                          context: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        super.viewWillAppear(animated)
+        
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.isTranslucent = false
+        navigationBar?.barTintColor = UIColor.RGB(red: 205, green: 32, blue: 31)
+        navigationBar?.tintColor = UIColor.white
+        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if let video = self.video {
             let width = self.view.bounds.size.width
             let height = width / 16 * 9
@@ -114,7 +121,6 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
             }
             
             self.titleLabel.text = video.title
-
             self.subTitleTextView.text = video.videoDescription
         }
     }
@@ -134,7 +140,6 @@ class AVYouTubeVideoDetailsViewController: UIViewController, UIWebViewDelegate {
         self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-    
         
         self.scrollView.addSubview(self.titleLabel)
         self.scrollView.addSubview(self.subTitleTextView)

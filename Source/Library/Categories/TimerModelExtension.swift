@@ -13,51 +13,55 @@ import CoreData
 extension TimerModel {
     
     var timeIntervals: Array<AVTimeIntervalModel> {
-        var result = Array<AVTimeIntervalModel>()
-        if self.warmupTime > 0 {
-            result.append(AVTimeIntervalModel(name: "WARMUP", duration: Int(self.warmupTime)))
-        }
-        
-        if let exercises = self.exercises, exercises.count > 0 {
-            let exercisesLastIndex = exercises.count - 1
-            let setsLastIndex = self.setsCount - 1
-            for setsIterator in 0...(self.setsCount - 1) {
-                for exerciseIterator in 0...(exercisesLastIndex) {
-                    let name = (exercises[exerciseIterator] as! ExerciseModel).name ?? "Work"
-                    let duration = (exercises[exerciseIterator] as! ExerciseModel).duration
-                    result.append(AVTimeIntervalModel(name: name, duration: Int(duration)))
-                    
-                    if exercisesLastIndex != exerciseIterator {
-                        result.append(AVTimeIntervalModel(name: "REST",
-                                                     duration: Int(self.exerciseRestTime)))
-                    } else if setsIterator != setsLastIndex {
-                        if self.setRestTime == 0 {
+        return AVSynchronized.syncAndReturn(lock: self) { () -> Array<AVTimeIntervalModel> in              var result = Array<AVTimeIntervalModel>()
+            if self.warmupTime > 0 {
+                result.append(AVTimeIntervalModel(name: "WARMUP", duration: Int(self.warmupTime)))
+            }
+            
+            if let exercises = self.exercises, exercises.count > 0 {
+                let exercisesLastIndex = exercises.count - 1
+                let setsLastIndex = self.setsCount - 1
+                for setsIterator in 0...(self.setsCount - 1) {
+                    for exerciseIterator in 0...(exercisesLastIndex) {
+                        let name = (exercises[exerciseIterator] as! ExerciseModel).name ?? "Work"
+                        let duration = (exercises[exerciseIterator] as! ExerciseModel).duration
+                        result.append(AVTimeIntervalModel(name: name, duration: Int(duration)))
+                        
+                        if exercisesLastIndex != exerciseIterator {
                             result.append(AVTimeIntervalModel(name: "REST",
-                                                         duration: Int(self.exerciseRestTime)))
-                        } else {
-                            result.append(AVTimeIntervalModel(name: "Next Set in:",
-                                                         duration: Int(self.setRestTime)))
+                                                              duration: Int(self.exerciseRestTime)))
+                        } else if setsIterator != setsLastIndex {
+                            if self.setRestTime == 0 {
+                                result.append(AVTimeIntervalModel(name: "REST",
+                                                                  duration: Int(self.exerciseRestTime)))
+                            } else {
+                                result.append(AVTimeIntervalModel(name: "Next Set in:",
+                                                                  duration: Int(self.setRestTime)))
+                            }
                         }
                     }
+                    
                 }
-                
             }
+            
+            if self.coolDownTime > 0 {
+                result.append(AVTimeIntervalModel(name: "COOL DOWN",
+                                                  duration: Int(self.coolDownTime)))
+            }
+            
+            return result
         }
-        
-        if self.coolDownTime > 0 {
-            result.append(AVTimeIntervalModel(name: "COOL DOWN", duration: Int(self.coolDownTime)))
-        }
-
-        return result
     }
     
     var totalDuration: Int {
-        var totalDuration = 0
-        self.timeIntervals.forEach {
-            totalDuration += $0.duration
+        return AVSynchronized.syncAndReturn(lock: self) { () -> Int in
+            var totalDuration = 0
+            self.timeIntervals.forEach {
+                totalDuration += $0.duration
+            }
+            
+            return totalDuration
         }
-        
-        return totalDuration
     }
     
 //	MARK: Class methods
